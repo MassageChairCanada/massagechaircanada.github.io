@@ -934,3 +934,32 @@ a{
     border-radius: 999px;
   }
 }
+
+/* =========================================================
+   VIDEO heading (Option 2: no card background)
+   ========================================================= */
+.video-heading{
+  width: min(100% - (var(--gutter) * 2), var(--max));
+  margin-inline: auto;
+  margin-bottom: 10px;
+}
+
+.video-heading h2{
+  margin: 0 0 10px;
+}
+
+.video-heading .muted{
+  margin: 0;
+  max-width: 78ch;
+}
+
+/* petite ligne “gold” pour garder le style premium */
+.video-heading::after{
+  content:"";
+  display:block;
+  height: 1px;
+  margin-top: 14px;
+  background: var(--g-gold-line);
+  opacity: .65;
+}
+
