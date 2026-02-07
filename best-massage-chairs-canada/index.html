@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#0b0d14" />
   <meta http-equiv="content-language" content="en-CA" />
 
-  <!-- Canonical (match your folder URL) -->
+  <!-- Canonical -->
   <link rel="canonical" href="https://massagechaircanada.github.io/best-massage-chairs-canada/" />
 
   <!-- Favicons / App Icons (repo root) -->
@@ -23,25 +23,26 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Social -->
+  <!-- Social (use your NEW OG image) -->
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="MassageChairCanada" />
   <meta property="og:title" content="Best Massage Chairs in Canada (2026) | Premium & 4D Zero Gravity Picks" />
   <meta property="og:description" content="Premium and luxury massage chair reviews for Canadians. Compare 4D/3D, zero gravity, heat therapy, and full-body performance. High-ticket picks from $2,000–$8,000+." />
   <meta property="og:url" content="https://massagechaircanada.github.io/best-massage-chairs-canada/" />
-  <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png" />
-  <meta property="og:image:alt" content="MassageChairCanada logo" />
+  <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta property="og:image:alt" content="Premium massage chair in a luxury home setting with gold lighting accents" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Best Massage Chairs in Canada (2026) | Premium & 4D Zero Gravity Picks" />
   <meta name="twitter:description" content="Compare the best massage chairs in Canada: 4D/3D, zero gravity, heat therapy, and full-body relief. High-end picks for home wellness and recovery." />
-  <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png" />
+  <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
 
-  <!-- Preload brand -->
+  <!-- Preload (use your NEW hero image + brand) -->
+  <link rel="preload" as="image" href="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-icon-1024.png" />
   <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-logo.png" />
 
-  <!-- CSS (YOUR REAL PATH) -->
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=6" />
 
   <!-- Structured Data -->
@@ -134,9 +135,22 @@
     </div>
   </header>
 
-  <main id="content" class="container">
-    <!-- HERO -->
-    <section class="hero" aria-label="Introduction">
+  <!-- FULL-WIDTH HERO (outside container) -->
+  <section class="hero hero--full" aria-label="Introduction">
+    <div class="hero-media" aria-hidden="true">
+      <img
+        src="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
+        alt=""
+        width="2400"
+        height="1350"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high" />
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container">
       <div class="hero-card">
         <div class="hero-inner">
           <div>
@@ -177,7 +191,10 @@
           </aside>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <main id="content" class="container">
 
     <!-- COMPARISON -->
     <section class="section" id="comparison" aria-label="Comparison table">
@@ -291,31 +308,43 @@
       </div>
     </section>
 
-    <!-- VIDEO (placed after comparison for intent + trust) -->
-    <section class="section" id="video" aria-label="Video: massage chair buying guide">
+  </main>
+
+  <!-- FULL-WIDTH VIDEO (outside container) -->
+  <section class="section section--full" id="video" aria-label="Video: massage chair buying guide">
+    <div class="container">
       <div class="card">
         <h2>Video: Massage Chair Buying Guide (Zero Gravity, 3D vs 4D, Heat)</h2>
         <p class="muted">
-          Prefer to watch before you buy? This short overview covers what matters most for Canadian buyers: fit, roller depth, zero gravity positioning,
+          Prefer to watch before you buy? This overview covers what matters most for Canadian buyers: fit, roller depth, zero gravity positioning,
           and when a 4D massage chair is worth the upgrade.
         </p>
+      </div>
+    </div>
 
-        <div class="video-wrap">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&iv_load_policy=3"
-            title="Massage chair buying guide video"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
+    <div class="video-fullbleed" aria-label="Embedded video">
+      <div class="video-wrap video-wrap--full">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&iv_load_policy=3"
+          title="Massage chair buying guide video"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
 
-        <p class="muted" style="margin-top:12px;">
+    <div class="container">
+      <div class="card" style="margin-top:14px;">
+        <p class="muted">
           Note: product availability and pricing can change. Use the “Check price on Amazon Canada” buttons below for current listings.
         </p>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <main class="container">
 
     <!-- REVIEWS -->
     <section class="section" id="reviews" aria-label="Top 10 massage chair reviews">
@@ -951,5 +980,6 @@
       </script>
     </footer>
   </main>
+
 </body>
 </html>
