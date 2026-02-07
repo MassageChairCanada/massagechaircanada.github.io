@@ -1,0 +1,837 @@
+/* =========================================================
+   MassageChairCanada — styles.css (ULTRA LUXE v2)
+   Goals:
+   - Premium / luxury look with subtle gold gradients
+   - Ultra readable on mobile, comfortable spacing
+   - Prevent overflow / layout breaks
+   - Fast, no dependencies
+   ========================================================= */
+
+/* ---------- Design Tokens ---------- */
+:root{
+  /* Layout */
+  --max: 1120px;
+  --gutter: clamp(16px, 3.6vw, 28px);
+
+  /* Radius */
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-2xl: 34px;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.28);
+  --shadow-card: 0 18px 55px rgba(0,0,0,.35);
+  --shadow-glow: 0 0 0 1px rgba(255,255,255,.06), 0 18px 70px rgba(0,0,0,.38);
+
+  /* Typography */
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --serif: ui-serif, "Iowan Old Style", Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --fs-0: 12px;
+  --fs-1: 14px;
+  --fs-2: 16px;
+  --fs-3: 18px;
+  --fs-4: 22px;
+  --fs-5: 28px;
+  --fs-6: 36px;
+
+  /* Line heights */
+  --lh-tight: 1.18;
+  --lh: 1.58;
+
+  /* Dark theme core */
+  --bg: #07060a;
+  --bg2:#0b0d14;
+  --panel:#0f111b;
+  --panel2:#121425;
+  --panel3:#161a2e;
+
+  /* Text */
+  --text: #f3f5fb;
+  --text2:#e6e8f2;
+  --muted:#aab2c7;
+  --muted2:#7f8aa6;
+
+  /* Lines */
+  --line: rgba(255,255,255,.10);
+  --line2: rgba(255,255,255,.14);
+
+  /* Gold palette (subtle, classy) */
+  --gold-1: #f7e7b0;
+  --gold-2: #e9c66a;
+  --gold-3: #caa24a;
+  --gold-4: #b38b3a;
+  --gold-5: #8b6a2a;
+
+  /* Accent */
+  --accent: var(--gold-2);
+  --accent2: var(--gold-3);
+
+  /* Semantic */
+  --ok: #7ef0c6;
+  --warn: #ffd28e;
+  --bad: #ff7c93;
+
+  /* Controls */
+  --tap: 44px;
+
+  /* Fancy gradients */
+  --g-hero:
+    radial-gradient(1100px 520px at 20% -10%, rgba(233,198,106,.22), transparent 60%),
+    radial-gradient(900px 520px at 90% 0%, rgba(179,139,58,.14), transparent 58%),
+    radial-gradient(800px 520px at 18% 115%, rgba(247,231,176,.10), transparent 62%),
+    radial-gradient(800px 520px at 88% 115%, rgba(123,95,36,.10), transparent 62%);
+
+  --g-card:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    radial-gradient(800px 420px at 15% 0%, rgba(233,198,106,.10), transparent 58%),
+    radial-gradient(650px 360px at 90% 10%, rgba(179,139,58,.08), transparent 56%);
+
+  --g-gold-line:
+    linear-gradient(90deg,
+      rgba(247,231,176,.0),
+      rgba(247,231,176,.45),
+      rgba(202,162,74,.55),
+      rgba(179,139,58,.55),
+      rgba(247,231,176,.45),
+      rgba(247,231,176,.0)
+    );
+
+  --g-button:
+    linear-gradient(135deg,
+      rgba(247,231,176,.26),
+      rgba(233,198,106,.20),
+      rgba(202,162,74,.14)
+    );
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---------- Light theme (optional but polished) ---------- */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f6f7fb;
+    --bg2:#ffffff;
+    --panel:#ffffff;
+    --panel2:#ffffff;
+    --panel3:#ffffff;
+
+    --text:#101426;
+    --text2:#131a2d;
+    --muted:#4c5a79;
+    --muted2:#6a7896;
+
+    --line: rgba(16,20,38,.10);
+    --line2: rgba(16,20,38,.14);
+
+    --shadow-soft: 0 10px 24px rgba(20,28,55,.10);
+    --shadow-card: 0 18px 42px rgba(20,28,55,.12);
+    --shadow-glow: 0 0 0 1px rgba(16,20,38,.06), 0 18px 50px rgba(20,28,55,.12);
+
+    --g-hero:
+      radial-gradient(1100px 520px at 20% -10%, rgba(233,198,106,.24), transparent 60%),
+      radial-gradient(900px 520px at 90% 0%, rgba(179,139,58,.14), transparent 58%);
+
+    --g-card:
+      linear-gradient(180deg, rgba(16,20,38,.04), rgba(16,20,38,.01)),
+      radial-gradient(800px 420px at 15% 0%, rgba(233,198,106,.12), transparent 58%),
+      radial-gradient(650px 360px at 90% 10%, rgba(179,139,58,.10), transparent 56%);
+  }
+}
+
+/* =========================================================
+   Reset + Safety (anti overflow)
+   ========================================================= */
+*,
+*::before,
+*::after{ box-sizing:border-box; }
+
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:0;
+  min-height:100%;
+  font-family: var(--sans);
+  line-height: var(--lh);
+  color: var(--text);
+  background: var(--g-hero), radial-gradient(1200px 700px at 50% 110%, rgba(202,162,74,.10), transparent 60%), var(--bg);
+  overflow-x: hidden;
+}
+
+img, svg, video, canvas{
+  max-width:100%;
+  height:auto;
+}
+
+pre, code, kbd, samp{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .95em;
+  overflow:auto;
+  max-width: 100%;
+}
+
+a, button, input, select, textarea{
+  font: inherit;
+}
+
+:where(h1,h2,h3,h4,p,ul,ol,li,figure,blockquote){
+  overflow-wrap:anywhere;
+  word-break: normal;
+}
+
+:where(table){
+  width:100%;
+  border-collapse: collapse;
+  border-spacing:0;
+}
+
+:where(th,td){
+  overflow-wrap:anywhere;
+}
+
+::selection{
+  background: rgba(233,198,106,.30);
+}
+
+/* Focus */
+:focus-visible{
+  outline: 3px solid rgba(233,198,106,.55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+}
+
+/* =========================================================
+   Layout helpers
+   ========================================================= */
+.container{
+  width: min(100% - (var(--gutter) * 2), var(--max));
+  margin-inline: auto;
+}
+
+.section{
+  padding: clamp(18px, 3.2vw, 30px) 0;
+}
+
+.card{
+  position: relative;
+  border-radius: var(--r-2xl);
+  padding: clamp(18px, 3.6vw, 26px);
+  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(900px 520px at 15% 0%, rgba(233,198,106,.10), transparent 58%);
+  opacity:.8;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  left: 12%;
+  right: 12%;
+  top: 0;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity:.95;
+  pointer-events:none;
+}
+
+/* =========================================================
+   Topbar / Header (luxury glass)
+   ========================================================= */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg2) 76%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar .container{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+/* Brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  text-decoration:none;
+  min-width: 220px;
+  max-width: 60%;
+}
+
+.brand img{
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand .name{
+  display:block;
+  font-weight: 820;
+  letter-spacing: .2px;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.brand .tag{
+  display:block;
+  font-size: var(--fs-0);
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Nav */
+.nav{
+  margin-left: auto;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items:center;
+  justify-content:flex-end;
+  max-width: 60%;
+}
+
+.nav a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  text-decoration:none;
+  color: var(--text2);
+  font-size: var(--fs-1);
+  border: 1px solid color-mix(in srgb, var(--line2) 70%, transparent);
+  background: color-mix(in srgb, var(--panel) 60%, transparent);
+  transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+}
+
+.nav a:hover{
+  transform: translateY(-1px);
+  border-color: rgba(233,198,106,.35);
+  background: color-mix(in srgb, var(--panel2) 78%, transparent);
+  text-decoration:none;
+}
+
+/* Mobile nav comfort */
+@media (max-width: 760px){
+  .topbar .container{
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 0;
+  }
+  .brand{max-width: 100%;}
+  .nav{
+    width: 100%;
+    max-width: 100%;
+    justify-content:flex-start;
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .nav a{
+    white-space: nowrap;
+    height: 40px;
+    padding: 0 14px;
+  }
+}
+
+/* =========================================================
+   Hero (ultra luxe)
+   ========================================================= */
+.hero{
+  padding: clamp(16px, 3vw, 26px) 0 10px;
+}
+
+.hero-card{
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--line);
+  background: var(--g-card), color-mix(in srgb, var(--panel) 90%, transparent);
+  box-shadow: var(--shadow-glow);
+  overflow:hidden;
+  position: relative;
+}
+
+.hero-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  pointer-events:none;
+  background:
+    radial-gradient(1000px 480px at 15% 0%, rgba(247,231,176,.14), transparent 60%),
+    radial-gradient(900px 420px at 85% 12%, rgba(233,198,106,.12), transparent 56%),
+    linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%);
+}
+
+.hero-inner{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(14px, 3vw, 22px);
+  padding: clamp(18px, 3.8vw, 28px);
+}
+
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--gold-1) 65%, var(--muted));
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 55%, var(--line));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  padding: 9px 12px;
+  border-radius: 999px;
+}
+
+h1{
+  margin: 12px 0 10px;
+  font-size: clamp(28px, 4.6vw, 48px);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+}
+
+.lead{
+  margin: 0 0 14px;
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: clamp(16px, 2.1vw, 18px);
+}
+
+.cta-row{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Hero Aside */
+.hero-aside{
+  border-left: 1px solid var(--line);
+  padding-left: clamp(14px, 3vw, 22px);
+}
+
+.aside-box{
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel2) 82%, transparent);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.aside-box h2{
+  margin:0 0 10px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.aside-box ul{
+  margin:0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.note{
+  margin-top: 14px;
+  border-radius: var(--r-lg);
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 55%, var(--line));
+  background: color-mix(in srgb, var(--panel2) 84%, transparent);
+  color: var(--muted);
+  padding: 12px 14px;
+  position: relative;
+}
+
+.note::before{
+  content:"";
+  position:absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(247,231,176,.85), rgba(202,162,74,.85));
+}
+
+/* Mobile hero stacking */
+@media (max-width: 920px){
+  .hero-inner{grid-template-columns: 1fr}
+  .hero-aside{border-left:none; padding-left:0; border-top: 1px solid var(--line); padding-top: 16px;}
+}
+
+/* =========================================================
+   Typography (lux readable)
+   ========================================================= */
+h2{
+  margin: 0 0 10px;
+  font-size: clamp(20px, 3vw, 30px);
+  letter-spacing: -0.02em;
+}
+
+h3{
+  margin: 18px 0 10px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+p{ margin: 0 0 12px; }
+.muted{ color: var(--muted); }
+
+strong{
+  color: color-mix(in srgb, var(--gold-1) 30%, var(--text));
+  font-weight: 800;
+}
+
+/* Links (gold, clean) */
+a{
+  color: color-mix(in srgb, var(--gold-2) 85%, #ffffff);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover{
+  text-decoration: underline;
+  text-decoration-color: rgba(233,198,106,.65);
+}
+
+/* =========================================================
+   Buttons (lux gold)
+   ========================================================= */
+.btn{
+  min-height: var(--tap);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 60%, var(--line2));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  color: var(--text);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .01em;
+  box-shadow: var(--shadow-soft);
+  transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  text-decoration:none;
+  background: color-mix(in srgb, var(--panel2) 78%, transparent);
+  border-color: rgba(233,198,106,.45);
+}
+
+.btn:active{
+  transform: translateY(0);
+}
+
+.btn.primary{
+  background: var(--g-button), color-mix(in srgb, var(--panel2) 70%, transparent);
+  border-color: rgba(233,198,106,.55);
+  box-shadow: 0 18px 55px rgba(0,0,0,.28);
+}
+
+.btn.primary:hover{
+  border-color: rgba(247,231,176,.70);
+}
+
+/* CTA row on mobile: full-width comfort */
+@media (max-width: 520px){
+  .cta-row .btn{
+    width: 100%;
+    justify-content:center;
+  }
+}
+
+/* =========================================================
+   Tables (no overflow, lux)
+   ========================================================= */
+.table-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel2) 74%, transparent);
+  box-shadow: var(--shadow-soft);
+  margin-top: 12px;
+}
+
+.table-wrap::after{
+  content:"";
+  display:block;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity: .65;
+}
+
+table{
+  min-width: 820px; /* keeps columns readable, wrap via scroll */
+}
+
+th, td{
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align:left;
+  vertical-align: top;
+}
+
+th{
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  background: color-mix(in srgb, var(--panel3) 78%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+td{
+  font-size: 14px;
+  color: var(--text2);
+}
+
+.rank{
+  font-weight: 900;
+  color: color-mix(in srgb, var(--gold-1) 35%, var(--text));
+}
+
+/* Make the table usable on mobile without awkward breaks */
+@media (max-width: 760px){
+  .table-wrap{ border-radius: var(--r-lg); }
+  th, td{ padding: 12px 10px; }
+}
+
+/* =========================================================
+   Product blocks (lux sections)
+   ========================================================= */
+.product{
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-top: 18px;
+  position: relative;
+}
+
+.product:first-child{
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.product-head{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items:flex-start;
+  justify-content: space-between;
+}
+
+.badges{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.25) 60%, var(--line));
+  background: color-mix(in srgb, var(--panel2) 76%, transparent);
+  color: color-mix(in srgb, var(--gold-1) 25%, var(--muted));
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+ul{
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: var(--text2);
+}
+li{ margin: 6px 0; }
+
+/* Pros/Cons grid */
+.proscons{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+@media (max-width: 840px){
+  .proscons{ grid-template-columns: 1fr; }
+}
+
+.pc{
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel2) 80%, transparent);
+  padding: 14px 14px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  position: relative;
+}
+
+.pc::after{
+  content:"";
+  position:absolute;
+  left: 12%;
+  right: 12%;
+  top: 0;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity:.55;
+}
+
+.pc strong{
+  display:block;
+  margin-bottom: 8px;
+  font-weight: 900;
+}
+
+/* CTA line under products */
+.cta{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.cta .muted{
+  font-size: 14px;
+}
+
+/* Mobile: keep price text from squeezing too hard */
+@media (max-width: 520px){
+  .cta{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cta .btn{ width: 100%; }
+}
+
+/* =========================================================
+   Grid helpers (Buying guide)
+   ========================================================= */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   Footer (clean luxury)
+   ========================================================= */
+.footer{
+  padding: 28px 0 46px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.footer a{
+  color: var(--text);
+  opacity: .92;
+}
+.footer a:hover{ opacity: 1; }
+
+/* =========================================================
+   Accessibility / Utilities
+   ========================================================= */
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Skip link visible on focus */
+.sr-only:focus{
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  width: auto;
+  height: auto;
+  padding: 10px 12px;
+  margin: 0;
+  clip: auto;
+  background: color-mix(in srgb, var(--panel2) 88%, transparent);
+  border: 1px solid rgba(233,198,106,.35);
+  border-radius: 12px;
+  z-index: 9999;
+}
+
+/* =========================================================
+   Extra overflow guards (just in case)
+   ========================================================= */
+main, header, footer, section, article, nav, div{
+  max-width: 100%;
+}
+
+.table-wrap, .card, .hero-card{
+  max-width: 100%;
+}
+
+:where(a, span, strong){
+  min-width: 0;
+}
+
+/* Ensure long URLs never break layout */
+a{
+  word-break: break-word;
+  overflow-wrap:anywhere;
+}
+
+/* Optional: nicer scrollbars (webkit) */
+@media (hover:hover){
+  ::-webkit-scrollbar{ height: 10px; width: 10px; }
+  ::-webkit-scrollbar-track{ background: color-mix(in srgb, var(--panel2) 70%, transparent); }
+  ::-webkit-scrollbar-thumb{
+    background: linear-gradient(180deg, rgba(247,231,176,.35), rgba(202,162,74,.35));
+    border: 2px solid color-mix(in srgb, var(--panel2) 70%, transparent);
+    border-radius: 999px;
+  }
+}
