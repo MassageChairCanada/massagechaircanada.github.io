@@ -877,28 +877,28 @@ a{
     linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
 }
 
-/* VIDEO full width */
+/* =========================================================
+   VIDEO — controlled wide (premium, not 100vw)
+   ========================================================= */
+
 .video-full{
-  background: #000;
-  overflow: hidden;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  padding: 0;
 }
 
-.video-wrap.video-wrap--full{
+.video-wrap.video-wrap--wide{
   position: relative;
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  width: min(100% - (var(--gutter) * 2), 1320px); /* <- ajuste 1200/1280/1360/1440 */
+  margin: 18px auto 0;
   aspect-ratio: 16 / 9;
-  border-radius: 0;
+  border-radius: 18px;
   overflow: hidden;
-  border: 0;
-  background: #000;
-  box-shadow: none;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.25);
+  box-shadow: var(--shadow-glow);
 }
 
-.video-wrap.video-wrap--full iframe{
+/* garde le iframe full inside */
+.video-wrap.video-wrap--wide iframe{
   position: absolute;
   inset: 0;
   width: 100%;
@@ -907,27 +907,12 @@ a{
   display: block;
 }
 
-/* Optional: on desktop, keep it elegant (slight inset + radius) */
-@media (min-width: 1000px){
-  .video-full{
-    padding: 0 14px;
-    background: transparent;
-    border: 0;
-  }
-  .video-full .video-wrap.video-wrap--full{
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-glow);
-  }
-  .hero-media{
-    padding: 0 14px;
-    background: transparent;
-    border: 0;
-  }
-  .hero-media .hero-media-img{
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-glow);
+/* Mobile: comfortable, still full width inside container feel */
+@media (max-width: 760px){
+  .video-wrap.video-wrap--wide{
+    width: min(100% - (var(--gutter) * 2), var(--max));
+    margin-top: 14px;
+    border-radius: 16px;
   }
 }
 
