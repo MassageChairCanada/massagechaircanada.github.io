@@ -1272,3 +1272,21 @@ a{
   color: rgba(11,13,20,.92);
 }
 
+/* =========================================================
+   Product images (Top 10 reviews) — SAFE DROP-IN
+   Paste at END of styles.css
+   ========================================================= */
+
+.product-media{
+  margin: 14px 0 16px;
+}
+
+.product-media img{
+  width: 100%;
+  max-width: 360px;          /* look premium, not gigantic */
+  height: auto;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow-soft);
+}
