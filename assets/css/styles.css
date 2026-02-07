@@ -916,3 +916,95 @@ a{
   }
 }
 
+/* =========================================================
+   HERO BANNER (full-width image) + Title overlay (H1 on top)
+   ========================================================= */
+
+.hero--banner{
+  padding: 0;
+}
+
+/* sort du container: full-bleed (plein écran largeur) */
+.full-bleed{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.hero-banner{
+  position: relative;
+  min-height: clamp(340px, 42vw, 560px);
+  border-bottom: 1px solid var(--line);
+  background: #0b0d14;
+  overflow: hidden;
+}
+
+/* image */
+.hero-banner picture,
+.hero-banner img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-banner img{
+  object-fit: cover;
+  object-position: 75% 50%; /* garde la chaise à droite */
+  transform: scale(1.01);
+  filter: saturate(1.03) contrast(1.03);
+}
+
+/* overlays pour lisibilité (évite que le texte se perde) */
+.hero-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.12), transparent 60%),
+    linear-gradient(90deg, rgba(7,6,10,.92) 0%, rgba(7,6,10,.75) 38%, rgba(7,6,10,.25) 72%, rgba(7,6,10,.12) 100%),
+    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.20) 55%, rgba(7,6,10,.60) 100%);
+  pointer-events:none;
+}
+
+.hero-banner::after{
+  content:"";
+  position:absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity: .8;
+  pointer-events:none;
+}
+
+/* contenu overlay */
+.hero-overlay{
+  position: relative;
+  height: 100%;
+  display: grid;
+  align-content: start;
+  padding: clamp(18px, 3.6vw, 34px) 0;
+}
+
+.hero-overlay .hero-box{
+  max-width: min(880px, 100%);
+  padding: clamp(16px, 2.6vw, 22px);
+  border-radius: var(--r-2xl);
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  box-shadow: var(--shadow-glow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-overlay h1{
+  margin: 10px 0 10px;
+  font-size: clamp(28px, 4.2vw, 52px);
+  line-height: var(--lh-tight);
+}
+
+.hero-overlay .lead{
+  margin: 0 0 14
+
