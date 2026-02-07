@@ -1175,3 +1175,100 @@ a{
     background: rgba(16, 18, 26, .46);
   }
 }
+
+/* =========================================================
+   PREMIUM AMAZON CTA (gold, trust, high-contrast)
+   ========================================================= */
+
+.btn.btn--amazon{
+  position: relative;
+  border-radius: 999px;
+  border: 1px solid rgba(233,198,106,.70);
+  color: #0b0d14;
+
+  /* Gold that reads premium, not neon */
+  background:
+    linear-gradient(135deg,
+      rgba(247,231,176,1) 0%,
+      rgba(233,198,106,1) 28%,
+      rgba(202,162,74,1) 62%,
+      rgba(247,231,176,1) 100%
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,255,255,.10) inset;
+
+  font-weight: 900;
+  letter-spacing: .01em;
+
+  transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
+}
+
+/* “Sheen” (reflet premium) */
+.btn.btn--amazon::before{
+  content:"";
+  position:absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.55), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);
+  opacity: .55;
+  mix-blend-mode: soft-light;
+}
+
+/* Subtle bottom depth */
+.btn.btn--amazon::after{
+  content:"";
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  filter: blur(10px);
+  opacity: .55;
+  pointer-events:none;
+}
+
+.btn.btn--amazon:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.05) contrast(1.05);
+  box-shadow:
+    0 22px 65px rgba(0,0,0,.40),
+    0 0 0 1px rgba(255,255,255,.14) inset;
+}
+
+.btn.btn--amazon:active{
+  transform: translateY(0);
+  filter: saturate(1) contrast(1);
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.32),
+    0 0 0 1px rgba(255,255,255,.10) inset;
+}
+
+/* Trust ring on focus (keyboard/mobile accessibility) */
+.btn.btn--amazon:focus-visible{
+  outline: 3px solid rgba(233,198,106,.55);
+  outline-offset: 3px;
+}
+
+/* Optional: little “Amazon.ca” chip inside */
+.btn .btn-meta{
+  margin-left: 10px;
+  display:inline-flex;
+  align-items:center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(11,13,20,.16);
+  border: 1px solid rgba(11,13,20,.18);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: rgba(11,13,20,.92);
+}
+
