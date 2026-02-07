@@ -963,3 +963,40 @@ a{
   opacity: .65;
 }
 
+/* VIDEO section polish */
+.video-heading{
+  /* nothing mandatory; keeps card styling */
+}
+
+.video-band{
+  padding-top: 14px;
+}
+
+.video-wrap.video-wrap--wide{
+  width: min(100% - (var(--gutter) * 2), var(--max-wide, 1320px));
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.25);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+}
+
+.video-wrap.video-wrap--wide iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Mobile comfort */
+@media (max-width: 760px){
+  .video-wrap.video-wrap--wide{
+    width: min(100% - (var(--gutter) * 2), var(--max));
+    border-radius: 16px;
+  }
+}
