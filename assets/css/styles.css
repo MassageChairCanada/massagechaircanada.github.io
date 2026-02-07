@@ -1,5 +1,5 @@
 /* =========================================================
-   MassageChairCanada — styles.css (ULTRA LUXE v2)
+   MassageChairCanada — styles.css (ULTRA LUXE v3)
    Goals:
    - Premium / luxury look with subtle gold gradients
    - Ultra readable on mobile, comfortable spacing
@@ -11,6 +11,7 @@
 :root{
   /* Layout */
   --max: 1120px;
+  --max-wide: 1320px;     /* for video / wide blocks */
   --gutter: clamp(16px, 3.6vw, 28px);
 
   /* Radius */
@@ -161,13 +162,17 @@ body{
   font-family: var(--sans);
   line-height: var(--lh);
   color: var(--text);
-  background: var(--g-hero), radial-gradient(1200px 700px at 50% 110%, rgba(202,162,74,.10), transparent 60%), var(--bg);
+  background:
+    var(--g-hero),
+    radial-gradient(1200px 700px at 50% 110%, rgba(202,162,74,.10), transparent 60%),
+    var(--bg);
   overflow-x: hidden;
 }
 
 img, svg, video, canvas{
   max-width:100%;
   height:auto;
+  display:block;
 }
 
 pre, code, kbd, samp{
@@ -177,9 +182,7 @@ pre, code, kbd, samp{
   max-width: 100%;
 }
 
-a, button, input, select, textarea{
-  font: inherit;
-}
+a, button, input, select, textarea{ font: inherit; }
 
 :where(h1,h2,h3,h4,p,ul,ol,li,figure,blockquote){
   overflow-wrap:anywhere;
@@ -192,22 +195,16 @@ a, button, input, select, textarea{
   border-spacing:0;
 }
 
-:where(th,td){
-  overflow-wrap:anywhere;
-}
+:where(th,td){ overflow-wrap:anywhere; }
 
-::selection{
-  background: rgba(233,198,106,.30);
-}
+::selection{ background: rgba(233,198,106,.30); }
 
-/* Focus */
 :focus-visible{
   outline: 3px solid rgba(233,198,106,.55);
   outline-offset: 3px;
   border-radius: 10px;
 }
 
-/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
   *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
 }
@@ -220,10 +217,26 @@ a, button, input, select, textarea{
   margin-inline: auto;
 }
 
+.container--wide{
+  width: min(100% - (var(--gutter) * 2), var(--max-wide));
+  margin-inline: auto;
+}
+
 .section{
   padding: clamp(18px, 3.2vw, 30px) 0;
 }
 
+/* Full-bleed utility (one source of truth) */
+.full-bleed{
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* =========================================================
+   Cards
+   ========================================================= */
 .card{
   position: relative;
   border-radius: var(--r-2xl);
@@ -253,6 +266,12 @@ a, button, input, select, textarea{
   background: var(--g-gold-line);
   opacity:.95;
   pointer-events:none;
+}
+
+/* Optional: wider card wrapper without going 100vw */
+.card--wide{
+  width: min(100% - (var(--gutter) * 2), var(--max-wide));
+  margin-inline: auto;
 }
 
 /* =========================================================
@@ -340,14 +359,13 @@ a, button, input, select, textarea{
   text-decoration:none;
 }
 
-/* Mobile nav comfort */
 @media (max-width: 760px){
   .topbar .container{
     flex-wrap: wrap;
     gap: 10px;
     padding: 12px 0;
   }
-  .brand{max-width: 100%;}
+  .brand{ max-width: 100%; }
   .nav{
     width: 100%;
     max-width: 100%;
@@ -365,38 +383,78 @@ a, button, input, select, textarea{
 }
 
 /* =========================================================
-   Hero (ultra luxe)
+   HERO BANNER (full-width image) + Title overlay (H1 on top)
+   Use HTML: <section class="hero hero--banner"> ... .hero-banner.full-bleed ...
    ========================================================= */
-.hero{
-  padding: clamp(16px, 3vw, 26px) 0 10px;
+.hero{ padding: clamp(16px, 3vw, 26px) 0 10px; }
+
+.hero--banner{
+  padding: 0;
 }
 
-.hero-card{
-  border-radius: var(--r-2xl);
-  border: 1px solid var(--line);
-  background: var(--g-card), color-mix(in srgb, var(--panel) 90%, transparent);
-  box-shadow: var(--shadow-glow);
-  overflow:hidden;
+.hero-banner{
   position: relative;
+  min-height: clamp(340px, 42vw, 580px);
+  border-bottom: 1px solid var(--line);
+  background: #0b0d14;
+  overflow: hidden;
 }
 
-.hero-card::before{
+.hero-banner picture,
+.hero-banner img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-banner img{
+  object-fit: cover;
+  object-position: 75% 50%;
+  transform: scale(1.01);
+  filter: saturate(1.03) contrast(1.03);
+}
+
+.hero-banner::before{
   content:"";
   position:absolute;
-  inset:-2px;
+  inset:0;
   pointer-events:none;
   background:
-    radial-gradient(1000px 480px at 15% 0%, rgba(247,231,176,.14), transparent 60%),
-    radial-gradient(900px 420px at 85% 12%, rgba(233,198,106,.12), transparent 56%),
-    linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%);
+    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.12), transparent 60%),
+    linear-gradient(90deg, rgba(7,6,10,.92) 0%, rgba(7,6,10,.78) 38%, rgba(7,6,10,.26) 72%, rgba(7,6,10,.12) 100%),
+    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.18) 55%, rgba(7,6,10,.62) 100%);
 }
 
-.hero-inner{
-  position:relative;
-  display:grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: clamp(14px, 3vw, 22px);
-  padding: clamp(18px, 3.8vw, 28px);
+.hero-banner::after{
+  content:"";
+  position:absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity: .85;
+  pointer-events:none;
+}
+
+.hero-overlay{
+  position: relative;
+  height: 100%;
+  display: grid;
+  align-content: start;
+  padding: clamp(18px, 3.6vw, 34px) 0;
+}
+
+.hero-box{
+  max-width: min(920px, 100%);
+  padding: clamp(16px, 2.6vw, 22px);
+  border-radius: var(--r-2xl);
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  box-shadow: var(--shadow-glow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .kicker{
@@ -413,20 +471,56 @@ a, button, input, select, textarea{
   border-radius: 999px;
 }
 
+/* =========================================================
+   Typography (lux readable)
+   ========================================================= */
 h1{
   margin: 12px 0 10px;
-  font-size: clamp(28px, 4.6vw, 48px);
+  font-size: clamp(28px, 4.4vw, 52px);
   line-height: var(--lh-tight);
   letter-spacing: -0.03em;
 }
 
+h2{
+  margin: 0 0 10px;
+  font-size: clamp(20px, 3vw, 30px);
+  letter-spacing: -0.02em;
+}
+
+h3{
+  margin: 18px 0 10px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+p{ margin: 0 0 12px; }
+
 .lead{
   margin: 0 0 14px;
   max-width: 70ch;
-  color: var(--muted);
+  color: var(--text2);
   font-size: clamp(16px, 2.1vw, 18px);
 }
 
+.muted{ color: var(--muted); }
+
+strong{
+  color: color-mix(in srgb, var(--gold-1) 30%, var(--text));
+  font-weight: 800;
+}
+
+/* Links */
+a{
+  color: color-mix(in srgb, var(--gold-2) 85%, #ffffff);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover{
+  text-decoration: underline;
+  text-decoration-color: rgba(233,198,106,.65);
+}
+
+/* CTA row */
 .cta-row{
   display:flex;
   gap: 12px;
@@ -434,7 +528,63 @@ h1{
   margin-top: 14px;
 }
 
-/* Hero Aside */
+/* Mobile hero fine-tune */
+@media (max-width: 760px){
+  .hero-banner{ min-height: 420px; }
+  .hero-banner img{ object-position: 70% 45%; }
+  .hero-box{ border-radius: 20px; }
+}
+
+@media (max-width: 520px){
+  .cta-row > .btn{
+    width: 100%;
+    justify-content:center;
+  }
+}
+
+/* =========================================================
+   Buttons (lux gold)
+   ========================================================= */
+.btn{
+  min-height: var(--tap);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 60%, var(--line2));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  color: var(--text);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .01em;
+  box-shadow: var(--shadow-soft);
+  transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  text-decoration:none;
+  background: color-mix(in srgb, var(--panel2) 78%, transparent);
+  border-color: rgba(233,198,106,.45);
+}
+
+.btn:active{ transform: translateY(0); }
+
+.btn.primary{
+  background: var(--g-button), color-mix(in srgb, var(--panel2) 70%, transparent);
+  border-color: rgba(233,198,106,.55);
+  box-shadow: 0 18px 55px rgba(0,0,0,.28);
+}
+
+.btn.primary:hover{ border-color: rgba(247,231,176,.70); }
+
+/* =========================================================
+   Hero Aside (optional legacy support if you still use it)
+   ========================================================= */
 .hero-aside{
   border-left: 1px solid var(--line);
   padding-left: clamp(14px, 3vw, 22px);
@@ -482,95 +632,57 @@ h1{
   background: linear-gradient(180deg, rgba(247,231,176,.85), rgba(202,162,74,.85));
 }
 
-/* Mobile hero stacking */
 @media (max-width: 920px){
-  .hero-inner{grid-template-columns: 1fr}
-  .hero-aside{border-left:none; padding-left:0; border-top: 1px solid var(--line); padding-top: 16px;}
+  .hero-aside{
+    border-left:none;
+    padding-left:0;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
 }
 
 /* =========================================================
-   Typography (lux readable)
+   VIDEO (premium wide but controlled)
+   Use: <div class="video-wrap video-wrap--wide">...</div>
    ========================================================= */
-h2{
-  margin: 0 0 10px;
-  font-size: clamp(20px, 3vw, 30px);
-  letter-spacing: -0.02em;
+.video-wrap{
+  position: relative;
+  width: 100%;
+  max-width: 980px; /* safe default */
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow2, var(--shadow-soft));
 }
 
-h3{
-  margin: 18px 0 10px;
-  font-size: 18px;
-  letter-spacing: -0.01em;
+.video-wrap iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
-p{ margin: 0 0 12px; }
-.muted{ color: var(--muted); }
-
-strong{
-  color: color-mix(in srgb, var(--gold-1) 30%, var(--text));
-  font-weight: 800;
+/* controlled wide */
+.video-wrap--wide{
+  width: min(100% - (var(--gutter) * 2), var(--max-wide));
+  max-width: var(--max-wide);
+  margin: 18px auto 0;
+  border-radius: 18px;
+  box-shadow: var(--shadow-glow);
+  background: rgba(0,0,0,.25);
 }
 
-/* Links (gold, clean) */
-a{
-  color: color-mix(in srgb, var(--gold-2) 85%, #ffffff);
-  text-decoration: none;
-  text-underline-offset: 3px;
-}
-a:hover{
-  text-decoration: underline;
-  text-decoration-color: rgba(233,198,106,.65);
-}
-
-/* =========================================================
-   Buttons (lux gold)
-   ========================================================= */
-.btn{
-  min-height: var(--tap);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 60%, var(--line2));
-  background: color-mix(in srgb, var(--panel) 70%, transparent);
-  color: var(--text);
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: .01em;
-  box-shadow: var(--shadow-soft);
-  transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
-  user-select:none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn:hover{
-  transform: translateY(-1px);
-  text-decoration:none;
-  background: color-mix(in srgb, var(--panel2) 78%, transparent);
-  border-color: rgba(233,198,106,.45);
-}
-
-.btn:active{
-  transform: translateY(0);
-}
-
-.btn.primary{
-  background: var(--g-button), color-mix(in srgb, var(--panel2) 70%, transparent);
-  border-color: rgba(233,198,106,.55);
-  box-shadow: 0 18px 55px rgba(0,0,0,.28);
-}
-
-.btn.primary:hover{
-  border-color: rgba(247,231,176,.70);
-}
-
-/* CTA row on mobile: full-width comfort */
-@media (max-width: 520px){
-  .cta-row .btn{
-    width: 100%;
-    justify-content:center;
+/* Mobile comfort */
+@media (max-width: 760px){
+  .video-wrap--wide{
+    width: min(100% - (var(--gutter) * 2), var(--max));
+    margin-top: 14px;
+    border-radius: 16px;
   }
 }
 
@@ -595,9 +707,7 @@ a:hover{
   opacity: .65;
 }
 
-table{
-  min-width: 820px; /* keeps columns readable, wrap via scroll */
-}
+table{ min-width: 820px; }
 
 th, td{
   padding: 12px 12px;
@@ -627,7 +737,6 @@ td{
   color: color-mix(in srgb, var(--gold-1) 35%, var(--text));
 }
 
-/* Make the table usable on mobile without awkward breaks */
 @media (max-width: 760px){
   .table-wrap{ border-radius: var(--r-lg); }
   th, td{ padding: 12px 10px; }
@@ -733,11 +842,8 @@ li{ margin: 6px 0; }
   margin-top: 10px;
 }
 
-.cta .muted{
-  font-size: 14px;
-}
+.cta .muted{ font-size: 14px; }
 
-/* Mobile: keep price text from squeezing too hard */
 @media (max-width: 520px){
   .cta{
     flex-direction: column;
@@ -807,19 +913,12 @@ li{ margin: 6px 0; }
 /* =========================================================
    Extra overflow guards (just in case)
    ========================================================= */
-main, header, footer, section, article, nav, div{
-  max-width: 100%;
-}
+main, header, footer, section, article, nav, div{ max-width: 100%; }
 
-.table-wrap, .card, .hero-card{
-  max-width: 100%;
-}
+.table-wrap, .card{ max-width: 100%; }
 
-:where(a, span, strong){
-  min-width: 0;
-}
+:where(a, span, strong){ min-width: 0; }
 
-/* Ensure long URLs never break layout */
 a{
   word-break: break-word;
   overflow-wrap:anywhere;
@@ -835,176 +934,3 @@ a{
     border-radius: 999px;
   }
 }
-
-/* =========================================================
-   FULL BLEED (Hero + Video) — add at end of file
-   ========================================================= */
-
-/* Utility: full-width section that escapes .container */
-.fullbleed{
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
-
-/* HERO IMAGE full width */
-.hero-media{
-  position: relative;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: #000;
-  overflow: hidden;
-}
-
-.hero-media .hero-media-img{
-  display: block;
-  width: 100%;
-  height: clamp(240px, 40vw, 520px);
-  object-fit: cover;
-  object-position: 70% 50%;
-  filter: saturate(1.02) contrast(1.04);
-}
-
-.hero-media::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(900px 520px at 78% 45%, rgba(233,198,106,.24), transparent 60%),
-    linear-gradient(90deg, rgba(7,6,10,.88) 0%, rgba(7,6,10,.35) 45%, rgba(7,6,10,.08) 70%, rgba(7,6,10,.35) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
-}
-
-/* =========================================================
-   VIDEO — controlled wide (premium, not 100vw)
-   ========================================================= */
-
-.video-full{
-  padding: 0;
-}
-
-.video-wrap.video-wrap--wide{
-  position: relative;
-  width: min(100% - (var(--gutter) * 2), 1320px); /* <- ajuste 1200/1280/1360/1440 */
-  margin: 18px auto 0;
-  aspect-ratio: 16 / 9;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: rgba(0,0,0,.25);
-  box-shadow: var(--shadow-glow);
-}
-
-/* garde le iframe full inside */
-.video-wrap.video-wrap--wide iframe{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-
-/* Mobile: comfortable, still full width inside container feel */
-@media (max-width: 760px){
-  .video-wrap.video-wrap--wide{
-    width: min(100% - (var(--gutter) * 2), var(--max));
-    margin-top: 14px;
-    border-radius: 16px;
-  }
-}
-
-/* =========================================================
-   HERO BANNER (full-width image) + Title overlay (H1 on top)
-   ========================================================= */
-
-.hero--banner{
-  padding: 0;
-}
-
-/* sort du container: full-bleed (plein écran largeur) */
-.full-bleed{
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
-
-.hero-banner{
-  position: relative;
-  min-height: clamp(340px, 42vw, 560px);
-  border-bottom: 1px solid var(--line);
-  background: #0b0d14;
-  overflow: hidden;
-}
-
-/* image */
-.hero-banner picture,
-.hero-banner img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-banner img{
-  object-fit: cover;
-  object-position: 75% 50%; /* garde la chaise à droite */
-  transform: scale(1.01);
-  filter: saturate(1.03) contrast(1.03);
-}
-
-/* overlays pour lisibilité (évite que le texte se perde) */
-.hero-banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.12), transparent 60%),
-    linear-gradient(90deg, rgba(7,6,10,.92) 0%, rgba(7,6,10,.75) 38%, rgba(7,6,10,.25) 72%, rgba(7,6,10,.12) 100%),
-    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.20) 55%, rgba(7,6,10,.60) 100%);
-  pointer-events:none;
-}
-
-.hero-banner::after{
-  content:"";
-  position:absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 0;
-  height: 1px;
-  background: var(--g-gold-line);
-  opacity: .8;
-  pointer-events:none;
-}
-
-/* contenu overlay */
-.hero-overlay{
-  position: relative;
-  height: 100%;
-  display: grid;
-  align-content: start;
-  padding: clamp(18px, 3.6vw, 34px) 0;
-}
-
-.hero-overlay .hero-box{
-  max-width: min(880px, 100%);
-  padding: clamp(16px, 2.6vw, 22px);
-  border-radius: var(--r-2xl);
-  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
-  background: color-mix(in srgb, var(--panel) 70%, transparent);
-  box-shadow: var(--shadow-glow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.hero-overlay h1{
-  margin: 10px 0 10px;
-  font-size: clamp(28px, 4.2vw, 52px);
-  line-height: var(--lh-tight);
-}
-
-.hero-overlay .lead{
-  margin: 0 0 14
-
