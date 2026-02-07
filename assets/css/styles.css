@@ -1090,3 +1090,88 @@ a{
   .hero-banner > img{ object-position: 70% 40%; }
 }
 
+/* =========================================================
+   HERO PATCH — cleaner glass + right side lower (drop-in)
+   Paste at END of styles.css to override earlier rules.
+   ========================================================= */
+
+/* 1) Slightly stronger image readability + softer glare */
+.hero-banner::before{
+  background:
+    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.14), transparent 60%),
+    linear-gradient(90deg,
+      rgba(7,6,10,.94) 0%,
+      rgba(7,6,10,.80) 40%,
+      rgba(7,6,10,.22) 72%,
+      rgba(7,6,10,.10) 100%
+    ),
+    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.14) 55%, rgba(7,6,10,.62) 100%);
+}
+
+/* 2) Hero overlay spacing: gives a bit more “air” */
+.hero-overlay{
+  padding: clamp(18px, 3.2vw, 34px) 0;
+}
+
+/* 3) Main hero box: more true glass (less panel opacity) */
+.hero-box{
+  background: rgba(16, 18, 26, .52);
+  border: 1px solid rgba(233,198,106,.22);
+  box-shadow:
+    0 18px 70px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* 4) Right column: PUSH IT LOWER on desktop */
+@media (min-width: 921px){
+  .hero-side{
+    margin-top: clamp(48px, 6vw, 130px); /* <- moves the right blocks lower */
+    border-left: 1px solid rgba(255,255,255,.08);
+    padding-left: clamp(14px, 2.6vw, 22px);
+  }
+}
+
+/* 5) Right boxes: real transparent “glass” look */
+.hero-side .aside-box,
+.hero-side .note{
+  background: rgba(16, 18, 26, .40);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 14px 44px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* 6) Make the note feel premium and lighter */
+.hero-side .note{
+  color: rgba(230,232,242,.86);
+}
+.hero-side .note::before{
+  opacity: .95;
+}
+
+/* 7) Tighten typography in aside for a cleaner “UI card” vibe */
+.hero-side .aside-box h2{
+  font-size: 15px;
+  letter-spacing: .01em;
+  margin: 0 0 10px;
+}
+.hero-side .aside-box ul{
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(170,178,199,.92);
+}
+
+/* 8) Mobile: don’t push it down (keep it right under hero-box) */
+@media (max-width: 920px){
+  .hero-side{
+    margin-top: 10px;
+  }
+  .hero-side .aside-box,
+  .hero-side .note{
+    background: rgba(16, 18, 26, .46);
+  }
+}
