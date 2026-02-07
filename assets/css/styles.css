@@ -835,3 +835,99 @@ a{
     border-radius: 999px;
   }
 }
+
+/* =========================================================
+   FULL BLEED (Hero + Video) — add at end of file
+   ========================================================= */
+
+/* Utility: full-width section that escapes .container */
+.fullbleed{
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* HERO IMAGE full width */
+.hero-media{
+  position: relative;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #000;
+  overflow: hidden;
+}
+
+.hero-media .hero-media-img{
+  display: block;
+  width: 100%;
+  height: clamp(240px, 40vw, 520px);
+  object-fit: cover;
+  object-position: 70% 50%;
+  filter: saturate(1.02) contrast(1.04);
+}
+
+.hero-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 78% 45%, rgba(233,198,106,.24), transparent 60%),
+    linear-gradient(90deg, rgba(7,6,10,.88) 0%, rgba(7,6,10,.35) 45%, rgba(7,6,10,.08) 70%, rgba(7,6,10,.35) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+}
+
+/* VIDEO full width */
+.video-full{
+  background: #000;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.video-wrap.video-wrap--full{
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+  overflow: hidden;
+  border: 0;
+  background: #000;
+  box-shadow: none;
+}
+
+.video-wrap.video-wrap--full iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Optional: on desktop, keep it elegant (slight inset + radius) */
+@media (min-width: 1000px){
+  .video-full{
+    padding: 0 14px;
+    background: transparent;
+    border: 0;
+  }
+  .video-full .video-wrap.video-wrap--full{
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-glow);
+  }
+  .hero-media{
+    padding: 0 14px;
+    background: transparent;
+    border: 0;
+  }
+  .hero-media .hero-media-img{
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
