@@ -1215,20 +1215,6 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
   }
 }
 
-/* Mobile stays stacked (media then panel) */
-@media (max-width: 920px){
-  .hero--contained.hero--steam.hero--steam-right .hero-steam{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "media"
-      "panel";
-  }
-  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
-    max-width: 100%;
-    margin-left: 0;
-  }
-}
-
 /* =========================================================
    Steam hero mobile polish (perfect stacking)
    Goal: Media first, then right-side notes, then text panel
