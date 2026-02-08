@@ -1353,3 +1353,313 @@ a{
   }
 }
 
+/* =========================================================
+   FINAL PATCH PACK (paste at END of styles.css)
+   - Fixes duplicate hero behavior cleanly
+   - Keeps FULL-WIDTH hero for money pages (.hero--banner)
+   - Adds CONTAINED hero for review pages (.hero--contained)
+   - Premium Amazon CTA button
+   - Product media sizing
+   ========================================================= */
+
+/* -------------------------
+   Buttons: Premium Amazon CTA
+   Usage: <a class="btn btn--amazon" ...> ... <span class="btn-meta">Amazon.ca</span></a>
+   ------------------------- */
+.btn.btn--amazon{
+  position: relative;
+  border-radius: 999px;
+  border: 1px solid rgba(233,198,106,.70);
+  color: #0b0d14;
+
+  background:
+    linear-gradient(135deg,
+      rgba(247,231,176,1) 0%,
+      rgba(233,198,106,1) 28%,
+      rgba(202,162,74,1) 62%,
+      rgba(247,231,176,1) 100%
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,255,255,.10) inset;
+
+  font-weight: 900;
+  letter-spacing: .01em;
+
+  transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
+}
+
+.btn.btn--amazon::before{
+  content:"";
+  position:absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.55), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);
+  opacity: .55;
+  mix-blend-mode: soft-light;
+}
+
+.btn.btn--amazon::after{
+  content:"";
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  filter: blur(10px);
+  opacity: .55;
+  pointer-events:none;
+}
+
+.btn.btn--amazon:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.05) contrast(1.05);
+  box-shadow:
+    0 22px 65px rgba(0,0,0,.40),
+    0 0 0 1px rgba(255,255,255,.14) inset;
+}
+
+.btn.btn--amazon:active{
+  transform: translateY(0);
+  filter: saturate(1) contrast(1);
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.32),
+    0 0 0 1px rgba(255,255,255,.10) inset;
+}
+
+.btn.btn--amazon:focus-visible{
+  outline: 3px solid rgba(233,198,106,.55);
+  outline-offset: 3px;
+}
+
+.btn .btn-meta{
+  margin-left: 10px;
+  display:inline-flex;
+  align-items:center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(11,13,20,.16);
+  border: 1px solid rgba(11,13,20,.18);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: rgba(11,13,20,.92);
+}
+
+/* -------------------------
+   Product images sizing (premium, not gigantic)
+   ------------------------- */
+.product-media{ margin: 14px 0 16px; }
+
+.product-media img{
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   HERO SYSTEM
+   ========================================================= */
+
+/* -------------------------
+   A) FULL-WIDTH HERO (money pages)
+   HTML:
+   <section class="hero hero--banner">
+     <div class="hero-banner full-bleed">
+        <img ... />
+        <div class="container hero-overlay"> ... </div>
+     </div>
+   </section>
+   ------------------------- */
+.hero{ padding: clamp(16px, 3vw, 26px) 0 10px; }
+
+.hero--banner{ padding: 0; }
+
+.hero--banner .hero-banner{
+  position: relative;
+  min-height: clamp(420px, 44vw, 660px);
+  border-bottom: 1px solid var(--line);
+  background: #0b0d14;
+  overflow: hidden;
+}
+
+.hero--banner .hero-banner > img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 45%;
+  transform: scale(1.01);
+  filter: saturate(1.03) contrast(1.03);
+}
+
+.hero--banner .hero-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.14), transparent 60%),
+    linear-gradient(90deg,
+      rgba(7,6,10,.94) 0%,
+      rgba(7,6,10,.80) 40%,
+      rgba(7,6,10,.22) 72%,
+      rgba(7,6,10,.10) 100%
+    ),
+    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.14) 55%, rgba(7,6,10,.62) 100%);
+}
+
+.hero--banner .hero-banner::after{
+  content:"";
+  position:absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 1px;
+  background: var(--g-gold-line);
+  opacity: .85;
+  pointer-events:none;
+}
+
+.hero--banner .hero-overlay{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(14px, 2.6vw, 22px);
+  align-content: start;
+  padding: clamp(18px, 3.2vw, 34px) 0;
+}
+
+.hero--banner .hero-box{
+  background: rgba(16, 18, 26, .52);
+  border: 1px solid rgba(233,198,106,.22);
+  box-shadow:
+    0 18px 70px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  border-radius: var(--r-2xl);
+  padding: clamp(16px, 2.6vw, 22px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hero--banner .hero-side{
+  border-left: 1px solid rgba(255,255,255,.08);
+  padding-left: clamp(14px, 2.6vw, 22px);
+  align-self: start;
+}
+
+@media (min-width: 921px){
+  .hero--banner .hero-side{
+    margin-top: clamp(48px, 6vw, 130px);
+  }
+}
+
+.hero--banner .hero-side .aside-box,
+.hero--banner .hero-side .note{
+  background: rgba(16, 18, 26, .40);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 14px 44px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@media (max-width: 920px){
+  .hero--banner .hero-overlay{
+    grid-template-columns: 1fr;
+    padding: 16px 0 20px;
+  }
+  .hero--banner .hero-side{
+    margin-top: 10px;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 760px){
+  .hero--banner .hero-banner{ min-height: 560px; }
+  .hero--banner .hero-banner > img{ object-position: 70% 40%; }
+}
+
+/* -------------------------
+   B) CONTAINED HERO (review pages)
+   HTML:
+   <section class="hero hero--contained">
+     <div class="hero-shell">
+       <div class="hero-card">
+         <div class="hero-media"><img ... /></div>
+         <div class="hero-content"> ... </div>
+       </div>
+     </div>
+   </section>
+   ------------------------- */
+.hero--contained{ padding: 22px 0 10px; }
+
+/* prevent accidental full-bleed artifacts inside contained hero */
+.hero--contained .full-bleed,
+.hero--contained .hero-banner{
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  min-height: unset !important;
+  border: none !important;
+  background: none !important;
+}
+
+/* shell = same width as .container */
+.hero--contained .hero-shell{
+  width: min(100% - (var(--gutter) * 2), var(--max));
+  margin-inline: auto;
+}
+
+/* card */
+.hero--contained .hero-card{
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--line);
+  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* image */
+.hero--contained .hero-media{
+  aspect-ratio: 16 / 9;
+  background: #0b0d14;
+}
+
+.hero--contained .hero-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* content grid */
+.hero--contained .hero-content{
+  padding: clamp(16px, 2.6vw, 22px);
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: clamp(14px, 2.2vw, 18px);
+  align-items: start;
+}
+
+@media (max-width: 920px){
+  .hero--contained .hero-content{ grid-template-columns: 1fr; }
+}
