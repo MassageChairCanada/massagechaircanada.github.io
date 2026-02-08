@@ -1189,3 +1189,29 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
     border-radius: 999px;
   }
 }
+
+/* =========================================================
+   Steam hero: IMAGE ON THE RIGHT (desktop only)
+   Add class: hero--steam-right
+   ========================================================= */
+@media (min-width: 921px){
+  .hero--contained.hero--steam.hero--steam-right .hero-steam{
+    grid-template-columns: .62fr 1.38fr; /* panel smaller, media bigger */
+  }
+
+  /* Put panel first (left) and media second (right) */
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{ order: 1; }
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{ order: 2; }
+
+  /* A little Steam-like spacing */
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Mobile stays stacked normally */
+@media (max-width: 920px){
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{ order: 2; }
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{ order: 1; }
+}
+
