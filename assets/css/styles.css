@@ -1293,3 +1293,92 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
   .hero--banner .hero-banner{ min-height: 600px; }
 }
 
+/* =========================================================
+   MONEY PAGE PATCHES (Best Massage Chair page)
+   Add to END of styles.css
+   ========================================================= */
+
+/* Utility widths used in HTML */
+.max-65ch{ max-width: 65ch; }
+
+/* Small kicker line used above H1 */
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
+  background: color-mix(in srgb, var(--panel2) 70%, transparent);
+  color: color-mix(in srgb, var(--gold-1) 18%, var(--muted));
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-soft);
+}
+
+/* “At a glance” cards row (used in hero) */
+.at-a-glance{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+@media (max-width: 900px){
+  .at-a-glance{ grid-template-columns: 1fr; }
+}
+
+/* Sticky mobile CTA (conversion booster) */
+.sticky-cta{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 999;
+  display: none; /* desktop off */
+  border-radius: 999px;
+  border: 1px solid rgba(233,198,106,.22);
+  background: color-mix(in srgb, var(--bg2) 72%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 26px 90px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.06);
+  padding: 10px;
+}
+
+.sticky-cta .row{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.sticky-cta .label{
+  font-size: 13px;
+  color: rgba(230,232,242,.92);
+  line-height: 1.2;
+  padding-left: 6px;
+}
+
+.sticky-cta .label strong{
+  color: rgba(247,231,176,.92);
+}
+
+.sticky-cta .btn{
+  white-space: nowrap;
+  min-height: 44px;
+  padding: 10px 14px;
+}
+
+@media (max-width: 760px){
+  .sticky-cta{ display:block; }
+  body{ padding-bottom: 92px; } /* room for sticky bar */
+}
+
+/* Very small phones: tighten */
+@media (max-width: 380px){
+  .sticky-cta{ left: 10px; right: 10px; bottom: 10px; }
+  .sticky-cta .label{ font-size: 12px; }
+  .sticky-cta .btn{ padding: 10px 12px; }
+}
+
