@@ -1665,49 +1665,35 @@ a{
 }
 
 /* =========================================================
-   STEAM HERO (review pages) — image right, text left
-   Works with HTML:
-   <div class="hero-content hero-content--steam">
-     <div class="hero-left">...</div>
-     <div class="hero-right"><figure class="hero-media">...</figure></div>
+   STEAM HERO (review pages) — V2 (image LEFT, panel RIGHT)
+   Matches HTML:
+   <div class="hero-steam">
+     <div class="hero-steam__media"><img/></div>
+     <div class="hero-steam__panel">...</div>
    </div>
    Paste at END of styles.css
    ========================================================= */
 
-/* Base: force Steam layout inside contained hero */
-.hero--contained .hero-content.hero-content--steam{
+.hero--contained.hero--steam .hero-steam{
   display: grid;
-  grid-template-columns: 1.05fr .95fr; /* text left / image right */
+  grid-template-columns: 1.35fr .65fr; /* big media / compact panel */
   gap: clamp(14px, 2.2vw, 18px);
+  padding: clamp(16px, 2.6vw, 22px);
   align-items: start;
 }
 
-/* Left column */
-.hero--contained .hero-left{
-  min-width: 0;
-}
-
-/* Right column (image card vibe) */
-.hero--contained .hero-right{
-  min-width: 0;
-}
-
-/* Make the right image feel like Steam "media" block */
-.hero--contained .hero-right .hero-media{
-  margin: 0;
+/* LEFT: Media block */
+.hero--contained.hero--steam .hero-steam__media{
   border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--line);
   background: #0b0d14;
   box-shadow: var(--shadow-soft);
   position: relative;
-
-  /* Keeps the media compact like Steam */
   aspect-ratio: 16 / 9;
 }
 
-/* Ensure image fills the media box */
-.hero--contained .hero-right .hero-media img{
+.hero--contained.hero--steam .hero-steam__media img{
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1716,42 +1702,59 @@ a{
   transform: scale(1.01);
 }
 
-/* Optional: subtle premium overlay for readability/grade */
-.hero--contained .hero-right .hero-media::before{
+/* subtle premium grade */
+.hero--contained.hero--steam .hero-steam__media::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
   background:
     radial-gradient(900px 520px at 18% 10%, rgba(233,198,106,.10), transparent 62%),
-    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.20));
+    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.22));
   opacity:.9;
 }
 
-/* Notes block spacing under CTAs (left column) */
-.hero--contained .hero-notes{
+/* RIGHT: Panel */
+.hero--contained.hero--steam .hero-steam__panel{
+  min-width: 0;
+}
+
+/* Tighten right column content like Steam */
+.hero--contained.hero--steam .hero-steam__panel h1{
+  font-size: clamp(24px, 2.6vw, 34px);
+  margin-top: 10px;
+}
+
+.hero--contained.hero--steam .hero-steam__cta{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-top: 14px;
 }
 
-/* Desktop polish: keep aside boxes tighter in Steam hero */
-.hero--contained .hero-left .aside-box ul{
-  line-height: 1.45;
-}
-
-/* Responsive: stack on mobile (image first, then text) */
-@media (max-width: 920px){
-  .hero--contained .hero-content.hero-content--steam{
-    grid-template-columns: 1fr;
-  }
-
-  /* Put image on top like Steam mobile */
-  .hero--contained .hero-right{ order: -1; }
-}
-
-/* Small phones: make the right image less tall if needed */
 @media (max-width: 520px){
-  .hero--contained .hero-right .hero-media{
-    aspect-ratio: 16 / 10;
+  .hero--contained.hero--steam .hero-steam__cta .btn{
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Meta zone (pills + boxes) */
+.hero--contained.hero--steam .hero-steam__meta{
+  margin-top: 14px;
+}
+
+.hero--contained.hero--steam .hero-steam__tags{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Mobile: stack, media on top (Steam-like) */
+@media (max-width: 920px){
+  .hero--contained.hero--steam .hero-steam{
+    grid-template-columns: 1fr;
   }
 }
 
