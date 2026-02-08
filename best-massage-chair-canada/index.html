@@ -3,8 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
 
-  <!-- SEO HERO (UPDATED: Real Relax as #1 funnel pick) -->
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6MB5P2V7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZ6MB5P2V7', { 'send_page_view': true });
+
+    // Outbound tracking (does NOT block navigation)
+    function trackOutbound(label){
+      try{
+        gtag('event','outbound_click',{
+          event_category:'affiliate',
+          event_label: label,
+          transport_type:'beacon'
+        });
+      }catch(e){}
+      return true;
+    }
+  </script>
+
+  <!-- SEO -->
   <title>Best Massage Chair in Canada (2026) | Our #1 Pick for Home Use</title>
   <meta name="description" content="Looking for the best massage chair in Canada? Our #1 pick for home use in 2026 is the Real Relax Reclining Massage Chair with Heat + Bluetooth. See why it converts best for Canadian buyers." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet=-1,max-video-preview=-1" />
@@ -16,36 +38,48 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://massagechaircanada.github.io/best-massage-chair-canada/" />
 
-  <!-- Favicons / App Icons (repo root) -->
+  <!-- Favicons / App Icons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Social / OG -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="MassageChairCanada" />
   <meta property="og:title" content="Best Massage Chair in Canada (2026) | Our #1 Pick for Home Use" />
   <meta property="og:description" content="Our top massage chair recommendation for Canadians: heat + recline comfort, easy daily use, and strong value. See the #1 pick for home use in 2026." />
   <meta property="og:url" content="https://massagechaircanada.github.io/best-massage-chair-canada/" />
-  <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Premium massage chair in a luxury Canadian home setting with warm gold lighting accents" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Best Massage Chair in Canada (2026) | Our #1 Pick for Home Use" />
   <meta name="twitter:description" content="Our #1 massage chair pick for Canadians in 2026: Real Relax reclining chair with heat + Bluetooth. Fast decision, built for real home use." />
-  <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
 
-  <!-- Preload (hero + brand) -->
-  <link rel="preload" as="image" href="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp" fetchpriority="high" />
+  <!-- Preload (hero responsive + brand) -->
+  <link
+    rel="preload"
+    as="image"
+    href="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
+    imagesrcset="
+      /assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-1600x840.webp 1600w,
+      /assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp 2400w
+    "
+    imagesizes="(max-width: 760px) 100vw, 2400px"
+    fetchpriority="high"
+  />
   <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-icon-1024.png" />
   <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-logo.png" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/styles.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=7" />
 
-  <!-- Structured Data: Organization + WebSite + WebPage + Product (UPDATED: Real Relax) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,7 +109,13 @@
         "name": "Best Massage Chair in Canada (2026) | Our #1 Pick for Home Use",
         "isPartOf": { "@id": "https://massagechaircanada.github.io/#website" },
         "about": { "@id": "https://massagechaircanada.github.io/#org" },
-        "inLanguage": "en-CA"
+        "inLanguage": "en-CA",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://massagechaircanada.github.io/assets/images/og/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp",
+          "width": 1200,
+          "height": 630
+        }
       },
       {
         "@type": "Product",
@@ -92,6 +132,32 @@
           "availability": "https://schema.org/InStock",
           "url": "https://www.amazon.ca/-/fr/Real-Relax-inclinable-chauffage-Bluetooth/dp/B0G2S1F528?__mk_fr_CA=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://massagechaircanada.github.io/best-massage-chair-canada/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a massage chair worth it in Canada?",
+            "acceptedAnswer": { "@type": "Answer", "text": "If you use it multiple times per week, a massage chair can be a strong value over time. The “worth it” factor usually comes down to comfort, fit, and consistency." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best massage chair for back pain?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Many buyers use massage chairs to reduce muscle tension and improve relaxation. For back-focused comfort, prioritize adjustable intensity and track coverage that matches your height." }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I buy 3D or 4D?",
+            "acceptedAnswer": { "@type": "Answer", "text": "4D models can feel more natural and adjustable, but they are often much more expensive. For most home buyers, comfort, heat, and daily usability matter more than the most advanced roller tech." }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I check before delivery?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Measure your doorway, hallways, and recline clearance. Confirm placement and return terms before purchase, especially for large items." }
+          }
+        ]
       }
     ]
   }
@@ -118,21 +184,50 @@
         <a href="#faq">FAQ</a>
         <a href="#transparency">Trust</a>
       </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        ☰
+      </button>
     </div>
   </header>
 
-  <!-- HERO (full-bleed banner) -->
+  <div class="nav-scrim" id="navScrim" data-open="false" aria-hidden="true"></div>
+  <nav class="mobile-nav" id="mobile-nav" data-open="false" aria-label="Mobile navigation">
+    <a href="#why">Why #1</a>
+    <a href="#who">Who it’s for</a>
+    <a href="#alternatives">Alternatives</a>
+    <a href="#faq">FAQ</a>
+    <a href="#transparency">Trust</a>
+    <a href="/">Home</a>
+    <a href="/massage-chair-comparison-canada/">Full Comparison</a>
+  </nav>
+
+  <!-- HERO -->
   <section class="hero hero--banner" aria-label="Best massage chair in Canada hero">
     <div class="hero-banner full-bleed">
-      <img
-        src="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
-        alt="Luxury massage chair in a Canadian home with warm gold lighting accents"
-        width="2400"
-        height="1350"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <picture>
+        <source
+          srcset="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-1600x840.webp"
+          media="(max-width: 760px)"
+          type="image/webp"
+        />
+        <source
+          srcset="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
+          media="(min-width: 761px)"
+          type="image/webp"
+        />
+        <img
+          src="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
+          alt="Luxury massage chair in a Canadian home with warm gold lighting accents"
+          width="2400"
+          height="1350"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          style="object-position:55% 45%;"
+        />
+      </picture>
 
       <div class="container hero-overlay">
         <div class="hero-box">
@@ -145,20 +240,30 @@
             this page is built for one thing: a clear recommendation you can act on.
           </p>
 
-          <p class="lead">
-            <strong>Our #1 pick:</strong> <span style="white-space:nowrap;">Real Relax Reclining Massage Chair (Heat + Bluetooth)</span>:
-            comfortable reclining sessions, heat support, and a simple “use it daily” experience that fits most Canadian homes.
+          <div class="at-a-glance" aria-label="At a glance">
+            <div class="note" style="margin:0;">
+              <strong>Best for:</strong> daily relaxation, stress relief, comfort-first sessions
+            </div>
+            <div class="note" style="margin:0;">
+              <strong>Top features:</strong> recline comfort, heat support, Bluetooth convenience
+            </div>
+          </div>
+
+          <p class="lead" style="margin-top:14px;">
+            <strong>Our #1 pick:</strong> <span style="white-space:nowrap;">Real Relax Reclining Massage Chair (Heat + Bluetooth)</span>.
           </p>
 
           <div class="cta-row" aria-label="Primary action">
             <a class="btn btn--amazon"
                href="https://www.amazon.ca/-/fr/Real-Relax-inclinable-chauffage-Bluetooth/dp/B0G2S1F528?__mk_fr_CA=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
-               rel="nofollow sponsored">
+               rel="nofollow sponsored noopener noreferrer"
+               target="_blank"
+               onclick="return trackOutbound('best-canada-2026-realrelax');">
               Check price on Amazon Canada
               <span class="btn-meta">Amazon.ca</span>
             </a>
 
-            <a class="btn" href="#why">Why it’s #1</a>
+            <a class="btn primary" href="#why">Why it’s #1</a>
           </div>
 
           <p class="muted" style="margin-top:12px;">
@@ -187,17 +292,27 @@
 
   <main id="content" class="container">
 
-    <!-- Keyword magnet -->
+    <!-- Intro -->
     <section class="section" aria-label="Intro for buyers">
       <div class="card">
         <h2>Looking for the Best Massage Chair in Canada for Home Use?</h2>
         <p class="muted">
-          Most “best massage chair” pages try to list 10 models and call it a day. For a funnel page, the goal is different:
-          pick one chair that fits the biggest group of Canadian buyers, then offer a couple of smart alternatives below.
+          Most “best massage chair” pages list 10 models. This page is a <strong>decision funnel</strong>: we pick one chair that fits most Canadian homes, then give two smart alternatives below.
         </p>
         <p class="muted">
           Our #1 choice focuses on: <strong>comfort</strong>, <strong>recline</strong>, <strong>heat</strong>, <strong>simplicity</strong>, and a price that feels realistic for home use.
         </p>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn btn--amazon"
+             href="https://www.amazon.ca/-/fr/Real-Relax-inclinable-chauffage-Bluetooth/dp/B0G2S1F528?__mk_fr_CA=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
+             rel="nofollow sponsored noopener noreferrer"
+             target="_blank"
+             onclick="return trackOutbound('intro-realrelax');">
+            Check price on Amazon Canada
+            <span class="btn-meta">Amazon.ca</span>
+          </a>
+          <span class="muted">Fast decision, built for real home use</span>
+        </div>
       </div>
     </section>
 
@@ -221,7 +336,9 @@
         <div class="cta" aria-label="Primary CTA repeat">
           <a class="btn btn--amazon"
              href="https://www.amazon.ca/-/fr/Real-Relax-inclinable-chauffage-Bluetooth/dp/B0G2S1F528?__mk_fr_CA=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
-             rel="nofollow sponsored">
+             rel="nofollow sponsored noopener noreferrer"
+             target="_blank"
+             onclick="return trackOutbound('why-realrelax');">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -267,97 +384,96 @@
     </section>
 
     <!-- ALTERNATIVES -->
-<section class="section" id="alternatives" aria-label="Alternative massage chair options in Canada">
-  <div class="card">
-    <h2>Alternatives If You Want More Than Our #1 Pick</h2>
+    <section class="section" id="alternatives" aria-label="Alternative massage chair options in Canada">
+      <div class="card">
+        <h2>Alternatives If You Want More Than Our #1 Pick</h2>
 
-    <p class="muted max-65ch">
-      Our #1 pick is designed for most Canadian homes.
-      If you want <strong>more coverage</strong> or a <strong>true premium 4D upgrade</strong>,
-      these are the two smartest paths.
-    </p>
+        <p class="muted max-65ch">
+          Our #1 pick is designed for most Canadian homes.
+          If you want <strong>more coverage</strong> or a <strong>true premium 4D upgrade</strong>,
+          these are the two smartest paths.
+        </p>
 
-    <!-- Alternative 1 — Upgrade -->
-    <div class="product" style="margin-top:22px;">
-      <h3>Upgrade Option: Real Relax SL-Track Massage Chair</h3>
+        <!-- Alternative 1 — Upgrade -->
+        <div class="product" style="margin-top:22px;">
+          <h3>Upgrade Option: Real Relax SL-Track Massage Chair</h3>
 
-      <div class="badges">
-        <span class="pill">SL-Track</span>
-        <span class="pill">Zero Gravity</span>
-        <span class="pill">Heat</span>
-        <span class="pill">Upgrade</span>
+          <div class="badges">
+            <span class="pill">SL-Track</span>
+            <span class="pill">Zero Gravity</span>
+            <span class="pill">Heat</span>
+            <span class="pill">Upgrade</span>
+          </div>
+
+          <p class="muted max-65ch">
+            If you like the Real Relax comfort style but want <strong>longer back coverage</strong>,
+            the SL-Track version is the logical upgrade.
+          </p>
+
+          <ul>
+            <li>Longer massage track (neck → lower back → glutes)</li>
+            <li>Zero gravity recline for deeper relaxation</li>
+            <li>Heat support for daily stress relief</li>
+            <li>Great step-up without jumping into luxury pricing</li>
+          </ul>
+
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn primary"
+               href="https://www.amazon.ca/-/fr/Real-Relax-SL-Track-Contr%C3%B4le-Bluetooth/dp/B0CX1SKS7F?linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
+               rel="nofollow sponsored noopener noreferrer"
+               target="_blank"
+               onclick="return trackOutbound('alt-sltrack-realrelax');">
+              Check price on Amazon Canada
+            </a>
+          </div>
+        </div>
+
+        <!-- Alternative 2 — Premium -->
+        <div class="product" style="margin-top:28px;">
+          <h3>Premium Alternative: Osaki OS-4D Ekon Plus</h3>
+
+          <div class="badges">
+            <span class="pill">4D</span>
+            <span class="pill">SL-Track</span>
+            <span class="pill">Zero Gravity</span>
+            <span class="pill">Premium</span>
+          </div>
+
+          <p class="muted max-65ch">
+            If budget is less of a concern and you want a <strong>true premium 4D massage experience</strong>,
+            the <strong>Osaki OS-4D Ekon Plus</strong> is a serious step up.
+          </p>
+
+          <ul>
+            <li>True 4D rollers (depth + speed variation)</li>
+            <li>Advanced body scanning and programs</li>
+            <li>SL-Track for full-body coverage</li>
+            <li>Best for users seeking deep-tissue control</li>
+          </ul>
+
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn primary"
+               href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
+               rel="nofollow sponsored noopener noreferrer"
+               target="_blank"
+               onclick="return trackOutbound('alt-ekonplus-osaki');">
+              Check price on Amazon Canada
+            </a>
+
+            <a class="btn" href="/osaki-os-4d-ekon-plus-review/">
+              Read full review
+            </a>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:22px;">
+          Want the full list and a fast table?
+          <a href="/massage-chair-comparison-canada/">See the massage chair comparison for Canada</a>.
+        </div>
       </div>
+    </section>
 
-      <p class="muted max-65ch">
-        If you like the Real Relax comfort style but want <strong>longer back coverage</strong>,
-        the SL-Track version is the logical upgrade.
-      </p>
-
-      <ul>
-        <li>Longer massage track (neck → lower back → glutes)</li>
-        <li>Zero gravity recline for deeper relaxation</li>
-        <li>Heat support for daily stress relief</li>
-        <li>Great step-up without jumping into luxury pricing</li>
-      </ul>
-
-      <div class="cta" style="margin-top:12px;">
-        <a
-          class="btn primary"
-          href="https://www.amazon.ca/-/fr/Real-Relax-SL-Track-Contr%C3%B4le-Bluetooth/dp/B0CX1SKS7F?linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
-          rel="nofollow sponsored"
-        >
-          Check price on Amazon Canada
-        </a>
-      </div>
-    </div>
-
-    <!-- Alternative 2 — Premium -->
-    <div class="product" style="margin-top:28px;">
-      <h3>Premium Alternative: Osaki OS-4D Ekon Plus</h3>
-
-      <div class="badges">
-        <span class="pill">4D</span>
-        <span class="pill">SL-Track</span>
-        <span class="pill">Zero Gravity</span>
-        <span class="pill">Premium</span>
-      </div>
-
-      <p class="muted max-65ch">
-        If budget is less of a concern and you want a <strong>true premium 4D massage experience</strong>,
-        the <strong>Osaki OS-4D Ekon Plus</strong> is a serious step up.
-      </p>
-
-      <ul>
-        <li>True 4D rollers (depth + speed variation)</li>
-        <li>Advanced body scanning and programs</li>
-        <li>SL-Track for full-body coverage</li>
-        <li>Best for users seeking deep-tissue control</li>
-      </ul>
-
-      <div class="cta" style="margin-top:12px;">
-        <a
-          class="btn primary"
-          href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
-          rel="nofollow sponsored"
-        >
-          Check price on Amazon Canada
-        </a>
-
-        <a class="btn" href="/osaki-os-4d-ekon-plus-review/">
-          Read full review
-        </a>
-      </div>
-    </div>
-
-    <!-- Comparison Path -->
-    <div class="note" style="margin-top:22px;">
-      Want the full list and a fast table?
-      <a href="/massage-chair-comparison-canada/">See the massage chair comparison for Canada</a>.
-    </div>
-  </div>
-</section>
-
-    <!-- FAQ (PAA magnet) -->
+    <!-- FAQ -->
     <section class="section" id="faq" aria-label="Frequently asked questions">
       <div class="card">
         <h2>FAQ</h2>
@@ -395,6 +511,9 @@
         <p class="muted">
           We maintain editorial independence. Recommendations are based on fit, features, and usability for Canadian homes, not paid placement.
         </p>
+        <p class="muted" style="margin-top:10px;">
+          See: <a href="/disclosure/">Disclosure</a>
+        </p>
       </div>
     </section>
 
@@ -417,5 +536,24 @@
     </div>
   </footer>
 
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky-cta" role="region" aria-label="Sticky Amazon CTA">
+    <div class="row">
+      <div class="label">
+        <strong>#1 Pick:</strong> Real Relax<br/>
+        <span style="opacity:.85;">Heat + Bluetooth</span>
+      </div>
+      <a class="btn btn--amazon"
+         href="https://www.amazon.ca/-/fr/Real-Relax-inclinable-chauffage-Bluetooth/dp/B0G2S1F528?__mk_fr_CA=%C3%85M%C3%85%C5%BD%C3%95%C3%91&linkCode=ll2&tag=kitchengearla-20&ref_=as_li_ss_tl"
+         rel="nofollow sponsored noopener noreferrer"
+         target="_blank"
+         onclick="return trackOutbound('sticky-realrelax');">
+        Amazon.ca
+        <span class="btn-meta">Price</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="/assets/site.js?v=1" defer></script>
 </body>
 </html>
