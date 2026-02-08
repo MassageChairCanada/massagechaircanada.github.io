@@ -129,6 +129,7 @@
 <body>
   <a class="sr-only" href="#content">Skip to content</a>
 
+  <!-- TOPBAR -->
   <header class="topbar" role="banner">
     <div class="container">
       <a class="brand" href="/" aria-label="MassageChairCanada home">
@@ -139,6 +140,7 @@
         </span>
       </a>
 
+      <!-- Desktop nav -->
       <nav class="nav" aria-label="Primary navigation">
         <a href="#verdict">Verdict</a>
         <a href="#features">Features</a>
@@ -146,32 +148,51 @@
         <a href="#compare">Compare</a>
         <a href="#faq">FAQ</a>
       </nav>
+
+      <!-- Mobile toggle (site.js uses these IDs) -->
+      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        ☰
+      </button>
     </div>
   </header>
 
-  <!-- HERO (contained) -->
-  <section class="hero hero--contained" aria-label="Osaki OS-4D Ekon Plus review hero">
+  <!-- Mobile scrim + drawer (site.js uses these IDs) -->
+  <div class="nav-scrim" id="navScrim" data-open="false" aria-hidden="true"></div>
+  <nav class="mobile-nav" id="mobile-nav" data-open="false" aria-label="Mobile navigation">
+    <a href="#verdict">Verdict</a>
+    <a href="#features">Features</a>
+    <a href="#who">Best For</a>
+    <a href="#compare">Compare</a>
+    <a href="#faq">FAQ</a>
+    <a href="/massage-chair-comparison-canada/">Full Comparison</a>
+  </nav>
+
+  <!-- HERO (Steam-like) -->
+  <section class="hero hero--contained hero--steam" aria-label="Osaki OS-4D Ekon Plus review hero">
     <div class="hero-shell">
       <div class="hero-card">
 
-        <div class="hero-media">
-          <img
-            src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
-            srcset="
-              /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
-              /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
-            sizes="(max-width: 920px) 100vw, 1120px"
-            alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
-            width="1600"
-            height="840"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </div>
+        <div class="hero-steam">
+          <!-- LEFT: Media -->
+          <div class="hero-steam__media">
+            <img
+              src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
+              srcset="
+                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
+                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
+              sizes="(max-width: 920px) 100vw, 730px"
+              alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
+              width="1600"
+              height="840"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
 
-        <div class="hero-content">
-          <div>
+          <!-- RIGHT: Panel -->
+          <div class="hero-steam__panel">
             <span class="kicker">Osaki OS-4D Ekon Plus • Canada review • 2026</span>
 
             <h1>Osaki OS-4D Ekon Plus Review (Canada, 2026)</h1>
@@ -181,10 +202,11 @@
               the <strong>OS-4D Ekon Plus</strong> is worth a serious look.
             </p>
 
-            <div class="cta-row" aria-label="Primary actions">
+            <div class="hero-steam__cta" aria-label="Primary actions">
               <a class="btn btn--amazon"
                  href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
-                 rel="nofollow sponsored">
+                 target="_blank"
+                 rel="nofollow sponsored noopener">
                 Check price on Amazon Canada
                 <span class="btn-meta">Amazon.ca</span>
               </a>
@@ -194,10 +216,8 @@
             <p class="muted" style="margin-top:12px;">
               Quick tags: <strong>4D</strong> • <strong>zero gravity</strong> • <strong>heat</strong> • <strong>premium comfort</strong>
             </p>
-          </div>
 
-          <aside aria-label="Canada-specific notes">
-            <div class="aside-box">
+            <div class="aside-box" style="margin-top:14px;">
               <h2>Canada buying notes</h2>
               <ul>
                 <li><strong>Measure first:</strong> recline clearance + doorway width.</li>
@@ -210,7 +230,7 @@
             <div class="note" style="margin-top:12px;">
               If your household shares one chair, a “comfort-first” tuning is usually the safest choice for daily use.
             </div>
-          </aside>
+          </div>
         </div>
 
       </div>
@@ -231,7 +251,8 @@
         <div class="cta" style="margin-top:12px;">
           <a class="btn btn--amazon"
              href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
-             rel="nofollow sponsored">
+             target="_blank"
+             rel="nofollow sponsored noopener">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -340,7 +361,8 @@
         <div class="cta" style="margin-top:12px;">
           <a class="btn btn--amazon"
              href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
-             rel="nofollow sponsored">
+             target="_blank"
+             rel="nofollow sponsored noopener">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -445,5 +467,8 @@
     </footer>
 
   </main>
+
+  <!-- Global JS (drawer menu etc.) -->
+  <script src="/assets/site.js?v=1" defer></script>
 </body>
 </html>
