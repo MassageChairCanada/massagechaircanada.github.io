@@ -1197,8 +1197,8 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
    ========================================================= */
 @media (min-width: 921px){
   .hero--contained.hero--steam.hero--steam-right .hero-steam{
-    /* LEFT = panel, RIGHT = media */
-    grid-template-columns: .62fr 1.38fr;
+    /* LEFT = panel (BIG), RIGHT = media (SMALL) */
+    grid-template-columns: 1.55fr 0.85fr;
     grid-template-areas: "panel media";
     align-items: start;
   }
@@ -1210,8 +1210,8 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
 
   .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
     grid-area: media;
-    margin-left: auto; /* pushes to the right nicely */
-    max-width: 520px;  /* Steam-like capsule size (optional) */
+    margin-left: auto;
+    max-width: 520px;  /* Steam-like capsule size */
   }
 }
 
