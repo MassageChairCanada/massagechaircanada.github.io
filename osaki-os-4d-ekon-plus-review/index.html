@@ -168,32 +168,21 @@
     <a href="/massage-chair-comparison-canada/">Full Comparison</a>
   </nav>
 
-  <!-- HERO (Steam-like) -->
-  <!-- UPDATED: add hero--steam-right so image sits on RIGHT on desktop -->
+  <!-- HERO (Steam-like, IMAGE ON RIGHT, FLUSH TO DIVIDER) -->
   <section class="hero hero--contained hero--steam hero--steam-right" aria-label="Osaki OS-4D Ekon Plus review hero">
     <div class="hero-shell">
       <div class="hero-card">
 
-        <div class="hero-steam">
-          <!-- Media (will render RIGHT on desktop via CSS grid areas) -->
-          <div class="hero-steam__media">
-            <img
-              src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
-              srcset="
-                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
-                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
-              sizes="(max-width: 920px) 100vw, 730px"
-              alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
-              width="1600"
-              height="840"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </div>
+        <!--
+          Key change vs your previous HTML:
+          - Add: hero--steam-right (your CSS handles swapping columns)
+          - Make the grid padding "Steam-like": padding only on the left panel,
+            and the media starts flush at the column divider (no extra inset).
+        -->
+        <div class="hero-steam" style="padding:0; gap:0; align-items:stretch;">
 
-          <!-- Panel (will render LEFT on desktop via CSS grid areas) -->
-          <div class="hero-steam__panel">
+          <!-- PANEL (left) -->
+          <div class="hero-steam__panel" style="padding: clamp(16px, 2.6vw, 22px); border-right: 1px solid rgba(255,255,255,.10);">
             <span class="kicker">Osaki OS-4D Ekon Plus • Canada review • 2026</span>
 
             <h1>Osaki OS-4D Ekon Plus Review (Canada, 2026)</h1>
@@ -232,6 +221,41 @@
               If your household shares one chair, a “comfort-first” tuning is usually the safest choice for daily use.
             </div>
           </div>
+
+          <!-- MEDIA (right, starts exactly at the divider like Steam) -->
+          <div class="hero-steam__media"
+               style="
+                 border:none;
+                 border-radius: 0;
+                 box-shadow: none;
+                 background: transparent;
+                 aspect-ratio: 460 / 215;
+                 display:flex;
+                 align-items:flex-start;
+                 justify-content:stretch;
+               ">
+            <img
+              src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
+              srcset="
+                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
+                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
+              sizes="(max-width: 920px) 100vw, 730px"
+              alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
+              width="1600"
+              height="840"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: 70% 45%;
+                display:block;
+              "
+            />
+          </div>
+
         </div>
 
       </div>
