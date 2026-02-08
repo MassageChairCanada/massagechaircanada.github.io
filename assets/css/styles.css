@@ -1598,15 +1598,18 @@ a{
   .hero--banner .hero-banner > img{ object-position: 70% 40%; }
 }
 
+/* =========================================================
+   REVIEW HERO SYSTEM (CLEAN)
+   - Base: .hero--contained (card + shell)
+   - Optional layout: .hero--steam (Steam-like hero)
+   ========================================================= */
+
 /* -------------------------
-   B) CONTAINED HERO (review pages)
+   Base CONTAINED HERO (review pages)
    HTML:
    <section class="hero hero--contained">
      <div class="hero-shell">
-       <div class="hero-card">
-         <div class="hero-media"><img ... /></div>
-         <div class="hero-content"> ... </div>
-       </div>
+       <div class="hero-card">...</div>
      </div>
    </section>
    ------------------------- */
@@ -1638,51 +1641,30 @@ a{
   overflow: hidden;
 }
 
-/* image */
-.hero--contained .hero-media{
-  aspect-ratio: 16 / 9;
-  background: #0b0d14;
-}
-
-.hero--contained .hero-media img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* content grid */
-.hero--contained .hero-content{
-  padding: clamp(16px, 2.6vw, 22px);
-  display: grid;
-  grid-template-columns: 1.25fr .75fr;
-  gap: clamp(14px, 2.2vw, 18px);
-  align-items: start;
-}
-
-@media (max-width: 920px){
-  .hero--contained .hero-content{ grid-template-columns: 1fr; }
-}
-
-/* =========================================================
-   STEAM HERO (review pages) — V2 (image LEFT, panel RIGHT)
-   Matches HTML:
-   <div class="hero-steam">
-     <div class="hero-steam__media"><img/></div>
-     <div class="hero-steam__panel">...</div>
-   </div>
-   Paste at END of styles.css
-   ========================================================= */
+/* -------------------------
+   STEAM HERO V2 (review pages)
+   HTML:
+   <section class="hero hero--contained hero--steam">
+     <div class="hero-shell">
+       <div class="hero-card">
+         <div class="hero-steam">
+           <div class="hero-steam__media"><img/></div>
+           <div class="hero-steam__panel">...</div>
+         </div>
+       </div>
+     </div>
+   </section>
+   ------------------------- */
 
 .hero--contained.hero--steam .hero-steam{
   display: grid;
-  grid-template-columns: 1.35fr .65fr; /* big media / compact panel */
+  grid-template-columns: 1.35fr .65fr;
   gap: clamp(14px, 2.2vw, 18px);
   padding: clamp(16px, 2.6vw, 22px);
   align-items: start;
 }
 
-/* LEFT: Media block */
+/* LEFT: Media */
 .hero--contained.hero--steam .hero-steam__media{
   border-radius: var(--r-xl);
   overflow: hidden;
@@ -1702,7 +1684,7 @@ a{
   transform: scale(1.01);
 }
 
-/* subtle premium grade */
+/* premium grade overlay */
 .hero--contained.hero--steam .hero-steam__media::before{
   content:"";
   position:absolute;
@@ -1715,11 +1697,8 @@ a{
 }
 
 /* RIGHT: Panel */
-.hero--contained.hero--steam .hero-steam__panel{
-  min-width: 0;
-}
+.hero--contained.hero--steam .hero-steam__panel{ min-width: 0; }
 
-/* Tighten right column content like Steam */
 .hero--contained.hero--steam .hero-steam__panel h1{
   font-size: clamp(24px, 2.6vw, 34px);
   margin-top: 10px;
@@ -1739,10 +1718,8 @@ a{
   }
 }
 
-/* Meta zone (pills + boxes) */
-.hero--contained.hero--steam .hero-steam__meta{
-  margin-top: 14px;
-}
+/* tags / pills */
+.hero--contained.hero--steam .hero-steam__meta{ margin-top: 14px; }
 
 .hero--contained.hero--steam .hero-steam__tags{
   display: flex;
@@ -1751,10 +1728,11 @@ a{
   align-items: center;
 }
 
-/* Mobile: stack, media on top (Steam-like) */
+/* Mobile: stack */
 @media (max-width: 920px){
   .hero--contained.hero--steam .hero-steam{
     grid-template-columns: 1fr;
   }
 }
+
 
