@@ -1228,3 +1228,47 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
     margin-left: 0;
   }
 }
+
+/* =========================================================
+   Steam hero mobile polish (perfect stacking)
+   Goal: Media first, then right-side notes, then text panel
+   ========================================================= */
+@media (max-width: 920px){
+  /* Stack order */
+  .hero--contained.hero--steam.hero--steam-right .hero-steam{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "panel";
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
+    grid-area: media;
+    padding: clamp(14px, 3.2vw, 18px);
+    overflow: visible;
+  }
+
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{
+    grid-area: panel;
+    padding: clamp(14px, 3.2vw, 18px);
+    border-right: none !important;
+    border-top: 1px solid rgba(255,255,255,.10);
+  }
+
+  /* Make header image box full width on mobile */
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media > div[aria-label="Header image"]{
+    max-width: 100% !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 520px){
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel,
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
+    padding: 14px;
+  }
+}
