@@ -1290,3 +1290,66 @@ a{
   background: rgba(255,255,255,.02);
   box-shadow: var(--shadow-soft);
 }
+
+/* =========================================================
+   PAGE OVERRIDE — Product review (NO full-width hero)
+   ========================================================= */
+
+.hero--contained{
+  padding: 22px 0 10px;
+}
+
+/* kill full-bleed behavior if accidentally present */
+.hero--contained .full-bleed,
+.hero--contained .hero-banner{
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  min-height: unset;
+  border: none;
+  background: none;
+}
+
+/* contained hero shell */
+.hero--contained .hero-shell{
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* card container */
+.hero--contained .hero-card{
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--line);
+  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* image */
+.hero--contained .hero-media{
+  aspect-ratio: 16 / 9;
+  background: #0b0d14;
+}
+
+.hero--contained .hero-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* content grid */
+.hero--contained .hero-content{
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 18px;
+  padding: clamp(16px, 2.6vw, 22px);
+}
+
+@media (max-width: 920px){
+  .hero--contained .hero-content{
+    grid-template-columns: 1fr;
+  }
+}
+
