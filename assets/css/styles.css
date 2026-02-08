@@ -1444,3 +1444,56 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
   }
 }
 
+/* =========================================================
+   HERO NOTES UNDER IMAGE (for .hero-notes inside hero-steam__media)
+   ========================================================= */
+
+/* Allow the media column to contain image + notes */
+.hero--contained.hero--steam .hero-steam__media{
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* space between image and notes */
+  height: auto; /* important: don't force only the 16:9 box */
+  aspect-ratio: auto; /* override previous 16:9 lock */
+}
+
+/* Keep the picture as the “capsule” */
+.hero--contained.hero--steam .hero-steam__media picture{
+  display:block;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b0d14;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+/* Image fills the capsule */
+.hero--contained.hero--steam .hero-steam__media picture img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.03) contrast(1.03);
+  transform: scale(1.01);
+}
+
+/* Glow overlay on the picture (not the whole column) */
+.hero--contained.hero--steam .hero-steam__media picture::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 10%, rgba(233,198,106,.10), transparent 62%),
+    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.22));
+  opacity:.9;
+}
+
+/* Notes block under the image */
+.hero-notes{
+  display: grid;
+  gap: 12px;
+}
+
