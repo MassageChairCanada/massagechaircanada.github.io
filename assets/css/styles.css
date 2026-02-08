@@ -1193,25 +1193,38 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
 /* =========================================================
    Steam hero: IMAGE ON THE RIGHT (desktop only)
    Add class: hero--steam-right
+   Works with CSS Grid (no order hacks)
    ========================================================= */
 @media (min-width: 921px){
   .hero--contained.hero--steam.hero--steam-right .hero-steam{
-    grid-template-columns: .62fr 1.38fr; /* panel smaller, media bigger */
+    /* LEFT = panel, RIGHT = media */
+    grid-template-columns: .62fr 1.38fr;
+    grid-template-areas: "panel media";
+    align-items: start;
   }
 
-  /* Put panel first (left) and media second (right) */
-  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{ order: 1; }
-  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{ order: 2; }
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{
+    grid-area: panel;
+    min-width: 0;
+  }
 
-  /* A little Steam-like spacing */
   .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
-    aspect-ratio: 16 / 9;
+    grid-area: media;
+    margin-left: auto; /* pushes to the right nicely */
+    max-width: 520px;  /* Steam-like capsule size (optional) */
   }
 }
 
-/* Mobile stays stacked normally */
+/* Mobile stays stacked (media then panel) */
 @media (max-width: 920px){
-  .hero--contained.hero--steam.hero--steam-right .hero-steam__panel{ order: 2; }
-  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{ order: 1; }
+  .hero--contained.hero--steam.hero--steam-right .hero-steam{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "panel";
+  }
+  .hero--contained.hero--steam.hero--steam-right .hero-steam__media{
+    max-width: 100%;
+    margin-left: 0;
+  }
 }
-
