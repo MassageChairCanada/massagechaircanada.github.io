@@ -59,6 +59,7 @@
       /assets/images/hero/best-massage-chairs-canada-luxury-2026-hero.webp 2400w
     "
     imagesizes="(max-width: 760px) 100vw, 2400px"
+    fetchpriority="high"
   />
 
   <!-- CSS -->
@@ -69,35 +70,76 @@
 <a class="sr-only" href="#content">Skip to content</a>
 
 <!-- HEADER -->
-<header class="topbar">
+<header class="topbar" role="banner">
   <div class="container">
-    <a class="brand" href="/">
-      <img src="/assets/images/brand/massagechaircanada-icon-1024.png" width="36" height="36" alt="MassageChairCanada" />
+    <a class="brand" href="/" aria-label="MassageChairCanada home">
+      <img
+        src="/assets/images/brand/massagechaircanada-icon-1024.png"
+        width="36" height="36"
+        alt="MassageChairCanada"
+        loading="eager"
+        decoding="async"
+      />
       <span>
         <span class="name">MassageChairCanada</span>
         <span class="tag">Massage chair reviews for Canadians</span>
       </span>
     </a>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
       <a href="#start">Start here</a>
       <a href="#picks">Top picks</a>
       <a href="#guides">Guides</a>
       <a href="#faq">FAQ</a>
     </nav>
 
-    <button class="nav-toggle" id="navToggle">☰</button>
+    <!-- Mobile toggle -->
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      type="button"
+    >
+      <span class="sr-only">Open menu</span>
+      ☰
+    </button>
   </div>
 </header>
 
+<!-- Mobile drawer + scrim -->
+<div class="nav-scrim" id="navScrim" data-open="false" aria-hidden="true"></div>
+<nav class="mobile-nav" id="mobile-nav" data-open="false" aria-label="Mobile navigation">
+  <a href="#start">Start here</a>
+  <a href="#picks">Top picks</a>
+  <a href="#guides">Guides</a>
+  <a href="#faq">FAQ</a>
+
+  <div class="note" style="margin:10px 0 0;">
+    <strong>Quick links</strong>
+  </div>
+  <a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a>
+  <a href="/massage-chair-comparison-canada/">Comparison (Canada)</a>
+  <a href="/premium-massage-chairs-canada/">Premium showroom</a>
+  <a href="/disclosure/">Disclosure</a>
+  <a href="/privacy/">Privacy</a>
+  <a href="/about/">About</a>
+</nav>
+
 <!-- HERO -->
-<section class="hero hero--banner">
+<section class="hero hero--banner" aria-label="MassageChairCanada hero">
   <div class="hero-banner full-bleed">
     <picture>
-      <source srcset="/assets/images/hero/best-massage-chairs-canada-luxury-mobile-2026.webp" media="(max-width:760px)" />
-      <img src="/assets/images/hero/best-massage-chairs-canada-luxury-2026-hero.webp"
-           alt="Massage chairs in a premium Canadian home"
-           width="2400" height="1350" loading="eager" fetchpriority="high" />
+      <source srcset="/assets/images/hero/best-massage-chairs-canada-luxury-mobile-2026.webp" media="(max-width:760px)" type="image/webp" />
+      <source srcset="/assets/images/hero/best-massage-chairs-canada-luxury-2026-hero.webp" media="(min-width:761px)" type="image/webp" />
+      <img
+        src="/assets/images/hero/best-massage-chairs-canada-luxury-2026-hero.webp"
+        alt="Massage chairs in a premium Canadian home"
+        width="2400" height="1350"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
     </picture>
 
     <div class="container hero-overlay">
@@ -111,7 +153,7 @@
           optional <strong>premium showroom</strong> models, and Canada-specific buying notes.
         </p>
 
-        <div class="cta-row">
+        <div class="cta-row" aria-label="Primary actions">
           <a class="btn btn--amazon" href="/best-massage-chair-canada/">
             See the #1 value pick
             <span class="btn-meta">Most homes</span>
@@ -126,7 +168,7 @@
         </p>
       </div>
 
-      <aside class="hero-side">
+      <aside class="hero-side" aria-label="Canada buying notes">
         <div class="aside-box">
           <h2>Canada buying notes</h2>
           <ul>
@@ -144,7 +186,7 @@
 <main id="content" class="container">
 
 <!-- START HERE -->
-<section class="section" id="start">
+<section class="section" id="start" aria-label="Start here">
   <div class="card">
     <h2>Start Here (30 seconds)</h2>
     <p class="muted">
@@ -156,7 +198,7 @@
       <div class="aside-box">
         <h3>Best value for most homes</h3>
         <p class="muted">
-          Comfort, heat, recline, and daily usability — without luxury-tier pricing.
+          Comfort, heat, recline, and daily usability, without luxury-tier pricing.
         </p>
         <a class="btn btn--amazon" href="/best-massage-chair-canada/">
           View the #1 value pick
@@ -168,7 +210,7 @@
         <p class="muted">
           If budget is not a concern and you want top-tier 4D technology, we cover premium options too.
         </p>
-        <a class="btn" href="/massage-chair-comparison-canada/">
+        <a class="btn" href="/premium-massage-chairs-canada/">
           See premium models
         </a>
       </div>
@@ -181,7 +223,7 @@
 </section>
 
 <!-- TOP PICKS -->
-<section class="section" id="picks">
+<section class="section" id="picks" aria-label="Top picks">
   <div class="card">
     <h2>Top Picks</h2>
 
@@ -191,12 +233,14 @@
         <ul>
           <li><a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a></li>
           <li><a href="/massage-chair-comparison-canada/">Comparison table</a></li>
+          <li><a href="/best-massage-chair-for-back-pain/">Best for back pain (Canada)</a></li>
         </ul>
       </div>
 
       <div>
         <h3>Premium Showroom (Optional)</h3>
         <ul>
+          <li><a href="/premium-massage-chairs-canada/">Premium showroom picks</a></li>
           <li><a href="/osaki-os-4d-ekon-plus-review/">Osaki OS-4D Ekon Plus</a></li>
           <li><a href="/massage-chair-comparison-canada/">Compare premium vs value</a></li>
         </ul>
@@ -206,7 +250,7 @@
 </section>
 
 <!-- GUIDES -->
-<section class="section" id="guides">
+<section class="section" id="guides" aria-label="Guides">
   <div class="card">
     <h2>Guides</h2>
     <ul>
@@ -218,7 +262,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="section" id="faq">
+<section class="section" id="faq" aria-label="FAQ">
   <div class="card">
     <h2>FAQ</h2>
     <h3>Where should I start?</h3>
@@ -229,22 +273,78 @@
 </section>
 
 <!-- TRANSPARENCY -->
-<section class="section">
+<section class="section" aria-label="Transparency">
   <div class="card">
     <h2>Transparency</h2>
     <p class="muted">
       We may earn a commission through affiliate links. This never affects how products are ranked.
     </p>
-    <p class="muted"><a href="/disclosure/">Disclosure</a></p>
+    <p class="muted">
+      See: <a href="/disclosure/">Disclosure</a> • <a href="/privacy/">Privacy</a> • <a href="/about/">About</a>
+    </p>
   </div>
 </section>
 
-<footer class="footer">
-  <div>© <span id="y"></span> MassageChairCanada</div>
-  <script>document.getElementById("y").textContent=new Date().getFullYear();</script>
+</main>
+
+<!-- FOOTER upgraded -->
+<footer class="footer" aria-label="Footer">
+  <div class="container">
+    <div class="grid" style="gap:18px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="/assets/images/brand/massagechaircanada-icon-1024.png" width="28" height="28" alt="MassageChairCanada" loading="lazy" decoding="async" />
+          <strong>MassageChairCanada</strong>
+        </div>
+        <p class="muted" style="margin-top:10px;max-width:52ch;">
+          Massage chair reviews for Canadian buyers. Value-first picks, premium showroom options, and practical Canada delivery notes.
+        </p>
+      </div>
+
+      <div>
+        <strong>Start here</strong>
+        <ul style="margin-top:10px;">
+          <li><a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a></li>
+          <li><a href="/massage-chair-comparison-canada/">Comparison (Canada)</a></li>
+          <li><a href="/premium-massage-chairs-canada/">Premium showroom</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <strong>Guides</strong>
+        <ul style="margin-top:10px;">
+          <li><a href="/3d-vs-4d-massage-chair/">3D vs 4D</a></li>
+          <li><a href="/massage-chair-zero-gravity-benefits/">Zero gravity benefits</a></li>
+          <li><a href="/best-massage-chair-for-back-pain/">Best for back pain</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <strong>Legal</strong>
+        <ul style="margin-top:10px;">
+          <li><a href="/disclosure/">Disclosure</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:16px;">
+      Affiliate note: If you buy through our links, we may earn a commission at no extra cost to you.
+    </div>
+
+    <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
+      <div class="muted">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
+      <a class="muted" href="#content">Back to top ↑</a>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </div>
 </footer>
 
-</main>
 <script src="/assets/site.js?v=1" defer></script>
+
 </body>
 </html>
