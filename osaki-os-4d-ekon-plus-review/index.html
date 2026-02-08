@@ -140,7 +140,6 @@
         </span>
       </a>
 
-      <!-- Desktop nav -->
       <nav class="nav" aria-label="Primary navigation">
         <a href="#verdict">Verdict</a>
         <a href="#features">Features</a>
@@ -149,7 +148,6 @@
         <a href="#faq">FAQ</a>
       </nav>
 
-      <!-- Mobile toggle (site.js uses these IDs) -->
       <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
         <span class="sr-only">Open menu</span>
         ☰
@@ -157,7 +155,6 @@
     </div>
   </header>
 
-  <!-- Mobile scrim + drawer (site.js uses these IDs) -->
   <div class="nav-scrim" id="navScrim" data-open="false" aria-hidden="true"></div>
   <nav class="mobile-nav" id="mobile-nav" data-open="false" aria-label="Mobile navigation">
     <a href="#verdict">Verdict</a>
@@ -168,21 +165,16 @@
     <a href="/massage-chair-comparison-canada/">Full Comparison</a>
   </nav>
 
-  <!-- HERO (Steam-like, IMAGE ON RIGHT, FLUSH TO DIVIDER) -->
+  <!-- HERO (Steam-like: LEFT text, RIGHT small header image box) -->
   <section class="hero hero--contained hero--steam hero--steam-right" aria-label="Osaki OS-4D Ekon Plus review hero">
     <div class="hero-shell">
       <div class="hero-card">
 
-        <!--
-          Key change vs your previous HTML:
-          - Add: hero--steam-right (your CSS handles swapping columns)
-          - Make the grid padding "Steam-like": padding only on the left panel,
-            and the media starts flush at the column divider (no extra inset).
-        -->
-        <div class="hero-steam" style="padding:0; gap:0; align-items:stretch;">
+        <div class="hero-steam" style="gap:0; padding:0; align-items:stretch;">
 
-          <!-- PANEL (left) -->
-          <div class="hero-steam__panel" style="padding: clamp(16px, 2.6vw, 22px); border-right: 1px solid rgba(255,255,255,.10);">
+          <!-- LEFT (panel) -->
+          <div class="hero-steam__panel"
+               style="padding: clamp(16px, 2.6vw, 22px); border-right: 1px solid rgba(255,255,255,.10);">
             <span class="kicker">Osaki OS-4D Ekon Plus • Canada review • 2026</span>
 
             <h1>Osaki OS-4D Ekon Plus Review (Canada, 2026)</h1>
@@ -222,39 +214,63 @@
             </div>
           </div>
 
-          <!-- MEDIA (right, starts exactly at the divider like Steam) -->
-          <div class="hero-steam__media"
-               style="
-                 border:none;
-                 border-radius: 0;
-                 box-shadow: none;
-                 background: transparent;
-                 aspect-ratio: 460 / 215;
-                 display:flex;
-                 align-items:flex-start;
-                 justify-content:stretch;
-               ">
-            <img
-              src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
-              srcset="
-                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
-                /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
-              sizes="(max-width: 920px) 100vw, 730px"
-              alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
-              width="1600"
-              height="840"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
+          <!-- RIGHT (Steam info panel with header image) -->
+          <aside class="hero-steam__media"
+                 style="
+                   padding: clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) 0;
+                   border: none;
+                   border-radius: 0;
+                   box-shadow: none;
+                   background: transparent;
+                   aspect-ratio: auto;
+                   overflow: visible;
+                 ">
+
+            <!-- This is the Steam-like header image box (≈460×215) -->
+            <div
               style="
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: 70% 45%;
-                display:block;
+                max-width: 560px;
+                aspect-ratio: 460 / 215;
+                border-radius: var(--r-xl);
+                overflow: hidden;
+                border: 1px solid var(--line);
+                background: #0b0d14;
+                box-shadow: var(--shadow-soft);
+                margin-left: 0; /* flush to divider */
               "
-            />
-          </div>
+              aria-label="Header image"
+            >
+              <img
+                src="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp"
+                srcset="
+                  /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
+                  /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w"
+                sizes="(max-width: 920px) 100vw, 460px"
+                alt="Osaki OS-4D Ekon Plus massage chair in a premium home setting"
+                width="1600"
+                height="840"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: 55% 45%;
+                  display: block;
+                "
+              />
+            </div>
+
+            <!-- Optional Steam-like text area under the image (leave or remove) -->
+            <div style="margin-top: 14px; max-width: 560px;">
+              <p class="muted" style="margin:0;">
+                Comfort-forward 4D feel, zero gravity positioning, and heat support.
+              </p>
+            </div>
+
+          </aside>
 
         </div>
 
@@ -493,7 +509,6 @@
 
   </main>
 
-  <!-- Global JS (drawer menu etc.) -->
   <script src="/assets/site.js?v=1" defer></script>
 </body>
 </html>
