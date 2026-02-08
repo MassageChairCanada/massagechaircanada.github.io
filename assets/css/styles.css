@@ -1258,3 +1258,38 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
     padding: 14px;
   }
 }
+
+/* =========================================================
+   HOME HERO PATCH (uses existing .hero--banner system)
+   ========================================================= */
+
+/* 1) Better contrast + glow for HOME */
+.hero--banner .hero-banner::before{
+  background:
+    radial-gradient(1100px 560px at 65% 35%, rgba(233,198,106,.18), transparent 62%),
+    radial-gradient(900px 520px at 20% 10%, rgba(247,231,176,.08), transparent 60%),
+    linear-gradient(90deg,
+      rgba(7,6,10,.96) 0%,
+      rgba(7,6,10,.82) 42%,
+      rgba(7,6,10,.24) 74%,
+      rgba(7,6,10,.12) 100%
+    ),
+    linear-gradient(180deg, rgba(7,6,10,.52) 0%, rgba(7,6,10,.10) 52%, rgba(7,6,10,.66) 100%);
+}
+
+/* 2) Make the hero box feel more “gold luxury” */
+.hero--banner .hero-box{
+  border-color: rgba(233,198,106,.28);
+  box-shadow: 0 22px 80px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* 3) Slightly larger headline on desktop (home only) */
+@media (min-width: 921px){
+  .hero--banner h1{ font-size: clamp(34px, 3.6vw, 58px); }
+}
+
+/* 4) Mobile: keep it punchy */
+@media (max-width: 760px){
+  .hero--banner .hero-banner{ min-height: 600px; }
+}
+
