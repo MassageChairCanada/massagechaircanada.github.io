@@ -1,17 +1,18 @@
 /* =========================================================
-   MassageChairCanada — styles.css (ULTRA LUXE v3)
-   Goals:
-   - Premium / luxury look with subtle gold gradients
-   - Ultra readable on mobile, comfortable spacing
-   - Prevent overflow / layout breaks
-   - Fast, no dependencies
+   MassageChairCanada — styles.css (ULTRA LUXE v4)
+   ONE SOURCE OF TRUTH:
+   - Amazon CTA (single version)
+   - Product media sizing
+   - Money pages: FULL-WIDTH HERO (.hero--banner)
+   - Review pages: CONTAINED HERO + optional STEAM (.hero--contained / .hero--steam)
+   - Mobile menu upgraded (drawer, no horizontal scroll)
    ========================================================= */
 
 /* ---------- Design Tokens ---------- */
 :root{
   /* Layout */
   --max: 1120px;
-  --max-wide: 1320px;     /* for video / wide blocks */
+  --max-wide: 1320px;
   --gutter: clamp(16px, 3.6vw, 28px);
 
   /* Radius */
@@ -59,7 +60,7 @@
   --line: rgba(255,255,255,.10);
   --line2: rgba(255,255,255,.14);
 
-  /* Gold palette (subtle, classy) */
+  /* Gold palette */
   --gold-1: #f7e7b0;
   --gold-2: #e9c66a;
   --gold-3: #caa24a;
@@ -111,7 +112,7 @@
   --ease: cubic-bezier(.2,.8,.2,1);
 }
 
-/* ---------- Light theme (optional but polished) ---------- */
+/* ---------- Light theme ---------- */
 @media (prefers-color-scheme: light){
   :root{
     --bg:#f6f7fb;
@@ -276,6 +277,8 @@ a, button, input, select, textarea{ font: inherit; }
 
 /* =========================================================
    Topbar / Header (luxury glass)
+   - Desktop: inline pills
+   - Mobile: drawer menu (no horizontal scroll)
    ========================================================= */
 .topbar{
   position: sticky;
@@ -326,7 +329,7 @@ a, button, input, select, textarea{ font: inherit; }
   margin-top: 2px;
 }
 
-/* Nav */
+/* Nav (desktop default) */
 .nav{
   margin-left: auto;
   display:flex;
@@ -359,74 +362,170 @@ a, button, input, select, textarea{ font: inherit; }
   text-decoration:none;
 }
 
+/* Mobile menu button (optional HTML)
+   <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false">
+     <span class="sr-only">Menu</span> ☰
+   </button>
+*/
+.nav-toggle{
+  display:none;
+  margin-left: auto;
+  height: 42px;
+  min-width: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 60%, var(--line2));
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-toggle:active{ transform: translateY(0); }
+
+/* Mobile drawer (optional HTML)
+   <div class="mobile-nav" id="mobile-nav" data-open="false">
+     <a ...>...</a>
+   </div>
+   <div class="nav-scrim" data-open="false"></div>
+*/
+.mobile-nav,
+.nav-scrim{ display:none; }
+
 @media (max-width: 760px){
   .topbar .container{
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
     padding: 12px 0;
   }
-  .brand{ max-width: 100%; }
-  .nav{
-    width: 100%;
-    max-width: 100%;
-    justify-content:flex-start;
-    overflow-x:auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+
+  .brand{
+    min-width: 0;
+    max-width: calc(100% - 56px);
   }
-  .nav a{
-    white-space: nowrap;
-    height: 40px;
-    padding: 0 14px;
+
+  /* Hide desktop nav pills, show burger */
+  .nav{ display:none; }
+  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+
+  /* Drawer */
+  .mobile-nav{
+    display:block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: min(92vw, 380px);
+    max-height: calc(100vh - 20px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--r-2xl);
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(16,18,26,.72);
+    box-shadow: 0 28px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transform: translateY(-8px) scale(.98);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .18s var(--ease), opacity .18s var(--ease);
+    z-index: 80;
+    padding: 10px;
+  }
+
+  .mobile-nav[data-open="true"]{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-nav a{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 12px;
+    border-radius: 16px;
+    text-decoration:none;
+    color: rgba(230,232,242,.96);
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.04);
+    font-weight: 800;
+    letter-spacing: .01em;
+    margin: 8px 0;
+  }
+  .mobile-nav a:hover{
+    border-color: rgba(233,198,106,.28);
+    background: rgba(255,255,255,.06);
+    text-decoration:none;
+  }
+
+  .nav-scrim{
+    display:block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s var(--ease);
+    z-index: 70;
+  }
+  .nav-scrim[data-open="true"]{
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
 /* =========================================================
-   HERO BANNER (full-width image) + Title overlay (H1 on top)
-   Use HTML: <section class="hero hero--banner"> ... .hero-banner.full-bleed ...
+   HERO SYSTEM
    ========================================================= */
 .hero{ padding: clamp(16px, 3vw, 26px) 0 10px; }
 
-.hero--banner{
-  padding: 0;
-}
+/* =========================================================
+   A) FULL-WIDTH HERO (money pages)  .hero hero--banner
+   ========================================================= */
+.hero--banner{ padding: 0; }
 
-.hero-banner{
+.hero--banner .hero-banner{
   position: relative;
-  min-height: clamp(340px, 42vw, 580px);
+  min-height: clamp(420px, 44vw, 660px);
   border-bottom: 1px solid var(--line);
   background: #0b0d14;
   overflow: hidden;
 }
 
-.hero-banner picture,
-.hero-banner img{
+.hero--banner .hero-banner picture,
+.hero--banner .hero-banner img{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.hero-banner img{
+.hero--banner .hero-banner > img,
+.hero--banner .hero-banner picture img{
   object-fit: cover;
-  object-position: 75% 50%;
+  object-position: 75% 45%;
   transform: scale(1.01);
   filter: saturate(1.03) contrast(1.03);
 }
 
-.hero-banner::before{
+.hero--banner .hero-banner::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.12), transparent 60%),
-    linear-gradient(90deg, rgba(7,6,10,.92) 0%, rgba(7,6,10,.78) 38%, rgba(7,6,10,.26) 72%, rgba(7,6,10,.12) 100%),
-    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.18) 55%, rgba(7,6,10,.62) 100%);
+    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.14), transparent 60%),
+    linear-gradient(90deg,
+      rgba(7,6,10,.94) 0%,
+      rgba(7,6,10,.80) 40%,
+      rgba(7,6,10,.22) 72%,
+      rgba(7,6,10,.10) 100%
+    ),
+    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.14) 55%, rgba(7,6,10,.62) 100%);
 }
 
-.hero-banner::after{
+.hero--banner .hero-banner::after{
   content:"";
   position:absolute;
   left: 8%;
@@ -438,37 +537,140 @@ a, button, input, select, textarea{ font: inherit; }
   pointer-events:none;
 }
 
-.hero-overlay{
+.hero--banner .hero-overlay{
   position: relative;
+  z-index: 2;
   height: 100%;
   display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(14px, 2.6vw, 22px);
   align-content: start;
-  padding: clamp(18px, 3.6vw, 34px) 0;
+  padding: clamp(18px, 3.2vw, 34px) 0;
 }
 
-.hero-box{
-  max-width: min(920px, 100%);
-  padding: clamp(16px, 2.6vw, 22px);
+.hero--banner .hero-box{
+  background: rgba(16, 18, 26, .52);
+  border: 1px solid rgba(233,198,106,.22);
+  box-shadow: 0 18px 70px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.06);
   border-radius: var(--r-2xl);
-  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
-  background: color-mix(in srgb, var(--panel) 70%, transparent);
-  box-shadow: var(--shadow-glow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: clamp(16px, 2.6vw, 22px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.kicker{
-  display:inline-flex;
-  align-items:center;
-  gap: 10px;
-  font-size: 12px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--gold-1) 65%, var(--muted));
-  border: 1px solid color-mix(in srgb, rgba(233,198,106,.35) 55%, var(--line));
-  background: color-mix(in srgb, var(--panel) 70%, transparent);
-  padding: 9px 12px;
-  border-radius: 999px;
+.hero--banner .hero-side{
+  border-left: 1px solid rgba(255,255,255,.08);
+  padding-left: clamp(14px, 2.6vw, 22px);
+  align-self: start;
+}
+
+@media (min-width: 921px){
+  .hero--banner .hero-side{ margin-top: clamp(48px, 6vw, 130px); }
+}
+
+.hero--banner .hero-side .aside-box,
+.hero--banner .hero-side .note{
+  background: rgba(16, 18, 26, .40);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 14px 44px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@media (max-width: 920px){
+  .hero--banner .hero-overlay{ grid-template-columns: 1fr; padding: 16px 0 20px; }
+  .hero--banner .hero-side{
+    margin-top: 10px;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 760px){
+  .hero--banner .hero-banner{ min-height: 560px; }
+  .hero--banner .hero-banner > img{ object-position: 70% 40%; }
+}
+
+/* =========================================================
+   B) CONTAINED HERO (review pages)
+   ========================================================= */
+.hero--contained{ padding: 22px 0 10px; }
+
+.hero--contained .full-bleed,
+.hero--contained .hero-banner{
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  min-height: unset !important;
+  border: none !important;
+  background: none !important;
+}
+
+.hero--contained .hero-shell{
+  width: min(100% - (var(--gutter) * 2), var(--max));
+  margin-inline: auto;
+}
+
+.hero--contained .hero-card{
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--line);
+  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Optional: STEAM layout */
+.hero--contained.hero--steam .hero-steam{
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: clamp(14px, 2.2vw, 18px);
+  padding: clamp(16px, 2.6vw, 22px);
+  align-items: start;
+}
+.hero--contained.hero--steam .hero-steam__media{
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b0d14;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+.hero--contained.hero--steam .hero-steam__media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.03) contrast(1.03);
+  transform: scale(1.01);
+}
+.hero--contained.hero--steam .hero-steam__media::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 10%, rgba(233,198,106,.10), transparent 62%),
+    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.22));
+  opacity:.9;
+}
+.hero--contained.hero--steam .hero-steam__panel{ min-width: 0; }
+@media (max-width: 920px){
+  .hero--contained.hero--steam .hero-steam{ grid-template-columns: 1fr; }
+}
+.hero--contained.hero--steam .hero-steam__cta{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+@media (max-width: 520px){
+  .hero--contained.hero--steam .hero-steam__cta .btn{
+    width: 100%;
+    justify-content:center;
+  }
 }
 
 /* =========================================================
@@ -480,19 +682,16 @@ h1{
   line-height: var(--lh-tight);
   letter-spacing: -0.03em;
 }
-
 h2{
   margin: 0 0 10px;
   font-size: clamp(20px, 3vw, 30px);
   letter-spacing: -0.02em;
 }
-
 h3{
   margin: 18px 0 10px;
   font-size: 18px;
   letter-spacing: -0.01em;
 }
-
 p{ margin: 0 0 12px; }
 
 .lead{
@@ -501,7 +700,6 @@ p{ margin: 0 0 12px; }
   color: var(--text2);
   font-size: clamp(16px, 2.1vw, 18px);
 }
-
 .muted{ color: var(--muted); }
 
 strong{
@@ -530,11 +728,8 @@ a:hover{
 
 /* Mobile hero fine-tune */
 @media (max-width: 760px){
-  .hero-banner{ min-height: 420px; }
-  .hero-banner img{ object-position: 70% 45%; }
   .hero-box{ border-radius: 20px; }
 }
-
 @media (max-width: 520px){
   .cta-row > .btn{
     width: 100%;
@@ -543,7 +738,7 @@ a:hover{
 }
 
 /* =========================================================
-   Buttons (lux gold)
+   Buttons
    ========================================================= */
 .btn{
   min-height: var(--tap);
@@ -564,26 +759,105 @@ a:hover{
   user-select:none;
   -webkit-tap-highlight-color: transparent;
 }
-
 .btn:hover{
   transform: translateY(-1px);
   text-decoration:none;
   background: color-mix(in srgb, var(--panel2) 78%, transparent);
   border-color: rgba(233,198,106,.45);
 }
-
 .btn:active{ transform: translateY(0); }
-
 .btn.primary{
   background: var(--g-button), color-mix(in srgb, var(--panel2) 70%, transparent);
   border-color: rgba(233,198,106,.55);
   box-shadow: 0 18px 55px rgba(0,0,0,.28);
 }
-
 .btn.primary:hover{ border-color: rgba(247,231,176,.70); }
 
+/* -------- Amazon CTA (one version) -------- */
+.btn.btn--amazon{
+  position: relative;
+  border-radius: 999px;
+  border: 1px solid rgba(233,198,106,.70);
+  color: #0b0d14;
+  background: linear-gradient(135deg,
+    rgba(247,231,176,1) 0%,
+    rgba(233,198,106,1) 28%,
+    rgba(202,162,74,1) 62%,
+    rgba(247,231,176,1) 100%
+  );
+  box-shadow: 0 18px 50px rgba(0,0,0,.34), 0 0 0 1px rgba(255,255,255,.10) inset;
+  font-weight: 900;
+  letter-spacing: .01em;
+  transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
+}
+.btn.btn--amazon::before{
+  content:"";
+  position:absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.55), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);
+  opacity: .55;
+  mix-blend-mode: soft-light;
+}
+.btn.btn--amazon::after{
+  content:"";
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  filter: blur(10px);
+  opacity: .55;
+  pointer-events:none;
+}
+.btn.btn--amazon:hover{
+  transform: translateY(-1px);
+  filter: saturate(1.05) contrast(1.05);
+  box-shadow: 0 22px 65px rgba(0,0,0,.40), 0 0 0 1px rgba(255,255,255,.14) inset;
+}
+.btn.btn--amazon:active{
+  transform: translateY(0);
+  filter: saturate(1) contrast(1);
+  box-shadow: 0 14px 42px rgba(0,0,0,.32), 0 0 0 1px rgba(255,255,255,.10) inset;
+}
+.btn.btn--amazon:focus-visible{
+  outline: 3px solid rgba(233,198,106,.55);
+  outline-offset: 3px;
+}
+.btn .btn-meta{
+  margin-left: 10px;
+  display:inline-flex;
+  align-items:center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(11,13,20,.16);
+  border: 1px solid rgba(11,13,20,.18);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: rgba(11,13,20,.92);
+}
+
+/* -------- Product media sizing -------- */
+.product-media{ margin: 14px 0 16px; }
+.product-media img{
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow-soft);
+}
+
 /* =========================================================
-   Hero Aside (optional legacy support if you still use it)
+   Hero Aside (legacy support)
    ========================================================= */
 .hero-aside{
   border-left: 1px solid var(--line);
@@ -643,21 +917,19 @@ a:hover{
 
 /* =========================================================
    VIDEO (premium wide but controlled)
-   Use: <div class="video-wrap video-wrap--wide">...</div>
    ========================================================= */
 .video-wrap{
   position: relative;
   width: 100%;
-  max-width: 980px; /* safe default */
+  max-width: 980px;
   margin-inline: auto;
   aspect-ratio: 16 / 9;
   border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--line2);
   background: rgba(255,255,255,.02);
-  box-shadow: var(--shadow2, var(--shadow-soft));
+  box-shadow: var(--shadow-soft);
 }
-
 .video-wrap iframe{
   position: absolute;
   inset: 0;
@@ -676,8 +948,6 @@ a:hover{
   box-shadow: var(--shadow-glow);
   background: rgba(0,0,0,.25);
 }
-
-/* Mobile comfort */
 @media (max-width: 760px){
   .video-wrap--wide{
     width: min(100% - (var(--gutter) * 2), var(--max));
@@ -698,7 +968,6 @@ a:hover{
   box-shadow: var(--shadow-soft);
   margin-top: 12px;
 }
-
 .table-wrap::after{
   content:"";
   display:block;
@@ -743,7 +1012,7 @@ td{
 }
 
 /* =========================================================
-   Product blocks (lux sections)
+   Product blocks
    ========================================================= */
 .product{
   border-top: 1px solid var(--line);
@@ -801,7 +1070,6 @@ li{ margin: 6px 0; }
   gap: 14px;
   margin-top: 10px;
 }
-
 @media (max-width: 840px){
   .proscons{ grid-template-columns: 1fr; }
 }
@@ -815,7 +1083,6 @@ li{ margin: 6px 0; }
   overflow: hidden;
   position: relative;
 }
-
 .pc::after{
   content:"";
   position:absolute;
@@ -826,7 +1093,6 @@ li{ margin: 6px 0; }
   background: var(--g-gold-line);
   opacity:.55;
 }
-
 .pc strong{
   display:block;
   margin-bottom: 8px;
@@ -841,7 +1107,6 @@ li{ margin: 6px 0; }
   flex-wrap: wrap;
   margin-top: 10px;
 }
-
 .cta .muted{ font-size: 14px; }
 
 @media (max-width: 520px){
@@ -853,20 +1118,19 @@ li{ margin: 6px 0; }
 }
 
 /* =========================================================
-   Grid helpers (Buying guide)
+   Grid helpers
    ========================================================= */
 .grid{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 @media (max-width: 900px){
   .grid{ grid-template-columns: 1fr; }
 }
 
 /* =========================================================
-   Footer (clean luxury)
+   Footer
    ========================================================= */
 .footer{
   padding: 28px 0 46px;
@@ -874,7 +1138,6 @@ li{ margin: 6px 0; }
   color: var(--muted);
   font-size: 13px;
 }
-
 .footer a{
   color: var(--text);
   opacity: .92;
@@ -893,8 +1156,6 @@ li{ margin: 6px 0; }
   white-space:nowrap;
   border:0;
 }
-
-/* Skip link visible on focus */
 .sr-only:focus{
   position: fixed;
   left: 12px;
@@ -911,18 +1172,12 @@ li{ margin: 6px 0; }
 }
 
 /* =========================================================
-   Extra overflow guards (just in case)
+   Extra overflow guards
    ========================================================= */
 main, header, footer, section, article, nav, div{ max-width: 100%; }
-
 .table-wrap, .card{ max-width: 100%; }
-
 :where(a, span, strong){ min-width: 0; }
-
-a{
-  word-break: break-word;
-  overflow-wrap:anywhere;
-}
+a{ word-break: break-word; overflow-wrap:anywhere; }
 
 /* Optional: nicer scrollbars (webkit) */
 @media (hover:hover){
@@ -934,805 +1189,3 @@ a{
     border-radius: 999px;
   }
 }
-
-/* =========================================================
-   VIDEO heading (Option 2: no card background)
-   ========================================================= */
-.video-heading{
-  width: min(100% - (var(--gutter) * 2), var(--max));
-  margin-inline: auto;
-  margin-bottom: 10px;
-}
-
-.video-heading h2{
-  margin: 0 0 10px;
-}
-
-.video-heading .muted{
-  margin: 0;
-  max-width: 78ch;
-}
-
-/* petite ligne “gold” pour garder le style premium */
-.video-heading::after{
-  content:"";
-  display:block;
-  height: 1px;
-  margin-top: 14px;
-  background: var(--g-gold-line);
-  opacity: .65;
-}
-
-/* VIDEO section polish */
-.video-heading{
-  /* nothing mandatory; keeps card styling */
-}
-
-.video-band{
-  padding-top: 14px;
-}
-
-.video-wrap.video-wrap--wide{
-  width: min(100% - (var(--gutter) * 2), var(--max-wide, 1320px));
-  margin-inline: auto;
-  aspect-ratio: 16 / 9;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: rgba(0,0,0,.25);
-  box-shadow: var(--shadow-glow);
-  position: relative;
-}
-
-.video-wrap.video-wrap--wide iframe{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-
-/* Mobile comfort */
-@media (max-width: 760px){
-  .video-wrap.video-wrap--wide{
-    width: min(100% - (var(--gutter) * 2), var(--max));
-    border-radius: 16px;
-  }
-}
-
-/* =========================================================
-   HERO BANNER (clean premium)
-   ========================================================= */
-.hero--banner{ padding: 0; }
-
-.hero-banner{
-  position: relative;
-  min-height: clamp(420px, 44vw, 660px);
-  border-bottom: 1px solid var(--line);
-  background: #0b0d14;
-  overflow: hidden;
-}
-
-/* image full */
-.hero-banner > img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 75% 45%;
-  transform: scale(1.01);
-  filter: saturate(1.03) contrast(1.03);
-}
-
-/* overlay readability */
-.hero-banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.12), transparent 60%),
-    linear-gradient(90deg, rgba(7,6,10,.92) 0%, rgba(7,6,10,.78) 40%, rgba(7,6,10,.22) 72%, rgba(7,6,10,.12) 100%),
-    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.16) 55%, rgba(7,6,10,.62) 100%);
-}
-
-/* content grid inside hero */
-.hero-overlay{
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: clamp(14px, 2.6vw, 22px);
-  align-content: start;
-
-  /* IMPORTANT: pousse le contenu plus haut */
-  padding: clamp(14px, 2.2vw, 22px) 0;
-}
-
-/* main text card (glass) */
-.hero-box{
-  max-width: 980px;
-  padding: clamp(16px, 2.6vw, 22px);
-  border-radius: var(--r-2xl);
-  border: 1px solid color-mix(in srgb, rgba(233,198,106,.28) 60%, var(--line));
-  background: color-mix(in srgb, var(--panel) 66%, transparent);
-  box-shadow: var(--shadow-glow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* aside inside hero */
-.hero-side{
-  border-left: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
-  padding-left: clamp(14px, 2.6vw, 22px);
-  align-self: start;
-}
-
-/* mobile stacking */
-@media (max-width: 920px){
-  .hero-overlay{
-    grid-template-columns: 1fr;
-    padding: 16px 0 20px;
-  }
-  .hero-side{
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--line);
-    padding-top: 14px;
-  }
-}
-
-@media (max-width: 760px){
-  .hero-banner{ min-height: 560px; }
-  .hero-banner > img{ object-position: 70% 40%; }
-}
-
-/* =========================================================
-   HERO PATCH — cleaner glass + right side lower (drop-in)
-   Paste at END of styles.css to override earlier rules.
-   ========================================================= */
-
-/* 1) Slightly stronger image readability + softer glare */
-.hero-banner::before{
-  background:
-    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.14), transparent 60%),
-    linear-gradient(90deg,
-      rgba(7,6,10,.94) 0%,
-      rgba(7,6,10,.80) 40%,
-      rgba(7,6,10,.22) 72%,
-      rgba(7,6,10,.10) 100%
-    ),
-    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.14) 55%, rgba(7,6,10,.62) 100%);
-}
-
-/* 2) Hero overlay spacing: gives a bit more “air” */
-.hero-overlay{
-  padding: clamp(18px, 3.2vw, 34px) 0;
-}
-
-/* 3) Main hero box: more true glass (less panel opacity) */
-.hero-box{
-  background: rgba(16, 18, 26, .52);
-  border: 1px solid rgba(233,198,106,.22);
-  box-shadow:
-    0 18px 70px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-/* 4) Right column: PUSH IT LOWER on desktop */
-@media (min-width: 921px){
-  .hero-side{
-    margin-top: clamp(48px, 6vw, 130px); /* <- moves the right blocks lower */
-    border-left: 1px solid rgba(255,255,255,.08);
-    padding-left: clamp(14px, 2.6vw, 22px);
-  }
-}
-
-/* 5) Right boxes: real transparent “glass” look */
-.hero-side .aside-box,
-.hero-side .note{
-  background: rgba(16, 18, 26, .40);
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 14px 44px rgba(0,0,0,.38),
-    inset 0 1px 0 rgba(255,255,255,.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* 6) Make the note feel premium and lighter */
-.hero-side .note{
-  color: rgba(230,232,242,.86);
-}
-.hero-side .note::before{
-  opacity: .95;
-}
-
-/* 7) Tighten typography in aside for a cleaner “UI card” vibe */
-.hero-side .aside-box h2{
-  font-size: 15px;
-  letter-spacing: .01em;
-  margin: 0 0 10px;
-}
-.hero-side .aside-box ul{
-  font-size: 13.5px;
-  line-height: 1.45;
-  color: rgba(170,178,199,.92);
-}
-
-/* 8) Mobile: don’t push it down (keep it right under hero-box) */
-@media (max-width: 920px){
-  .hero-side{
-    margin-top: 10px;
-  }
-  .hero-side .aside-box,
-  .hero-side .note{
-    background: rgba(16, 18, 26, .46);
-  }
-}
-
-/* =========================================================
-   PREMIUM AMAZON CTA (gold, trust, high-contrast)
-   ========================================================= */
-
-.btn.btn--amazon{
-  position: relative;
-  border-radius: 999px;
-  border: 1px solid rgba(233,198,106,.70);
-  color: #0b0d14;
-
-  /* Gold that reads premium, not neon */
-  background:
-    linear-gradient(135deg,
-      rgba(247,231,176,1) 0%,
-      rgba(233,198,106,1) 28%,
-      rgba(202,162,74,1) 62%,
-      rgba(247,231,176,1) 100%
-    );
-
-  box-shadow:
-    0 18px 50px rgba(0,0,0,.34),
-    0 0 0 1px rgba(255,255,255,.10) inset;
-
-  font-weight: 900;
-  letter-spacing: .01em;
-
-  transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
-}
-
-/* “Sheen” (reflet premium) */
-.btn.btn--amazon::before{
-  content:"";
-  position:absolute;
-  inset: 1px;
-  border-radius: inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.55), transparent 55%),
-    linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);
-  opacity: .55;
-  mix-blend-mode: soft-light;
-}
-
-/* Subtle bottom depth */
-.btn.btn--amazon::after{
-  content:"";
-  position:absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 6px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,.18);
-  filter: blur(10px);
-  opacity: .55;
-  pointer-events:none;
-}
-
-.btn.btn--amazon:hover{
-  transform: translateY(-1px);
-  filter: saturate(1.05) contrast(1.05);
-  box-shadow:
-    0 22px 65px rgba(0,0,0,.40),
-    0 0 0 1px rgba(255,255,255,.14) inset;
-}
-
-.btn.btn--amazon:active{
-  transform: translateY(0);
-  filter: saturate(1) contrast(1);
-  box-shadow:
-    0 14px 42px rgba(0,0,0,.32),
-    0 0 0 1px rgba(255,255,255,.10) inset;
-}
-
-/* Trust ring on focus (keyboard/mobile accessibility) */
-.btn.btn--amazon:focus-visible{
-  outline: 3px solid rgba(233,198,106,.55);
-  outline-offset: 3px;
-}
-
-/* Optional: little “Amazon.ca” chip inside */
-.btn .btn-meta{
-  margin-left: 10px;
-  display:inline-flex;
-  align-items:center;
-  height: 22px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: rgba(11,13,20,.16);
-  border: 1px solid rgba(11,13,20,.18);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .02em;
-  color: rgba(11,13,20,.92);
-}
-
-/* =========================================================
-   Product images (Top 10 reviews) — SAFE DROP-IN
-   Paste at END of styles.css
-   ========================================================= */
-
-.product-media{
-  margin: 14px 0 16px;
-}
-
-.product-media img{
-  width: 100%;
-  max-width: 360px;          /* look premium, not gigantic */
-  height: auto;
-  border-radius: var(--r-xl);
-  border: 1px solid var(--line2);
-  background: rgba(255,255,255,.02);
-  box-shadow: var(--shadow-soft);
-}
-
-/* =========================================================
-   PAGE OVERRIDE — Product review (NO full-width hero)
-   ========================================================= */
-
-.hero--contained{
-  padding: 22px 0 10px;
-}
-
-/* kill full-bleed behavior if accidentally present */
-.hero--contained .full-bleed,
-.hero--contained .hero-banner{
-  width: auto;
-  max-width: 100%;
-  margin: 0;
-  min-height: unset;
-  border: none;
-  background: none;
-}
-
-/* contained hero shell */
-.hero--contained .hero-shell{
-  max-width: var(--max);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-/* card container */
-.hero--contained .hero-card{
-  border-radius: var(--r-2xl);
-  border: 1px solid var(--line);
-  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
-
-/* image */
-.hero--contained .hero-media{
-  aspect-ratio: 16 / 9;
-  background: #0b0d14;
-}
-
-.hero--contained .hero-media img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* content grid */
-.hero--contained .hero-content{
-  display: grid;
-  grid-template-columns: 1.3fr .7fr;
-  gap: 18px;
-  padding: clamp(16px, 2.6vw, 22px);
-}
-
-@media (max-width: 920px){
-  .hero--contained .hero-content{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================================================
-   FINAL PATCH PACK (paste at END of styles.css)
-   - Fixes duplicate hero behavior cleanly
-   - Keeps FULL-WIDTH hero for money pages (.hero--banner)
-   - Adds CONTAINED hero for review pages (.hero--contained)
-   - Premium Amazon CTA button
-   - Product media sizing
-   ========================================================= */
-
-/* -------------------------
-   Buttons: Premium Amazon CTA
-   Usage: <a class="btn btn--amazon" ...> ... <span class="btn-meta">Amazon.ca</span></a>
-   ------------------------- */
-.btn.btn--amazon{
-  position: relative;
-  border-radius: 999px;
-  border: 1px solid rgba(233,198,106,.70);
-  color: #0b0d14;
-
-  background:
-    linear-gradient(135deg,
-      rgba(247,231,176,1) 0%,
-      rgba(233,198,106,1) 28%,
-      rgba(202,162,74,1) 62%,
-      rgba(247,231,176,1) 100%
-    );
-
-  box-shadow:
-    0 18px 50px rgba(0,0,0,.34),
-    0 0 0 1px rgba(255,255,255,.10) inset;
-
-  font-weight: 900;
-  letter-spacing: .01em;
-
-  transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
-}
-
-.btn.btn--amazon::before{
-  content:"";
-  position:absolute;
-  inset: 1px;
-  border-radius: inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.55), transparent 55%),
-    linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);
-  opacity: .55;
-  mix-blend-mode: soft-light;
-}
-
-.btn.btn--amazon::after{
-  content:"";
-  position:absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 6px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,.18);
-  filter: blur(10px);
-  opacity: .55;
-  pointer-events:none;
-}
-
-.btn.btn--amazon:hover{
-  transform: translateY(-1px);
-  filter: saturate(1.05) contrast(1.05);
-  box-shadow:
-    0 22px 65px rgba(0,0,0,.40),
-    0 0 0 1px rgba(255,255,255,.14) inset;
-}
-
-.btn.btn--amazon:active{
-  transform: translateY(0);
-  filter: saturate(1) contrast(1);
-  box-shadow:
-    0 14px 42px rgba(0,0,0,.32),
-    0 0 0 1px rgba(255,255,255,.10) inset;
-}
-
-.btn.btn--amazon:focus-visible{
-  outline: 3px solid rgba(233,198,106,.55);
-  outline-offset: 3px;
-}
-
-.btn .btn-meta{
-  margin-left: 10px;
-  display:inline-flex;
-  align-items:center;
-  height: 22px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: rgba(11,13,20,.16);
-  border: 1px solid rgba(11,13,20,.18);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .02em;
-  color: rgba(11,13,20,.92);
-}
-
-/* -------------------------
-   Product images sizing (premium, not gigantic)
-   ------------------------- */
-.product-media{ margin: 14px 0 16px; }
-
-.product-media img{
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  border-radius: var(--r-xl);
-  border: 1px solid var(--line2);
-  background: rgba(255,255,255,.02);
-  box-shadow: var(--shadow-soft);
-}
-
-/* =========================================================
-   HERO SYSTEM
-   ========================================================= */
-
-/* -------------------------
-   A) FULL-WIDTH HERO (money pages)
-   HTML:
-   <section class="hero hero--banner">
-     <div class="hero-banner full-bleed">
-        <img ... />
-        <div class="container hero-overlay"> ... </div>
-     </div>
-   </section>
-   ------------------------- */
-.hero{ padding: clamp(16px, 3vw, 26px) 0 10px; }
-
-.hero--banner{ padding: 0; }
-
-.hero--banner .hero-banner{
-  position: relative;
-  min-height: clamp(420px, 44vw, 660px);
-  border-bottom: 1px solid var(--line);
-  background: #0b0d14;
-  overflow: hidden;
-}
-
-.hero--banner .hero-banner > img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 75% 45%;
-  transform: scale(1.01);
-  filter: saturate(1.03) contrast(1.03);
-}
-
-.hero--banner .hero-banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(1200px 520px at 70% 40%, rgba(233,198,106,.14), transparent 60%),
-    linear-gradient(90deg,
-      rgba(7,6,10,.94) 0%,
-      rgba(7,6,10,.80) 40%,
-      rgba(7,6,10,.22) 72%,
-      rgba(7,6,10,.10) 100%
-    ),
-    linear-gradient(180deg, rgba(7,6,10,.55) 0%, rgba(7,6,10,.14) 55%, rgba(7,6,10,.62) 100%);
-}
-
-.hero--banner .hero-banner::after{
-  content:"";
-  position:absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 0;
-  height: 1px;
-  background: var(--g-gold-line);
-  opacity: .85;
-  pointer-events:none;
-}
-
-.hero--banner .hero-overlay{
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: clamp(14px, 2.6vw, 22px);
-  align-content: start;
-  padding: clamp(18px, 3.2vw, 34px) 0;
-}
-
-.hero--banner .hero-box{
-  background: rgba(16, 18, 26, .52);
-  border: 1px solid rgba(233,198,106,.22);
-  box-shadow:
-    0 18px 70px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  border-radius: var(--r-2xl);
-  padding: clamp(16px, 2.6vw, 22px);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.hero--banner .hero-side{
-  border-left: 1px solid rgba(255,255,255,.08);
-  padding-left: clamp(14px, 2.6vw, 22px);
-  align-self: start;
-}
-
-@media (min-width: 921px){
-  .hero--banner .hero-side{
-    margin-top: clamp(48px, 6vw, 130px);
-  }
-}
-
-.hero--banner .hero-side .aside-box,
-.hero--banner .hero-side .note{
-  background: rgba(16, 18, 26, .40);
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 14px 44px rgba(0,0,0,.38),
-    inset 0 1px 0 rgba(255,255,255,.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-@media (max-width: 920px){
-  .hero--banner .hero-overlay{
-    grid-template-columns: 1fr;
-    padding: 16px 0 20px;
-  }
-  .hero--banner .hero-side{
-    margin-top: 10px;
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--line);
-    padding-top: 14px;
-  }
-}
-
-@media (max-width: 760px){
-  .hero--banner .hero-banner{ min-height: 560px; }
-  .hero--banner .hero-banner > img{ object-position: 70% 40%; }
-}
-
-/* =========================================================
-   REVIEW HERO SYSTEM (CLEAN)
-   - Base: .hero--contained (card + shell)
-   - Optional layout: .hero--steam (Steam-like hero)
-   ========================================================= */
-
-/* -------------------------
-   Base CONTAINED HERO (review pages)
-   HTML:
-   <section class="hero hero--contained">
-     <div class="hero-shell">
-       <div class="hero-card">...</div>
-     </div>
-   </section>
-   ------------------------- */
-.hero--contained{ padding: 22px 0 10px; }
-
-/* prevent accidental full-bleed artifacts inside contained hero */
-.hero--contained .full-bleed,
-.hero--contained .hero-banner{
-  width: auto !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  min-height: unset !important;
-  border: none !important;
-  background: none !important;
-}
-
-/* shell = same width as .container */
-.hero--contained .hero-shell{
-  width: min(100% - (var(--gutter) * 2), var(--max));
-  margin-inline: auto;
-}
-
-/* card */
-.hero--contained .hero-card{
-  border-radius: var(--r-2xl);
-  border: 1px solid var(--line);
-  background: var(--g-card), color-mix(in srgb, var(--panel) 92%, transparent);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
-
-/* -------------------------
-   STEAM HERO V2 (review pages)
-   HTML:
-   <section class="hero hero--contained hero--steam">
-     <div class="hero-shell">
-       <div class="hero-card">
-         <div class="hero-steam">
-           <div class="hero-steam__media"><img/></div>
-           <div class="hero-steam__panel">...</div>
-         </div>
-       </div>
-     </div>
-   </section>
-   ------------------------- */
-
-.hero--contained.hero--steam .hero-steam{
-  display: grid;
-  grid-template-columns: 1.35fr .65fr;
-  gap: clamp(14px, 2.2vw, 18px);
-  padding: clamp(16px, 2.6vw, 22px);
-  align-items: start;
-}
-
-/* LEFT: Media */
-.hero--contained.hero--steam .hero-steam__media{
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #0b0d14;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  aspect-ratio: 16 / 9;
-}
-
-.hero--contained.hero--steam .hero-steam__media img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(1.03) contrast(1.03);
-  transform: scale(1.01);
-}
-
-/* premium grade overlay */
-.hero--contained.hero--steam .hero-steam__media::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(900px 520px at 18% 10%, rgba(233,198,106,.10), transparent 62%),
-    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.22));
-  opacity:.9;
-}
-
-/* RIGHT: Panel */
-.hero--contained.hero--steam .hero-steam__panel{ min-width: 0; }
-
-.hero--contained.hero--steam .hero-steam__panel h1{
-  font-size: clamp(24px, 2.6vw, 34px);
-  margin-top: 10px;
-}
-
-.hero--contained.hero--steam .hero-steam__cta{
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-
-@media (max-width: 520px){
-  .hero--contained.hero--steam .hero-steam__cta .btn{
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* tags / pills */
-.hero--contained.hero--steam .hero-steam__meta{ margin-top: 14px; }
-
-.hero--contained.hero--steam .hero-steam__tags{
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-/* Mobile: stack */
-@media (max-width: 920px){
-  .hero--contained.hero--steam .hero-steam{
-    grid-template-columns: 1fr;
-  }
-}
-
-
