@@ -1497,3 +1497,48 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
   gap: 12px;
 }
 
+/* =========================================================
+   PREMIUM HUB — HERO IMAGE ONLY (no overlay)
+   Add to END of styles.css
+   ========================================================= */
+
+/* 1) Image-only hero: remove padding */
+.hero--banner.hero--image-only{ padding: 0; }
+
+/* 2) Set a cinematic height that works on iPhone */
+.hero--banner.hero--image-only .hero-banner{
+  min-height: clamp(240px, 34vw, 520px);
+}
+
+/* 3) Kill the readability overlays (they were for text) */
+.hero--banner.hero--image-only .hero-banner::before,
+.hero--banner.hero--image-only .hero-banner::after{
+  content: none !important;
+}
+
+/* 4) Make sure any accidental overlay content is never shown */
+.hero--banner.hero--image-only .hero-overlay,
+.hero--banner.hero--image-only .hero-box,
+.hero--banner.hero--image-only .hero-side{
+  display: none !important;
+}
+
+/* 5) Nice cropping by default */
+.hero--banner.hero--image-only .hero-banner picture img,
+.hero--banner.hero--image-only .hero-banner > img{
+  object-position: 55% 45% !important;
+  transform: none !important;
+  filter: saturate(1.03) contrast(1.03);
+}
+
+/* 6) Mobile tune: shorter so it doesn't feel like a full screen ad */
+@media (max-width: 760px){
+  .hero--banner.hero--image-only .hero-banner{
+    min-height: clamp(220px, 58vw, 380px);
+  }
+  .hero--banner.hero--image-only .hero-banner picture img,
+  .hero--banner.hero--image-only .hero-banner > img{
+    object-position: 60% 45% !important;
+  }
+}
+
