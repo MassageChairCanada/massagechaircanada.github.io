@@ -12,11 +12,23 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-ZZ6MB5P2V7', { 'send_page_view': true });
+
+    // Optional: track internal hub clicks (non-blocking)
+    function trackHub(label){
+      try{
+        gtag('event','hub_click',{
+          event_category:'navigation',
+          event_label: label,
+          transport_type:'beacon'
+        });
+      }catch(e){}
+      return true;
+    }
   </script>
 
   <!-- SEO -->
-  <title>MassageChairCanada (2026) | Massage Chair Reviews for Canadians</title>
-  <meta name="description" content="Massage chair reviews for Canadians (2026): value-first picks, upgrade paths, premium showroom options, and Canada-specific buying notes." />
+  <title>Premium Massage Chairs in Canada (2026) | Showroom Hub + Osaki Reviews</title>
+  <meta name="description" content="Premium massage chairs in Canada (2026): a calm showroom hub that separates value-first picks from premium tiers. Explore Osaki reviews (Ekon Plus, Maestro), upgrade paths, and Canada buying notes." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet=-1,max-video-preview=-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="dark light" />
@@ -24,25 +36,32 @@
   <meta http-equiv="content-language" content="en-CA" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://massagechaircanada.github.io/" />
+  <link rel="canonical" href="https://massagechaircanada.github.io/premium-massage-chairs-canada/" />
 
-  <!-- Favicons -->
+  <!-- Favicons / App Icons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="MassageChairCanada" />
-  <meta property="og:title" content="MassageChairCanada (2026) — Massage Chair Reviews for Canadians" />
-  <meta property="og:description" content="Value-first picks, upgrade paths, and premium showroom massage chairs for Canadian buyers." />
-  <meta property="og:url" content="https://massagechaircanada.github.io/" />
+  <meta property="og:title" content="Premium Massage Chairs in Canada (2026) | Showroom Hub + Osaki Reviews" />
+  <meta property="og:description" content="A premium showroom hub that keeps value-first shoppers comfortable while offering a clear Osaki path for buyers who want top-tier 4D." />
+  <meta property="og:url" content="https://massagechaircanada.github.io/premium-massage-chairs-canada/" />
   <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Premium massage chair showroom hub for Canadian buyers" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Premium Massage Chairs in Canada (2026) | Showroom Hub" />
+  <meta name="twitter:description" content="Premium showroom hub + Osaki reviews, with a clear escape hatch for value-first buyers." />
+  <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp" />
 
-  <!-- PRELOAD HERO -->
+  <!-- Preload hero -->
   <link
     rel="preload"
     as="image"
@@ -57,126 +76,415 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=7" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://massagechaircanada.github.io/#org",
+        "name": "MassageChairCanada",
+        "url": "https://massagechaircanada.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://massagechaircanada.github.io/#website",
+        "url": "https://massagechaircanada.github.io/",
+        "name": "MassageChairCanada",
+        "publisher": { "@id": "https://massagechaircanada.github.io/#org" },
+        "inLanguage": "en-CA"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://massagechaircanada.github.io/premium-massage-chairs-canada/#webpage",
+        "url": "https://massagechaircanada.github.io/premium-massage-chairs-canada/",
+        "name": "Premium Massage Chairs in Canada (2026) | Showroom Hub + Osaki Reviews",
+        "isPartOf": { "@id": "https://massagechaircanada.github.io/#website" },
+        "about": { "@id": "https://massagechaircanada.github.io/#org" },
+        "inLanguage": "en-CA",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://massagechaircanada.github.io/assets/images/hero/premium-massage-chairs-canada-hero-2400x1350.webp",
+          "width": 2400,
+          "height": 1350
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://massagechaircanada.github.io/premium-massage-chairs-canada/#list",
+        "name": "Premium chair showroom lanes (Canada, 2026)",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 3,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Premium Entry: Osaki OS-4D Ekon Plus",
+            "url": "https://massagechaircanada.github.io/osaki-os-4d-ekon-plus-review/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Flagship Lane: Osaki OS-4D Pro Maestro",
+            "url": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Compare everything (Canada)",
+            "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://massagechaircanada.github.io/premium-massage-chairs-canada/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Will premium chairs scare off value-first shoppers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not if you separate the lanes. Start buyers on a #1 value pick, then offer premium as an optional showroom tier for shoppers who already want top-tier 4D."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What’s the safest premium path to start with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with one proven premium entry point (like an Osaki 4D model) and move up only if you want flagship features. Most buyers should still check fit, comfort, and weekly usability first."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should Canadians confirm before delivery?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Measure doorway width, hallway turns, and recline clearance. Confirm whether delivery includes in-home placement or curbside only, and verify Canadian warranty/support terms."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
-<a class="sr-only" href="#content">Skip to content</a>
+  <a class="sr-only" href="#content">Skip to content</a>
 
-<!-- HEADER -->
-<header class="topbar" role="banner">
-  <div class="container">
-    <a class="brand" href="/" aria-label="MassageChairCanada home">
-      <img src="/assets/images/brand/massagechaircanada-icon-1024.png" width="36" height="36" alt="MassageChairCanada" />
-      <span>
-        <span class="name">MassageChairCanada</span>
-        <span class="tag">Massage chair reviews for Canadians</span>
-      </span>
-    </a>
+  <!-- TOPBAR -->
+  <header class="topbar" role="banner">
+    <div class="container">
+      <a class="brand" href="/" aria-label="MassageChairCanada home">
+        <img src="/assets/images/brand/massagechaircanada-icon-1024.png" alt="MassageChairCanada icon" width="36" height="36" loading="eager" decoding="async" />
+        <span>
+          <span class="name">MassageChairCanada</span>
+          <span class="tag">Premium + value reviews for Canadians</span>
+        </span>
+      </a>
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#lanes">Pick your lane</a>
-      <a href="#guides">Guides</a>
-      <a href="#faq">FAQ</a>
-    </nav>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#start">Start (value-safe)</a>
+        <a href="#lanes">Showroom lanes</a>
+        <a href="#osaki">Osaki path</a>
+        <a href="#notes">Canada notes</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-    <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
-      <span class="sr-only">Open menu</span>☰
-    </button>
-  </div>
-</header>
+      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false" type="button">
+        <span class="sr-only">Open menu</span>
+        ☰
+      </button>
+    </div>
+  </header>
 
-<div class="nav-scrim" id="navScrim" data-open="false"></div>
-<nav class="mobile-nav" id="mobile-nav" data-open="false">
-  <a href="/best-massage-chair-canada/">Best Massage Chair</a>
-  <a href="/massage-chair-comparison-canada/">Comparison</a>
-  <a href="/premium-massage-chairs-canada/">Premium showroom</a>
-</nav>
+  <div class="nav-scrim" id="navScrim" data-open="false" aria-hidden="true"></div>
+  <nav class="mobile-nav" id="mobile-nav" data-open="false" aria-label="Mobile navigation">
+    <a href="#start">Start (value-safe)</a>
+    <a href="#lanes">Showroom lanes</a>
+    <a href="#osaki">Osaki path</a>
+    <a href="#notes">Canada notes</a>
+    <a href="#faq">FAQ</a>
+    <a href="/best-massage-chair-canada/" onclick="return trackHub('mobile-to-value');">Best Value Pick</a>
+    <a href="/massage-chair-comparison-canada/" onclick="return trackHub('mobile-to-compare');">Full Comparison</a>
+    <a href="/" onclick="return trackHub('mobile-to-home');">Home</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero hero--banner">
-  <div class="hero-banner full-bleed">
-    <picture>
-      <source srcset="/assets/images/hero/premium-massage-chairs-canada-hero-1600x840.webp" media="(max-width:760px)" />
-      <img
-        src="/assets/images/hero/premium-massage-chairs-canada-hero-2400x1350.webp"
-        alt="Premium massage chairs in a Canadian home"
-        width="2400"
-        height="1350"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </picture>
+  <!-- HERO (FULL-WIDTH BANNER) -->
+  <section class="hero hero--banner" aria-label="Premium showroom hub hero">
+    <div class="hero-banner full-bleed" aria-label="Premium hub hero image">
+      <picture>
+        <source
+          srcset="/assets/images/hero/premium-massage-chairs-canada-hero-1600x840.webp"
+          media="(max-width: 760px)"
+          type="image/webp"
+        />
+        <source
+          srcset="/assets/images/hero/premium-massage-chairs-canada-hero-2400x1350.webp"
+          media="(min-width: 761px)"
+          type="image/webp"
+        />
+        <img
+          src="/assets/images/hero/premium-massage-chairs-canada-hero-2400x1350.webp"
+          alt="Premium massage chairs in a Canadian home setting"
+          width="2400"
+          height="1350"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          style="object-position:55% 45%;"
+        />
+      </picture>
 
-    <div class="container hero-overlay">
-      <div class="hero-box">
-        <span class="kicker">Canada • 2026</span>
-        <h1>Massage Chair Reviews for Canadians</h1>
-        <p class="lead">
-          Clear recommendations, no decision fatigue. Built for real Canadian homes.
+      <div class="container hero-overlay">
+        <div class="hero-box">
+          <span class="kicker">Canada • 2026 • Optional showroom tier (with a value-first escape hatch)</span>
+
+          <h1>Premium Massage Chairs in Canada (2026)</h1>
+
+          <p class="lead">
+            This page is a <strong>showroom hub</strong>. If you’re value-first, you’re in the right place too.
+            We keep premium separate so your decision stays comfortable.
+          </p>
+
+          <div class="cta-row" aria-label="Primary actions">
+            <a class="btn btn--amazon" href="/best-massage-chair-canada/" onclick="return trackHub('hero-to-value');">
+              Start with the #1 value pick
+              <span class="btn-meta">Most homes</span>
+            </a>
+            <a class="btn primary" href="#osaki" onclick="return trackHub('hero-to-osaki');">
+              See the Osaki path
+            </a>
+            <a class="btn" href="/massage-chair-comparison-canada/" onclick="return trackHub('hero-to-compare');">
+              Compare everything
+            </a>
+          </div>
+
+          <p class="muted" style="margin-top:12px;">
+            Fast path: <strong>value</strong> → <strong>upgrade</strong> → <strong>premium showroom</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELOW HERO: your exact block, styled as a card -->
+  <section class="section" aria-label="Premium hub intro">
+    <div class="container">
+      <div class="card">
+        <span class="kicker">Canada • 2026 • Value-first picks + premium showroom options</span>
+
+        <h2 style="margin-top:10px;">Massage Chair Reviews for Canadians</h2>
+
+        <p class="muted max-65ch">
+          Skip the “10 chairs, zero clarity” lists. We organize everything into three lanes:
+          a <strong>#1 value pick</strong> for most homes, an <strong>upgrade path</strong>, and a <strong>premium showroom tier</strong>.
         </p>
 
-        <div class="cta-row">
-          <a class="btn btn--amazon" href="/best-massage-chair-canada/">#1 Value Pick</a>
-          <a class="btn primary" href="/massage-chair-comparison-canada/">Compare Chairs</a>
-          <a class="btn" href="/premium-massage-chairs-canada/">Premium Showroom</a>
+        <p class="muted" style="margin-top:10px;">
+          Fast path: <strong>value</strong> → <strong>upgrade</strong> → <strong>premium showroom</strong>.
+        </p>
+
+        <div class="grid" style="align-items:start; margin-top:14px;">
+          <div class="aside-box" style="margin:0;" id="notes">
+            <h3 style="margin-top:0;">Canada buying notes</h3>
+            <ul>
+              <li><strong>Measure first:</strong> doorway width + recline clearance.</li>
+              <li><strong>Delivery:</strong> confirm in-home placement vs curbside.</li>
+              <li><strong>Power:</strong> standard 120V outlets.</li>
+              <li><strong>Warranty:</strong> confirm Canadian support terms.</li>
+            </ul>
+          </div>
+
+          <div class="note" style="margin-top:0;">
+            Premium can be amazing, but for most homes the best chair is the one you’ll actually use weekly.
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 🔥 BELOW HERO: PREMIUM INTRO + CANADA NOTES -->
-<section class="section" aria-label="Premium intro and Canada buying notes">
-  <div class="container">
-    <div class="card">
-      <span class="kicker">Canada • 2026 • Value-first picks + premium showroom options</span>
+  <main id="content" class="container">
 
-      <h2>How We Organize Massage Chairs</h2>
+    <!-- START (value-safe) -->
+    <section class="section" id="start" aria-label="Start here without pressure">
+      <div class="card">
+        <h2>Start Here (No pressure)</h2>
+        <p class="muted max-65ch">
+          If you’re not already shopping premium, start with the value-first lane. It’s the best way to avoid
+          “spec-chasing” and end up with a chair you won’t use.
+        </p>
 
-      <p class="muted max-65ch">
-        Skip the “10 chairs, zero clarity” lists. We organize everything into three lanes:
-        a <strong>#1 value pick</strong> for most homes, an <strong>upgrade path</strong>,
-        and a <strong>premium showroom tier</strong>.
-      </p>
+        <div class="grid" style="align-items:start;">
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Lane 1: Best Value (Most homes)</h3>
+            <p class="muted">Comfort, heat, and weekly usability. The “safe” first decision.</p>
+            <a class="btn btn--amazon" href="/best-massage-chair-canada/" onclick="return trackHub('start-to-value');">
+              Go to the #1 value pick
+              <span class="btn-meta">Most homes</span>
+            </a>
+          </div>
 
-      <p class="muted">
-        Fast path: <strong>value</strong> → <strong>upgrade</strong> → <strong>premium showroom</strong>.
-      </p>
-
-      <div class="grid" style="margin-top:14px;">
-        <div class="aside-box">
-          <h3>Canada buying notes</h3>
-          <ul>
-            <li><strong>Measure first:</strong> doorway width + recline clearance.</li>
-            <li><strong>Delivery:</strong> confirm in-home placement vs curbside.</li>
-            <li><strong>Power:</strong> standard 120V outlets.</li>
-            <li><strong>Warranty:</strong> confirm Canadian support terms.</li>
-          </ul>
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Lane 2: Upgrade (More coverage)</h3>
+            <p class="muted">If you want longer track coverage or stronger programs, compare upgrades here.</p>
+            <a class="btn primary" href="/massage-chair-comparison-canada/" onclick="return trackHub('start-to-compare');">
+              Open the comparison
+            </a>
+          </div>
         </div>
 
-        <div class="note">
-          Premium can be amazing, but for most homes the best chair is the one you’ll actually use weekly.
+        <div class="note" style="margin-top:14px;">
+          This premium hub exists so value-first buyers don’t bounce when they see luxury pricing.
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<main id="content" class="container">
-  <!-- CONTENU EXISTANT (lanes, guides, faq, etc.) -->
-</main>
+    <!-- SHOWROOM LANES -->
+    <section class="section" id="lanes" aria-label="Premium showroom lanes">
+      <div class="card">
+        <h2>Premium Showroom Lanes (Optional)</h2>
+        <p class="muted max-65ch">
+          Premium is about <strong>feel</strong> and <strong>control</strong>, not just a bigger spec sheet.
+          Pick the lane that matches your intent, then read one focused review (Osaki is a common starting point).
+        </p>
 
-<footer class="footer">
-  <div class="container">
-    <strong>MassageChairCanada</strong><br/>
-    © <span id="y"></span>
-  </div>
-</footer>
+        <div class="grid" style="align-items:start;">
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Showroom Entry: “Premium, but still sane”</h3>
+            <p class="muted">For buyers who want true 4D control without immediately jumping to flagship pricing.</p>
+            <ul>
+              <li>Better tuning and “natural” rhythm</li>
+              <li>Often the best premium starting point</li>
+              <li>Read one review, decide, done</li>
+            </ul>
+            <a class="btn primary" href="#osaki" onclick="return trackHub('lanes-to-osaki');">
+              Start the Osaki path
+            </a>
+          </div>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Flagship Lane: “All-in showroom”</h3>
+            <p class="muted">For shoppers who already want top tier features and are optimizing for maximum control.</p>
+            <ul>
+              <li>More programs and advanced tuning</li>
+              <li>Best for “I know I want luxury” buyers</li>
+              <li>Still: fit and weekly usability matter</li>
+            </ul>
+            <a class="btn" href="/osaki-os-4d-pro-maestro-review/" onclick="return trackHub('lanes-to-maestro');">
+              Read: Osaki Pro Maestro
+            </a>
+          </div>
+        </div>
 
-<script src="/assets/site.js?v=8" defer></script>
+        <div class="note" style="margin-top:14px;">
+          If premium is “just curiosity”, don’t force it. Start value-first and upgrade later.
+        </div>
+      </div>
+    </section>
+
+    <!-- OSAKI PATH (soft push) -->
+    <section class="section" id="osaki" aria-label="Osaki reviews path">
+      <div class="card">
+        <h2>The Osaki Path (Most common premium journey)</h2>
+        <p class="muted max-65ch">
+          If you’re exploring premium, Osaki is a popular brand to start with because it’s easy to compare
+          across tiers. Pick one review below and you’ll know quickly if the showroom lane is for you.
+        </p>
+
+        <div class="grid" style="align-items:start;">
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Premium Entry Review</h3>
+            <p class="muted">A strong “first premium” option when you want true 4D feel and better control.</p>
+            <a class="btn primary" href="/osaki-os-4d-ekon-plus-review/" onclick="return trackHub('osaki-to-ekonplus');">
+              Read: Osaki OS-4D Ekon Plus
+            </a>
+            <p class="muted" style="margin-top:10px;">
+              Best for: buyers upgrading from value-first and wanting more “showroom feel”.
+            </p>
+          </div>
+
+          <div class="aside-box" style="margin:0;">
+            <h3 style="margin-top:0;">Flagship Review</h3>
+            <p class="muted">For shoppers optimizing for maximum features and high-end control.</p>
+            <a class="btn" href="/osaki-os-4d-pro-maestro-review/" onclick="return trackHub('osaki-to-maestro');">
+              Read: Osaki OS-4D Pro Maestro
+            </a>
+            <p class="muted" style="margin-top:10px;">
+              Best for: “I already want flagship” buyers who accept premium pricing.
+            </p>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          Not sure you’re premium? Use the comparison table first, then come back here if you still want showroom tier.
+          <a href="/massage-chair-comparison-canada/" onclick="return trackHub('osaki-to-compare');">Open comparison</a>.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-label="FAQ">
+      <div class="card">
+        <h2>FAQ</h2>
+
+        <h3>How do I avoid “premium sticker shock” while browsing?</h3>
+        <p class="muted">
+          Use lanes. Start with the value pick, then upgrade only if you want more coverage or true 4D control.
+          Premium stays optional, not the default.
+        </p>
+
+        <h3>What’s the fastest premium decision?</h3>
+        <p class="muted">
+          Read one “premium entry” review (like an Osaki 4D model). If you love the feel and want more, then read the flagship review.
+        </p>
+
+        <h3>What should Canadians confirm before delivery?</h3>
+        <p class="muted">
+          Doorway width, hallway turns, and recline clearance. Confirm in-home placement vs curbside and verify Canadian warranty/support terms.
+        </p>
+      </div>
+    </section>
+
+    <!-- TRANSPARENCY -->
+    <section class="section" aria-label="Transparency">
+      <div class="card">
+        <h2>Transparency</h2>
+        <p class="muted">
+          We may earn a commission if you purchase through our links. This supports the site and ongoing updates.
+          It does not affect how we rank or evaluate products.
+        </p>
+        <p class="muted">
+          See: <a href="/disclosure/" onclick="return trackHub('to-disclosure');">Disclosure</a>
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer" aria-label="Footer">
+      <div><strong>MassageChairCanada</strong> • Reviews for Canadian buyers.</div>
+      <div style="margin-top:10px;">
+        <a href="/" onclick="return trackHub('footer-home');">Home</a> ·
+        <a href="/best-massage-chair-canada/" onclick="return trackHub('footer-value');">Best Value</a> ·
+        <a href="/massage-chair-comparison-canada/" onclick="return trackHub('footer-compare');">Comparison</a> ·
+        <a href="/premium-massage-chairs-canada/" onclick="return trackHub('footer-premium');">Premium Hub</a> ·
+        <a href="/disclosure/" onclick="return trackHub('footer-disclosure');">Disclosure</a> ·
+        <a href="/privacy/" onclick="return trackHub('footer-privacy');">Privacy</a>
+      </div>
+      <div style="margin-top:10px;">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
+      <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+    </footer>
+
+  </main>
+
+  <!-- IMPORTANT: bump cache version after updating JS -->
+  <script src="/assets/site.js?v=8" defer></script>
 </body>
 </html>
