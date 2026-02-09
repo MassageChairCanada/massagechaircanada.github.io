@@ -3,6 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6MB5P2V7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZ6MB5P2V7', { 'send_page_view': true });
+
+    // Outbound tracking (non-blocking)
+    function trackOutbound(label){
+      try{
+        gtag('event','outbound_click',{
+          event_category:'affiliate',
+          event_label: label,
+          transport_type:'beacon'
+        });
+      }catch(e){}
+      return true;
+    }
+  </script>
 
   <!-- SEO -->
   <title>Osaki OS-4D Ekon Plus Review (Canada, 2026) | Features, Pros & Best For</title>
@@ -40,10 +62,24 @@
   <meta name="twitter:description" content="4D rollers, zero gravity, heat, comfort, and fit notes for Canadian buyers." />
   <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/og/osaki-os-4d-ekon-plus-review-og-1200x630.webp" />
 
+  <!-- Preload hero + brand icon -->
+  <link
+    rel="preload"
+    as="image"
+    href="/assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp"
+    imagesrcset="
+      /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-1600x840.webp 1600w,
+      /assets/images/hero/osaki-os-4d-ekon-plus-review-hero-2400x1260.webp 2400w
+    "
+    imagesizes="(max-width: 920px) 100vw, 460px"
+    fetchpriority="high"
+  />
+  <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-icon-1024.png" />
+
   <!-- CSS (global) -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=6" />
 
-  <!-- Structured Data -->
+  <!-- Structured Data (UPDATED: removed Product/Offer to avoid invalid Product + Merchant results) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -86,7 +122,7 @@
         "@id": "https://massagechaircanada.github.io/osaki-os-4d-ekon-plus-review/#breadcrumbs",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://massagechaircanada.github.io/" },
-          { "@type": "ListItem", "position": 2, "name": "Reviews", "item": "https://massagechaircanada.github.io/best-massage-chair-canada/" },
+          { "@type": "ListItem", "position": 2, "name": "Massage Chair Comparison (Canada)", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/" },
           { "@type": "ListItem", "position": 3, "name": "Osaki OS-4D Ekon Plus Review", "item": "https://massagechaircanada.github.io/osaki-os-4d-ekon-plus-review/" }
         ]
       },
@@ -110,20 +146,31 @@
         "dateModified": "2026-02-08"
       },
       {
-        "@type": "Product",
-        "@id": "https://massagechaircanada.github.io/osaki-os-4d-ekon-plus-review/#product",
-        "name": "Osaki OS-4D Ekon Plus Massage Chair",
-        "brand": { "@type": "Brand", "name": "Osaki" },
-        "image": [
-          "https://massagechaircanada.github.io/assets/images/chairs/best-massage-chair-canada-2026-osaki-os-4d-ekon-plus-800x800.webp"
-        ],
-        "description": "Osaki OS-4D Ekon Plus review for Canada: a premium 4D massage chair with zero gravity recline and heat, built for refined comfort and daily home wellness.",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "CAD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
-        }
+        "@type": "ItemList",
+        "@id": "https://massagechaircanada.github.io/osaki-os-4d-ekon-plus-review/#related-links",
+        "name": "Related pages (Canada, 2026)",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 3,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Massage Chair Comparison (Canada)",
+            "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Osaki OS-4D Pro Maestro Review",
+            "url": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Best Massage Chair for Back Pain (Canada)",
+            "url": "https://massagechaircanada.github.io/best-massage-chair-for-back-pain/"
+          }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -199,7 +246,7 @@
         <a href="#faq">FAQ</a>
       </nav>
 
-      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false" type="button">
         <span class="sr-only">Open menu</span>
         ☰
       </button>
@@ -217,7 +264,7 @@
     <a href="/massage-chair-comparison-canada/">Full Comparison</a>
   </nav>
 
-  <!-- HERO (Steam-like: LEFT text, RIGHT small header image box) -->
+  <!-- HERO (Steam-like: LEFT text, RIGHT header image box) -->
   <section class="hero hero--contained hero--steam hero--steam-right" aria-label="Osaki OS-4D Ekon Plus review hero">
     <div class="hero-shell">
       <div class="hero-card">
@@ -240,7 +287,8 @@
               <a class="btn btn--amazon"
                  href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
                  target="_blank"
-                 rel="nofollow sponsored noopener">
+                 rel="nofollow sponsored noopener noreferrer"
+                 onclick="return trackOutbound('ekonplus-hero-amazon');">
                 Check price on Amazon Canada
                 <span class="btn-meta">Amazon.ca</span>
               </a>
@@ -252,7 +300,7 @@
             </p>
           </div>
 
-          <!-- RIGHT (Steam info panel with header image + notes under it) -->
+          <!-- RIGHT (media + notes) -->
           <aside class="hero-steam__media"
                  style="
                    padding: clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) 0;
@@ -264,7 +312,6 @@
                    overflow: visible;
                  ">
 
-            <!-- Steam-like header image box (≈460×215) -->
             <div
               style="
                 width: 100%;
@@ -291,13 +338,7 @@
                 loading="eager"
                 decoding="async"
                 fetchpriority="high"
-                style="
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  object-position: 55% 45%;
-                  display: block;
-                "
+                style="width:100%; height:100%; object-fit:cover; object-position:55% 45%; display:block;"
               />
             </div>
 
@@ -307,7 +348,6 @@
               </p>
             </div>
 
-            <!-- Canada buying notes -->
             <div style="margin-top:14px; max-width:560px;">
               <div class="aside-box" style="margin-top:0;">
                 <h2>Canada buying notes</h2>
@@ -347,7 +387,8 @@
           <a class="btn btn--amazon"
              href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
              target="_blank"
-             rel="nofollow sponsored noopener">
+             rel="nofollow sponsored noopener noreferrer"
+             onclick="return trackOutbound('ekonplus-verdict-amazon');">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -356,7 +397,7 @@
       </div>
     </section>
 
-    <!-- PROS / CONS (NEW) -->
+    <!-- PROS / CONS -->
     <section class="section" id="pros-cons" aria-label="Pros and cons">
       <div class="card">
         <h2>Pros & Cons (Quick Decision)</h2>
@@ -418,7 +459,6 @@
               Looking for “best massage chair Canada”? This is the kind of model that wins on <em>daily consistency</em>, not just headline features.
             </div>
 
-            <!-- What you get / what you don't (NEW) -->
             <div class="grid" style="margin-top:14px;">
               <div class="aside-box" style="margin:0;">
                 <h3 style="margin-top:0;">You’ll love this if…</h3>
@@ -481,8 +521,6 @@
         <div class="note" style="margin-top:14px;">
           Internal links to build topical authority:
           <a href="/massage-chair-comparison-canada/">Massage Chair Comparison (Canada)</a>,
-          <a href="/3d-vs-4d-massage-chair/">3D vs 4D Massage Chair</a>,
-          <a href="/massage-chair-zero-gravity-benefits/">Zero Gravity Benefits</a>,
           <a href="/best-massage-chair-for-back-pain/">Best for Back Pain</a>.
         </div>
       </div>
@@ -509,7 +547,8 @@
           <a class="btn btn--amazon"
              href="https://www.amazon.ca/-/fr/Osaki-OS-4D-Ekon-Plus-Blanc/dp/B08TMGMXQD?th=1&tag=kitchengearla-20"
              target="_blank"
-             rel="nofollow sponsored noopener">
+             rel="nofollow sponsored noopener noreferrer"
+             onclick="return trackOutbound('ekonplus-who-amazon');">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -523,7 +562,7 @@
       <div class="card">
         <h2>Compare: Ekon Plus vs Our #1 Overall Pick</h2>
         <p class="muted">
-          If you landed here from our hero funnel page, your baseline reference is usually the
+          Your baseline reference is usually the
           <strong>Osaki OS-4D Pro Maestro</strong> (our “one pick for most Canadians”).
           The Ekon Plus can be a great alternative depending on availability and the feel you prefer.
         </p>
@@ -612,15 +651,13 @@
       <div><strong>MassageChairCanada</strong> • Premium massage chair reviews for Canadian buyers.</div>
       <div style="margin-top:10px;">
         <a href="/">Home</a> ·
-        <a href="/best-massage-chair-canada/">Best Massage Chair (Hero)</a> ·
+        <a href="/best-massage-chair-canada/">Best Massage Chair</a> ·
         <a href="/massage-chair-comparison-canada/">Comparison</a> ·
         <a href="/disclosure/">Disclosure</a> ·
         <a href="/privacy/">Privacy</a> ·
       </div>
       <div style="margin-top:10px;">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
-      <script>
-        document.getElementById("y").textContent = new Date().getFullYear();
-      </script>
+      <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
     </footer>
 
   </main>
