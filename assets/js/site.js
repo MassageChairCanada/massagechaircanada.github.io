@@ -1,13 +1,9 @@
 /* =========================================================
-   assets/site.js — ULTRA COMPLETE (MassageChairCanada)
-   Goals:
-   - Mobile menu drawer (accessible)
-   - Smooth anchor scrolling with sticky header offset
-   - Active nav link highlighting
-   - Copy link buttons (optional, auto)
-   - Table-wrap helper (auto) + overflow guard
-   - Lazy video iframe (YouTube) (optional)
-   - Minimal, fast, no deps, safe if elements missing
+   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2
+   Fix:
+   - iPhone/iOS menu toggle reliability (touchend + click guard)
+   - Scrim close works on iOS too
+   - Everything else unchanged
    ========================================================= */
 
 (function () {
@@ -46,13 +42,11 @@
       document.body.style.width = "";
       window.scrollTo(0, y);
       this._y = 0;
-      // Restore smooth behavior if you use it in CSS
       document.documentElement.style.scrollBehavior = "";
     },
   };
 
   const headerOffset = () => {
-    // If you have .topbar sticky, this helps anchor scrolling
     const topbar = $(".topbar");
     const h = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
     return Math.max(0, h + 10);
@@ -72,7 +66,6 @@
 
     if (!btn || !drawer || !scrim) return;
 
-    // Make drawer focusable for accessibility
     if (!drawer.hasAttribute("tabindex")) drawer.setAttribute("tabindex", "-1");
 
     let lastFocus = null;
@@ -96,15 +89,51 @@
 
     const toggle = () => setOpen(!isOpen());
 
-    // Close on nav click
+    // Close on nav click (any link)
     drawer.addEventListener("click", (e) => {
       const a = e.target.closest("a");
       if (a) setOpen(false);
     });
 
-    // Click handlers
-    btn.addEventListener("click", toggle);
-    scrim.addEventListener("click", () => setOpen(false));
+    /* ---------- iOS reliable toggle + prevent double fire ---------- */
+    let ignoreClick = false;
+
+    const onToggle = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+    };
+
+    const onClose = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(false);
+    };
+
+    // iOS: touchend is often more reliable than click
+    btn.addEventListener("touchend", (e) => {
+      ignoreClick = true;
+      onToggle(e);
+      setTimeout(() => { ignoreClick = false; }, 450);
+    }, { passive: false });
+
+    btn.addEventListener("click", (e) => {
+      if (ignoreClick) return;
+      onToggle(e);
+    }, { passive: false });
+
+    // Scrim close (touch + click)
+    scrim.addEventListener("touchend", (e) => {
+      ignoreClick = true;
+      onClose(e);
+      setTimeout(() => { ignoreClick = false; }, 450);
+    }, { passive: false });
+
+    scrim.addEventListener("click", (e) => {
+      if (ignoreClick) return;
+      onClose(e);
+    }, { passive: false });
+    /* -------------------------------------------------------------- */
 
     // Escape closes
     document.addEventListener("keydown", (e) => {
@@ -142,8 +171,6 @@
 
   /* =========================================================
      2) Smooth anchor scrolling with offset
-     - Works for #hash links
-     - Respects prefers-reduced-motion
      ========================================================= */
   function initAnchors() {
     document.addEventListener("click", (e) => {
@@ -166,12 +193,8 @@
         behavior: prefersReducedMotion() ? "auto" : "smooth",
       });
 
-      // Update URL without jump
-      try {
-        history.pushState(null, "", `#${id}`);
-      } catch (_) {}
+      try { history.pushState(null, "", `#${id}`); } catch (_) {}
 
-      // Focus the target for accessibility
       if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
       safeFocus(target);
     });
@@ -179,8 +202,6 @@
 
   /* =========================================================
      3) Active nav link highlighting
-     - Adds .is-active to nav links when section in view
-     - Requires links like: <a href="#section-id">
      ========================================================= */
   function initActiveNav() {
     const navLinks = $$('nav a[href^="#"], .nav a[href^="#"], .mobile-nav a[href^="#"]');
@@ -199,13 +220,10 @@
       mapIdToLinks.get(id).push(a);
     });
 
-    const clear = () => {
-      navLinks.forEach((a) => a.classList.remove("is-active"));
-    };
+    const clear = () => navLinks.forEach((a) => a.classList.remove("is-active"));
 
     const io = new IntersectionObserver(
       (entries) => {
-        // Choose the most visible entry
         const visible = entries
           .filter((x) => x.isIntersecting)
           .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
@@ -214,8 +232,7 @@
 
         const id = visible.target.id;
         clear();
-        const links = mapIdToLinks.get(id) || [];
-        links.forEach((a) => a.classList.add("is-active"));
+        (mapIdToLinks.get(id) || []).forEach((a) => a.classList.add("is-active"));
       },
       {
         root: null,
@@ -229,7 +246,6 @@
 
   /* =========================================================
      4) Auto wrap tables inside .table-wrap (if missing)
-     - Prevents overflow on mobile
      ========================================================= */
   function initTableWrap() {
     $$("table").forEach((table) => {
@@ -237,7 +253,6 @@
       if (!parent) return;
       if (parent.classList && parent.classList.contains("table-wrap")) return;
 
-      // Don’t wrap if inside code blocks etc.
       const skip = table.closest("pre, code");
       if (skip) return;
 
@@ -250,8 +265,6 @@
 
   /* =========================================================
      5) Copy-link buttons for headings (optional)
-     - Adds a small button next to h2/h3 with id
-     - Minimal markup injected
      ========================================================= */
   function initCopyLinks() {
     if (!navigator.clipboard) return;
@@ -282,15 +295,12 @@
         }
       });
 
-      // Put button inside heading (end)
       h.appendChild(btn);
     });
   }
 
   /* =========================================================
      6) Lazy-load YouTube iframes (optional)
-     - Convert: <iframe data-src="..." ...></iframe>
-     - Loads when in viewport
      ========================================================= */
   function initLazyIframes() {
     const iframes = $$("iframe[data-src]");
@@ -324,7 +334,6 @@
 
   /* =========================================================
      7) External links safety polish
-     - Adds rel="noopener noreferrer" for target=_blank
      ========================================================= */
   function initExternalLinks() {
     $$('a[target="_blank"]').forEach((a) => {
@@ -338,8 +347,6 @@
 
   /* =========================================================
      8) Amazon CTA micro-trust (optional)
-     - Auto-adds a small meta chip if missing
-     - Use class .btn--amazon
      ========================================================= */
   function initAmazonMetaChip() {
     $$(".btn.btn--amazon").forEach((btn) => {
