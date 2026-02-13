@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="format-detection" content="telephone=no" />
 
+  <!-- Preconnect (tiny perf win for GA4) -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
   <!-- Google tag (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6MB5P2V7"></script>
   <script>
@@ -48,6 +52,7 @@
   <meta name="twitter:title" content="MassageChairCanada (2026)" />
   <meta name="twitter:description" content="Massage chair reviews for Canadian buyers. Value-first picks + premium showroom options." />
   <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp" />
+  <meta name="twitter:image:alt" content="Massage chairs in a premium Canadian home" />
 
   <!-- PRELOAD HERO -->
   <link
@@ -58,9 +63,53 @@
       /assets/images/hero/best-massage-chairs-canada-luxury-mobile-2026.webp 1600w,
       /assets/images/hero/best-massage-chairs-canada-luxury-2026-hero.webp 2400w
     "
-    imagesizes="(max-width: 760px) 100vw, 2400px"
+    imagesizes="100vw"
     fetchpriority="high"
   />
+
+  <!-- Structured Data (Home) -->
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://massagechaircanada.github.io/#org",
+      "name":"MassageChairCanada",
+      "url":"https://massagechaircanada.github.io/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png",
+        "width":1024,
+        "height":1024
+      }
+    },
+    {
+      "@type":"WebSite",
+      "@id":"https://massagechaircanada.github.io/#website",
+      "url":"https://massagechaircanada.github.io/",
+      "name":"MassageChairCanada",
+      "publisher":{"@id":"https://massagechaircanada.github.io/#org"},
+      "inLanguage":"en-CA"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://massagechaircanada.github.io/#webpage",
+      "url":"https://massagechaircanada.github.io/",
+      "name":"MassageChairCanada (2026) | Massage Chair Reviews for Canadians",
+      "isPartOf":{"@id":"https://massagechaircanada.github.io/#website"},
+      "about":{"@id":"https://massagechaircanada.github.io/#org"},
+      "inLanguage":"en-CA",
+      "primaryImageOfPage":{
+        "@type":"ImageObject",
+        "url":"https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp",
+        "width":1200,
+        "height":630
+      }
+    }
+  ]
+}
+  </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=7" />
@@ -118,9 +167,11 @@
   <div class="note" style="margin:10px 0 0;">
     <strong>Quick links</strong>
   </div>
-  <a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a>
-  <a href="/massage-chair-comparison-canada/">Comparison (Canada)</a>
-  <a href="/premium-massage-chairs-canada/">Premium showroom</a>
+
+  <!-- Funnel links (tracked via main.js using data-track) -->
+  <a href="/best-massage-chair-canada/" data-track="home-quick-best">Best Massage Chair (Canada)</a>
+  <a href="/massage-chair-comparison-canada/" data-track="home-quick-compare">Comparison (Canada)</a>
+  <a href="/premium-massage-chairs-canada/" data-track="home-quick-premium">Premium showroom</a>
   <a href="/disclosure/">Disclosure</a>
   <a href="/privacy/">Privacy</a>
   <a href="/about/">About</a>
@@ -154,11 +205,11 @@
         </p>
 
         <div class="cta-row" aria-label="Primary actions">
-          <a class="btn btn--amazon" href="/best-massage-chair-canada/">
+          <a class="btn btn--amazon" href="/best-massage-chair-canada/" data-track="home-hero-best">
             See the #1 value pick
             <span class="btn-meta">Most homes</span>
           </a>
-          <a class="btn primary" href="/massage-chair-comparison-canada/">
+          <a class="btn primary" href="/massage-chair-comparison-canada/" data-track="home-hero-compare">
             Compare all chairs
           </a>
         </div>
@@ -200,7 +251,7 @@
         <p class="muted">
           Comfort, heat, recline, and daily usability, without luxury-tier pricing.
         </p>
-        <a class="btn btn--amazon" href="/best-massage-chair-canada/">
+        <a class="btn btn--amazon" href="/best-massage-chair-canada/" data-track="home-start-best">
           View the #1 value pick
         </a>
       </div>
@@ -210,7 +261,7 @@
         <p class="muted">
           If budget is not a concern and you want top-tier 4D technology, we cover premium options too.
         </p>
-        <a class="btn" href="/premium-massage-chairs-canada/">
+        <a class="btn" href="/premium-massage-chairs-canada/" data-track="home-start-premium">
           See premium models
         </a>
       </div>
@@ -231,18 +282,18 @@
       <div>
         <h3>Best Value (Most Canadians)</h3>
         <ul>
-          <li><a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a></li>
-          <li><a href="/massage-chair-comparison-canada/">Comparison table</a></li>
-          <li><a href="/best-massage-chair-for-back-pain/">Best for back pain (Canada)</a></li>
+          <li><a href="/best-massage-chair-canada/" data-track="home-picks-best">Best Massage Chair (Canada)</a></li>
+          <li><a href="/massage-chair-comparison-canada/" data-track="home-picks-compare">Comparison table</a></li>
+          <li><a href="/best-massage-chair-for-back-pain/" data-track="home-picks-backpain">Best for back pain (Canada)</a></li>
         </ul>
       </div>
 
       <div>
         <h3>Premium Showroom (Optional)</h3>
         <ul>
-          <li><a href="/premium-massage-chairs-canada/">Premium showroom picks</a></li>
-          <li><a href="/osaki-os-4d-ekon-plus-review/">Osaki OS-4D Ekon Plus</a></li>
-          <li><a href="/massage-chair-comparison-canada/">Compare premium vs value</a></li>
+          <li><a href="/premium-massage-chairs-canada/" data-track="home-picks-premium">Premium showroom picks</a></li>
+          <li><a href="/osaki-os-4d-ekon-plus-review/" data-track="home-picks-osaki">Osaki OS-4D Ekon Plus</a></li>
+          <li><a href="/massage-chair-comparison-canada/" data-track="home-picks-compare2">Compare premium vs value</a></li>
         </ul>
       </div>
     </div>
@@ -254,9 +305,9 @@
   <div class="card">
     <h2>Guides</h2>
     <ul>
-      <li><a href="/massage-chair-comparison-canada/">Massage Chair Comparison (Canada)</a></li>
-      <li><a href="/3d-vs-4d-massage-chair/">3D vs 4D Massage Chairs</a></li>
-      <li><a href="/massage-chair-zero-gravity-benefits/">Zero Gravity Benefits</a></li>
+      <li><a href="/massage-chair-comparison-canada/" data-track="home-guides-compare">Massage Chair Comparison (Canada)</a></li>
+      <li><a href="/3d-vs-4d-massage-chair/" data-track="home-guides-3d4d">3D vs 4D Massage Chairs</a></li>
+      <li><a href="/massage-chair-zero-gravity-benefits/" data-track="home-guides-zerog">Zero Gravity Benefits</a></li>
     </ul>
   </div>
 </section>
@@ -267,7 +318,7 @@
     <h2>FAQ</h2>
     <h3>Where should I start?</h3>
     <p class="muted">
-      Start with <a href="/best-massage-chair-canada/">Best Massage Chair in Canada</a>.
+      Start with <a href="/best-massage-chair-canada/" data-track="home-faq-start">Best Massage Chair in Canada</a>.
     </p>
   </div>
 </section>
@@ -287,7 +338,7 @@
 
 </main>
 
-<!-- FOOTER upgraded -->
+<!-- FOOTER -->
 <footer class="footer" aria-label="Footer">
   <div class="container">
     <div class="grid" style="gap:18px;">
@@ -304,18 +355,18 @@
       <div>
         <strong>Start here</strong>
         <ul style="margin-top:10px;">
-          <li><a href="/best-massage-chair-canada/">Best Massage Chair (Canada)</a></li>
-          <li><a href="/massage-chair-comparison-canada/">Comparison (Canada)</a></li>
-          <li><a href="/premium-massage-chairs-canada/">Premium showroom</a></li>
+          <li><a href="/best-massage-chair-canada/" data-track="home-footer-best">Best Massage Chair (Canada)</a></li>
+          <li><a href="/massage-chair-comparison-canada/" data-track="home-footer-compare">Comparison (Canada)</a></li>
+          <li><a href="/premium-massage-chairs-canada/" data-track="home-footer-premium">Premium showroom</a></li>
         </ul>
       </div>
 
       <div>
         <strong>Guides</strong>
         <ul style="margin-top:10px;">
-          <li><a href="/3d-vs-4d-massage-chair/">3D vs 4D</a></li>
-          <li><a href="/massage-chair-zero-gravity-benefits/">Zero gravity benefits</a></li>
-          <li><a href="/best-massage-chair-for-back-pain/">Best for back pain</a></li>
+          <li><a href="/3d-vs-4d-massage-chair/" data-track="home-footer-3d4d">3D vs 4D</a></li>
+          <li><a href="/massage-chair-zero-gravity-benefits/" data-track="home-footer-zerog">Zero gravity benefits</a></li>
+          <li><a href="/best-massage-chair-for-back-pain/" data-track="home-footer-backpain">Best for back pain</a></li>
         </ul>
       </div>
 
@@ -337,14 +388,11 @@
       <div class="muted">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
       <a class="muted" href="#content">Back to top ↑</a>
     </div>
-
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
   </div>
 </footer>
 
-<script src="/assets/site.js?v=1" defer></script>
+<!-- JS (all in main.js) -->
+<script src="/assets/js/site.js?v=1" defer></script>
 
 </body>
 </html>
