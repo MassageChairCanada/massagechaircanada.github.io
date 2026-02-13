@@ -1542,3 +1542,63 @@ a{ word-break: break-word; overflow-wrap:anywhere; }
   }
 }
 
+/* =========================================================
+   FIX — Steam media = image capsule + notes under (stable)
+   Scope: only when .hero-notes exists
+   Paste at END of styles.css
+   ========================================================= */
+
+.hero--contained.hero--steam .hero-steam__media{
+  /* reset the old “capsule container” behavior */
+  aspect-ratio: auto;
+  height: auto;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Make the picture the actual 16:9 capsule */
+.hero--contained.hero--steam .hero-steam__media > picture{
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b0d14;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Image fills capsule */
+.hero--contained.hero--steam .hero-steam__media > picture img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.03) contrast(1.03);
+  transform: scale(1.01);
+}
+
+/* Glow overlay on picture only */
+.hero--contained.hero--steam .hero-steam__media > picture::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 10%, rgba(233,198,106,.10), transparent 62%),
+    linear-gradient(180deg, rgba(7,6,10,.08), rgba(7,6,10,.22));
+  opacity:.9;
+}
+
+/* Notes under image */
+.hero-notes{
+  display: grid;
+  gap: 12px;
+}
