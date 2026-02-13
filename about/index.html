@@ -83,6 +83,7 @@
         "isPartOf":{"@id":"https://massagechaircanada.github.io/#website"},
         "about":{"@id":"https://massagechaircanada.github.io/#org"},
         "inLanguage":"en-CA",
+        "dateModified":"2026-02-13",
         "primaryImageOfPage":{
           "@type":"ImageObject",
           "url":"https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp",
@@ -116,7 +117,7 @@
         <a href="/about/" aria-current="page">About</a>
       </nav>
 
-      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" aria-controls="mobile-nav" aria-expanded="false" type="button">
         <span class="sr-only">Open menu</span>
         ☰
       </button>
@@ -138,6 +139,8 @@
     <section class="section" aria-label="About MassageChairCanada">
       <div class="card">
         <h1>About MassageChairCanada</h1>
+
+        <p class="muted" style="margin-top:-6px;">Last updated: Feb 13, 2026</p>
 
         <p class="lead">
           We help Canadians choose a massage chair without drowning in specs. Our goal is simple: <strong>clarity</strong>, fast.
@@ -164,7 +167,7 @@
         </p>
 
         <div class="cta" style="margin-top:14px;">
-          <a class="btn btn--amazon" href="/best-massage-chair-canada/">
+          <a class="btn" href="/best-massage-chair-canada/">
             Start with the #1 value pick
             <span class="btn-meta">Most homes</span>
           </a>
@@ -187,10 +190,6 @@
         <a href="/privacy/">Privacy</a>
       </div>
       <div style="margin-top:10px;">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
-
-      <script>
-        document.getElementById("y").textContent = new Date().getFullYear();
-      </script>
     </footer>
 
   </main>
