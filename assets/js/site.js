@@ -1,8 +1,8 @@
 /* =========================================================
-   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.1
+   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.2
    Update:
-   - Merge keydown listeners (Escape + focus trap) into ONE
-   - Guard against double init
+   - Add GA4 tracking for [data-track] (event: cta_click)
+   - Non-blocking (beacon) + safe if gtag not present
    - Everything else unchanged
    ========================================================= */
 
@@ -58,6 +58,52 @@
     const h = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
     return Math.max(0, h + 10);
   };
+
+  const isModifiedClick = (e) =>
+    !!(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0);
+
+  /* =========================================================
+     0) GA4 tracking helpers (safe + non-blocking)
+     Tracks: any element with [data-track]
+     Event: cta_click
+     ========================================================= */
+  function initTracking() {
+    // Safe wrapper: works even if GA isn't loaded yet
+    const send = (name, params) => {
+      try {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", name, params);
+        }
+      } catch (_) {}
+    };
+
+    // Delegate clicks: catches <a data-track>, <button data-track>, etc.
+    document.addEventListener(
+      "click",
+      (e) => {
+        const el = e.target.closest("[data-track]");
+        if (!el) return;
+
+        // Let normal behavior happen; we only send an event.
+        const label = (el.getAttribute("data-track") || "").trim();
+        if (!label) return;
+
+        // Best-effort link url
+        let linkUrl = "";
+        const a = el.closest("a");
+        if (a && a.href) linkUrl = a.href;
+
+        send("cta_click", {
+          event_category: "navigation",
+          event_label: label,
+          page_path: location.pathname,
+          link_url: linkUrl || undefined,
+          transport_type: "beacon",
+        });
+      },
+      { passive: true }
+    );
+  }
 
   /* =========================================================
      1) Mobile Menu Drawer (accessible)
@@ -410,6 +456,7 @@
      Boot
      ========================================================= */
   function boot() {
+    initTracking();
     initMobileMenu();
     initAnchors();
     initActiveNav();
