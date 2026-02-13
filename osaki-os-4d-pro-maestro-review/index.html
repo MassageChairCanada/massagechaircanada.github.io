@@ -2,29 +2,8 @@
 <html lang="en-CA">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="format-detection" content="telephone=no" />
-
-  <!-- Google tag (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6MB5P2V7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZZ6MB5P2V7', { 'send_page_view': true });
-
-    // Outbound tracking (does NOT block navigation)
-    function trackOutbound(label){
-      try{
-        gtag('event','outbound_click',{
-          event_category:'affiliate',
-          event_label: label,
-          transport_type:'beacon'
-        });
-      }catch(e){}
-      return true;
-    }
-  </script>
 
   <!-- SEO -->
   <title>Osaki OS-4D Pro Maestro Review (Canada, 2026) | #1 Pick for Most Canadians</title>
@@ -62,13 +41,32 @@
   <meta name="twitter:description" content="Balanced 4D feel, daily comfort, and fit notes for Canadian buyers." />
   <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/og/osaki-os-4d-pro-maestro-review-og-1200x630.webp" />
 
+  <!-- Preload HERO (LCP) -->
+  <link
+    rel="preload"
+    as="image"
+    href="/assets/images/hero/osaki-os-4d-pro-maestro-review-hero-2400x1260.webp"
+    imagesrcset="
+      /assets/images/hero/osaki-os-4d-pro-maestro-review-hero-1600x840.webp 1600w,
+      /assets/images/hero/osaki-os-4d-pro-maestro-review-hero-2400x1260.webp 2400w
+    "
+    imagesizes="100vw"
+    fetchpriority="high"
+  />
+
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=7" />
 
-  <!-- Structured Data
-       NOTE: Removed Product schema to eliminate “Product snippets / Merchant listings” invalid warnings
-       (those usually require price/shipping/returns fields you don’t want to guess).
-  -->
+  <!-- GA4 (keep minimal; site.js handles [data-track]) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6MB5P2V7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZ6MB5P2V7', { 'send_page_view': true });
+  </script>
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -92,21 +90,6 @@
         "inLanguage": "en-CA"
       },
       {
-        "@type": "WebPage",
-        "@id": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/#webpage",
-        "url": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/",
-        "name": "Osaki OS-4D Pro Maestro Review (Canada, 2026) | #1 Pick for Most Canadians",
-        "isPartOf": { "@id": "https://massagechaircanada.github.io/#website" },
-        "about": { "@id": "https://massagechaircanada.github.io/#org" },
-        "inLanguage": "en-CA",
-        "primaryImageOfPage": {
-          "@type": "ImageObject",
-          "url": "https://massagechaircanada.github.io/assets/images/og/osaki-os-4d-pro-maestro-review-og-1200x630.webp",
-          "width": 1200,
-          "height": 630
-        }
-      },
-      {
         "@type": "BreadcrumbList",
         "@id": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/#breadcrumbs",
         "itemListElement": [
@@ -114,6 +97,23 @@
           { "@type": "ListItem", "position": 2, "name": "Best Massage Chair (Canada)", "item": "https://massagechaircanada.github.io/best-massage-chair-canada/" },
           { "@type": "ListItem", "position": 3, "name": "Osaki OS-4D Pro Maestro Review", "item": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/" }
         ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/#webpage",
+        "url": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/",
+        "name": "Osaki OS-4D Pro Maestro Review (Canada, 2026) | #1 Pick for Most Canadians",
+        "isPartOf": { "@id": "https://massagechaircanada.github.io/#website" },
+        "about": { "@id": "https://massagechaircanada.github.io/#org" },
+        "breadcrumb": { "@id": "https://massagechaircanada.github.io/osaki-os-4d-pro-maestro-review/#breadcrumbs" },
+        "inLanguage": "en-CA",
+        "dateModified": "2026-02-13",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://massagechaircanada.github.io/assets/images/og/osaki-os-4d-pro-maestro-review-og-1200x630.webp",
+          "width": 1200,
+          "height": 630
+        }
       },
       {
         "@type": "Article",
@@ -132,7 +132,7 @@
         },
         "publisher": { "@id": "https://massagechaircanada.github.io/#org" },
         "datePublished": "2026-02-08",
-        "dateModified": "2026-02-08"
+        "dateModified": "2026-02-13"
       },
       {
         "@type": "FAQPage",
@@ -207,7 +207,7 @@
     <a href="#who">Best For</a>
     <a href="#compare">Compare</a>
     <a href="#faq">FAQ</a>
-    <a href="/massage-chair-comparison-canada/">Full Comparison</a>
+    <a href="/massage-chair-comparison-canada/" data-track="mobile-to-compare">Full Comparison</a>
   </nav>
 
   <!-- HERO -->
@@ -233,11 +233,11 @@
                  href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20"
                  target="_blank"
                  rel="nofollow sponsored noopener noreferrer"
-                 onclick="return trackOutbound('maestro-hero-amazon');">
+                 data-track="maestro-hero-amazon">
                 Check price on Amazon Canada
                 <span class="btn-meta">Amazon.ca</span>
               </a>
-              <a class="btn" href="/massage-chair-comparison-canada/">See full comparison</a>
+              <a class="btn" href="/massage-chair-comparison-canada/" data-track="maestro-hero-to-compare">See full comparison</a>
             </div>
 
             <p class="muted" style="margin-top:12px;">
@@ -316,7 +316,7 @@
              href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20"
              target="_blank"
              rel="nofollow sponsored noopener noreferrer"
-             onclick="return trackOutbound('maestro-verdict-amazon');">
+             data-track="maestro-verdict-amazon">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
@@ -353,7 +353,7 @@
 
         <div class="note" style="margin-top:14px;">
           If you’re unsure: default to the Pro Maestro. If you already know you want “softer comfort”, consider the Ekon Plus.
-          <a href="/osaki-os-4d-ekon-plus-review/">Read the Ekon Plus review</a>.
+          <a href="/osaki-os-4d-ekon-plus-review/" data-track="maestro-proscons-to-ekonplus">Read the Ekon Plus review</a>.
         </div>
       </div>
     </section>
@@ -393,7 +393,7 @@
                  href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20"
                  target="_blank"
                  rel="nofollow sponsored noopener noreferrer"
-                 onclick="return trackOutbound('maestro-mid-amazon');">
+                 data-track="maestro-mid-amazon">
                 Check price on Amazon Canada
                 <span class="btn-meta">Amazon.ca</span>
               </a>
@@ -439,9 +439,9 @@
 
         <div class="note" style="margin-top:14px;">
           Helpful internal links:
-          <a href="/massage-chair-comparison-canada/">Full Comparison</a>,
-          <a href="/3d-vs-4d-massage-chair/">3D vs 4D</a>,
-          <a href="/massage-chair-zero-gravity-benefits/">Zero Gravity Benefits</a>.
+          <a href="/massage-chair-comparison-canada/" data-track="maestro-features-to-compare">Full Comparison</a>,
+          <a href="/3d-vs-4d-massage-chair/" data-track="maestro-features-to-3dvs4d">3D vs 4D</a>,
+          <a href="/massage-chair-zero-gravity-benefits/" data-track="maestro-features-to-zerograv">Zero Gravity Benefits</a>.
         </div>
       </div>
     </section>
@@ -468,11 +468,11 @@
              href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20"
              target="_blank"
              rel="nofollow sponsored noopener noreferrer"
-             onclick="return trackOutbound('maestro-who-amazon');">
+             data-track="maestro-who-amazon">
             Check price on Amazon Canada
             <span class="btn-meta">Amazon.ca</span>
           </a>
-          <a class="btn" href="/massage-chair-comparison-canada/">See the full comparison</a>
+          <a class="btn" href="/massage-chair-comparison-canada/" data-track="maestro-who-to-compare">See the full comparison</a>
         </div>
       </div>
     </section>
@@ -500,13 +500,13 @@
                 <td>Osaki OS-4D Pro Maestro</td>
                 <td>Balanced, daily-friendly</td>
                 <td>#1 “most people” pick</td>
-                <td><a href="#verdict">This page</a></td>
+                <td><a href="#verdict" data-track="maestro-compare-to-verdict">This page</a></td>
               </tr>
               <tr>
                 <td>Osaki OS-4D Ekon Plus</td>
                 <td>Comfort-forward premium</td>
                 <td>Alternative feel / availability</td>
-                <td><a href="/osaki-os-4d-ekon-plus-review/">Read Ekon Plus review</a></td>
+                <td><a href="/osaki-os-4d-ekon-plus-review/" data-track="maestro-compare-to-ekonplus">Read Ekon Plus review</a></td>
               </tr>
             </tbody>
           </table>
@@ -549,7 +549,7 @@
           It does not affect how we rank or evaluate products.
         </p>
         <p class="muted">
-          See: <a href="/disclosure/">Disclosure</a>
+          See: <a href="/disclosure/" data-track="maestro-to-disclosure">Disclosure</a>
         </p>
       </div>
     </section>
@@ -557,20 +557,18 @@
     <footer class="footer" aria-label="Footer">
       <div><strong>MassageChairCanada</strong> • Premium massage chair reviews for Canadian buyers.</div>
       <div style="margin-top:10px;">
-        <a href="/">Home</a> ·
-        <a href="/best-massage-chair-canada/">Best Massage Chair</a> ·
-        <a href="/massage-chair-comparison-canada/">Comparison</a> ·
-        <a href="/disclosure/">Disclosure</a> ·
-        <a href="/privacy/">Privacy</a> ·
+        <a href="/" data-track="footer-home">Home</a> ·
+        <a href="/best-massage-chair-canada/" data-track="footer-best">Best Massage Chair</a> ·
+        <a href="/massage-chair-comparison-canada/" data-track="footer-compare">Comparison</a> ·
+        <a href="/disclosure/" data-track="footer-disclosure">Disclosure</a> ·
+        <a href="/privacy/" data-track="footer-privacy">Privacy</a>
       </div>
       <div style="margin-top:10px;">© <span id="y"></span> MassageChairCanada. All rights reserved.</div>
-      <script>
-        document.getElementById("y").textContent = new Date().getFullYear();
-      </script>
     </footer>
 
   </main>
 
-  <script src="/assets/site.js?v=1" defer></script>
+  <!-- Site JS (menu, year, [data-track] GA4 events) -->
+  <script src="/assets/site.js?v=2" defer></script>
 </body>
 </html>
