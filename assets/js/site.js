@@ -1,8 +1,10 @@
 /* =========================================================
-   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.2
+   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.3
    Update:
-   - Add GA4 tracking for [data-track] (event: cta_click)
-   - Non-blocking (beacon) + safe if gtag not present
+   - Improve GA4 tracking for [data-track] (event: cta_click)
+   - Ignore modified clicks (new tab / middle click)
+   - Add link_text + link_id
+   - Track Enter/Space keyboard activation
    - Everything else unchanged
    ========================================================= */
 
@@ -68,7 +70,6 @@
      Event: cta_click
      ========================================================= */
   function initTracking() {
-    // Safe wrapper: works even if GA isn't loaded yet
     const send = (name, params) => {
       try {
         if (typeof window.gtag === "function") {
@@ -77,32 +78,58 @@
       } catch (_) {}
     };
 
-    // Delegate clicks: catches <a data-track>, <button data-track>, etc.
+    const buildParams = (el) => {
+      const label = (el.getAttribute("data-track") || "").trim();
+      if (!label) return null;
+
+      const a = el.closest("a");
+      const linkUrl = a && a.href ? a.href : "";
+
+      const linkText = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+      const linkId = el.id ? String(el.id) : undefined;
+
+      return {
+        event_category: "navigation",
+        event_label: label,
+        page_path: location.pathname,
+        link_url: linkUrl || undefined,
+        link_text: linkText || undefined,
+        link_id: linkId,
+        transport_type: "beacon",
+      };
+    };
+
+    // Click tracking (delegated)
     document.addEventListener(
       "click",
       (e) => {
         const el = e.target.closest("[data-track]");
         if (!el) return;
 
-        // Let normal behavior happen; we only send an event.
-        const label = (el.getAttribute("data-track") || "").trim();
-        if (!label) return;
+        // Ignore modified clicks (Ctrl/Cmd/Shift/middle click)
+        if (isModifiedClick(e)) return;
 
-        // Best-effort link url
-        let linkUrl = "";
-        const a = el.closest("a");
-        if (a && a.href) linkUrl = a.href;
+        const params = buildParams(el);
+        if (!params) return;
 
-        send("cta_click", {
-          event_category: "navigation",
-          event_label: label,
-          page_path: location.pathname,
-          link_url: linkUrl || undefined,
-          transport_type: "beacon",
-        });
+        send("cta_click", params);
       },
       { passive: true }
     );
+
+    // Keyboard tracking (Enter / Space)
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+
+      const el =
+        e.target && e.target.closest ? e.target.closest("[data-track]") : null;
+      if (!el) return;
+
+      const params = buildParams(el);
+      if (!params) return;
+
+      send("cta_click", params);
+    });
   }
 
   /* =========================================================
