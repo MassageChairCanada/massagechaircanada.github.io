@@ -20,10 +20,13 @@
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
   const prefersReducedMotion = () =>
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const safeFocus = (el) => {
-    try { el && el.focus && el.focus({ preventScroll: true }); } catch (_) {}
+    try {
+      el && el.focus && el.focus({ preventScroll: true });
+    } catch (_) {}
   };
 
   const scrollLock = {
@@ -120,7 +123,9 @@
       (e) => {
         ignoreClick = true;
         onToggle(e);
-        setTimeout(() => { ignoreClick = false; }, 450);
+        setTimeout(() => {
+          ignoreClick = false;
+        }, 450);
       },
       { passive: false }
     );
@@ -140,7 +145,9 @@
       (e) => {
         ignoreClick = true;
         onClose(e);
-        setTimeout(() => { ignoreClick = false; }, 450);
+        setTimeout(() => {
+          ignoreClick = false;
+        }, 450);
       },
       { passive: false }
     );
@@ -208,14 +215,19 @@
 
       e.preventDefault();
 
-      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+      const y =
+        target.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerOffset();
 
       window.scrollTo({
         top: Math.max(0, y),
         behavior: prefersReducedMotion() ? "auto" : "smooth",
       });
 
-      try { history.pushState(null, "", `#${id}`); } catch (_) {}
+      try {
+        history.pushState(null, "", `#${id}`);
+      } catch (_) {}
 
       if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
       safeFocus(target);
@@ -226,7 +238,9 @@
      3) Active nav link highlighting
      ========================================================= */
   function initActiveNav() {
-    const navLinks = $$('nav a[href^="#"], .nav a[href^="#"], .mobile-nav a[href^="#"]');
+    const navLinks = $$(
+      'nav a[href^="#"], .nav a[href^="#"], .mobile-nav a[href^="#"]'
+    );
     if (!navLinks.length || !("IntersectionObserver" in window)) return;
 
     const targets = navLinks
@@ -248,7 +262,9 @@
       (entries) => {
         const visible = entries
           .filter((x) => x.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+          .sort(
+            (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0)
+          )[0];
 
         if (!visible) return;
 
@@ -383,6 +399,14 @@
   }
 
   /* =========================================================
+     9) Footer year helper (#y)
+     ========================================================= */
+  function initYear() {
+    const y = $("#y");
+    if (y) y.textContent = new Date().getFullYear();
+  }
+
+  /* =========================================================
      Boot
      ========================================================= */
   function boot() {
@@ -394,6 +418,7 @@
     initLazyIframes();
     initExternalLinks();
     initAmazonMetaChip();
+    initYear();
   }
 
   if (document.readyState === "loading") {
