@@ -1,13 +1,17 @@
 /* =========================================================
-   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2
-   Fix:
-   - iPhone/iOS menu toggle reliability (touchend + click guard)
-   - Scrim close works on iOS too
+   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.1
+   Update:
+   - Merge keydown listeners (Escape + focus trap) into ONE
+   - Guard against double init
    - Everything else unchanged
    ========================================================= */
 
 (function () {
   "use strict";
+
+  // Prevent double-init if script accidentally included twice
+  if (window.__MCC_SITEJS_INIT__) return;
+  window.__MCC_SITEJS_INIT__ = true;
 
   /* -----------------------------
      Helpers
@@ -111,37 +115,55 @@
     };
 
     // iOS: touchend is often more reliable than click
-    btn.addEventListener("touchend", (e) => {
-      ignoreClick = true;
-      onToggle(e);
-      setTimeout(() => { ignoreClick = false; }, 450);
-    }, { passive: false });
+    btn.addEventListener(
+      "touchend",
+      (e) => {
+        ignoreClick = true;
+        onToggle(e);
+        setTimeout(() => { ignoreClick = false; }, 450);
+      },
+      { passive: false }
+    );
 
-    btn.addEventListener("click", (e) => {
-      if (ignoreClick) return;
-      onToggle(e);
-    }, { passive: false });
+    btn.addEventListener(
+      "click",
+      (e) => {
+        if (ignoreClick) return;
+        onToggle(e);
+      },
+      { passive: false }
+    );
 
     // Scrim close (touch + click)
-    scrim.addEventListener("touchend", (e) => {
-      ignoreClick = true;
-      onClose(e);
-      setTimeout(() => { ignoreClick = false; }, 450);
-    }, { passive: false });
+    scrim.addEventListener(
+      "touchend",
+      (e) => {
+        ignoreClick = true;
+        onClose(e);
+        setTimeout(() => { ignoreClick = false; }, 450);
+      },
+      { passive: false }
+    );
 
-    scrim.addEventListener("click", (e) => {
-      if (ignoreClick) return;
-      onClose(e);
-    }, { passive: false });
+    scrim.addEventListener(
+      "click",
+      (e) => {
+        if (ignoreClick) return;
+        onClose(e);
+      },
+      { passive: false }
+    );
     /* -------------------------------------------------------------- */
 
-    // Escape closes
+    // ONE keydown listener: Escape + focus trap
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && isOpen()) setOpen(false);
-    });
+      // Escape closes
+      if (e.key === "Escape" && isOpen()) {
+        setOpen(false);
+        return;
+      }
 
-    // Basic focus trap inside drawer when open
-    document.addEventListener("keydown", (e) => {
+      // Focus trap (Tab) when open
       if (!isOpen() || e.key !== "Tab") return;
 
       const focusables = $$(
