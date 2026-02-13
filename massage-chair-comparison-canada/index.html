@@ -62,7 +62,7 @@
   <link rel="stylesheet" href="/assets/css/styles.css?v=6" />
 
   <!-- Structured Data (UPDATED + enriched) -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -83,7 +83,8 @@
         "url": "https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp",
         "width": 1200,
         "height": 630
-      }
+      },
+      "sameAs": []
     },
     {
       "@type": "WebSite",
@@ -136,6 +137,7 @@
       "dateModified": "2026-02-13",
       "author": {
         "@type": "Organization",
+        "@id": "https://massagechaircanada.github.io/#editorial",
         "name": "MassageChairCanada Editorial Team",
         "url": "https://massagechaircanada.github.io/"
       },
@@ -154,12 +156,16 @@
       "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#video",
       "name": "Massage Chair Buying Guide (Canada): What to Look For",
       "description": "A practical overview of premium massage chair features like 3D vs 4D rollers, zero gravity recline, heat therapy, and fit considerations for home use in Canada.",
-      "thumbnailUrl": "https://i.ytimg.com/vi/Hbqja-FWHDg/hqdefault.jpg",
+      "thumbnailUrl": [
+        "https://i.ytimg.com/vi/Hbqja-FWHDg/hqdefault.jpg"
+      ],
       "uploadDate": "2020-01-01",
       "contentUrl": "https://www.youtube.com/watch?v=Hbqja-FWHDg",
       "embedUrl": "https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&iv_load_policy=3",
       "publisher": { "@id": "https://massagechaircanada.github.io/#org" },
-      "inLanguage": "en-CA"
+      "inLanguage": "en-CA",
+      "mainEntityOfPage": { "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#webpage" },
+      "isPartOf": { "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#webpage" }
     },
     {
       "@type": "ItemList",
@@ -168,16 +174,16 @@
       "itemListOrder": "https://schema.org/ItemListOrderAscending",
       "numberOfItems": 10,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Osaki 4D Manhattan Duo Mech", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-4d-manhattan-duo" },
-        { "@type": "ListItem", "position": 2, "name": "Osaki OS-4D Pro Maestro (SL-Track)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-pro-maestro" },
-        { "@type": "ListItem", "position": 3, "name": "OS-Ai Vivo 4D Intelligent Technology", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#os-ai-vivo-4d" },
-        { "@type": "ListItem", "position": 4, "name": "Synca Wellness JP1100 (Zen premium design)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#synca-jp1100" },
-        { "@type": "ListItem", "position": 5, "name": "Inada DreamWave (Admiral – high-end classic)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#inada-dreamwave" },
-        { "@type": "ListItem", "position": 6, "name": "Real Relax 2026 – Bluetooth Massage Recliner", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#real-relax-2026" },
-        { "@type": "ListItem", "position": 7, "name": "Breakthrough v2 – Heated & Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#breakthrough-v2" },
-        { "@type": "ListItem", "position": 8, "name": "BestMassage Shiatsu – Electric Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#bestmassage-shiatsu" },
-        { "@type": "ListItem", "position": 9, "name": "Nouhaus – Modern Heated Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#nouhaus-modern-heated" },
-        { "@type": "ListItem", "position": 10, "name": "MassaMAX 4D Massage Chair (Ultra-Premium Backup)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#massamax-4d" }
+        { "@type": "ListItem", "position": 1, "name": "Osaki 4D Manhattan Duo Mech", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-4d-manhattan-duo" },
+        { "@type": "ListItem", "position": 2, "name": "Osaki OS-4D Pro Maestro (SL-Track)", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-pro-maestro" },
+        { "@type": "ListItem", "position": 3, "name": "OS-Ai Vivo 4D Intelligent Technology", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#os-ai-vivo-4d" },
+        { "@type": "ListItem", "position": 4, "name": "Synca Wellness JP1100 (Zen premium design)", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#synca-jp1100" },
+        { "@type": "ListItem", "position": 5, "name": "Inada DreamWave (Admiral – high-end classic)", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#inada-dreamwave" },
+        { "@type": "ListItem", "position": 6, "name": "Real Relax 2026 – Bluetooth Massage Recliner", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#real-relax-2026" },
+        { "@type": "ListItem", "position": 7, "name": "Breakthrough v2 – Heated & Reclining Massage Chair", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#breakthrough-v2" },
+        { "@type": "ListItem", "position": 8, "name": "BestMassage Shiatsu – Electric Reclining Massage Chair", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#bestmassage-shiatsu" },
+        { "@type": "ListItem", "position": 9, "name": "Nouhaus – Modern Heated Reclining Massage Chair", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#nouhaus-modern-heated" },
+        { "@type": "ListItem", "position": 10, "name": "MassaMAX 4D Massage Chair (Ultra-Premium Backup)", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#massamax-4d" }
       ]
     },
     {
