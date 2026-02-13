@@ -1,10 +1,12 @@
 /* =========================================================
-   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.3
+   assets/site.js — ULTRA COMPLETE (MassageChairCanada) v2.4
    Update:
-   - Improve GA4 tracking for [data-track] (event: cta_click)
+   - GA4 tracking for [data-track] (event: cta_click)
    - Ignore modified clicks (new tab / middle click)
    - Add link_text + link_id
    - Track Enter/Space keyboard activation
+   - Prevent double-fire (keydown -> click)
+   - Prevent Space scroll on button-ish activations
    - Everything else unchanged
    ========================================================= */
 
@@ -85,8 +87,14 @@
       const a = el.closest("a");
       const linkUrl = a && a.href ? a.href : "";
 
-      const linkText = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
-      const linkId = el.id ? String(el.id) : undefined;
+      const linkText = (el.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 80);
+
+      // Prefer element id, else anchor id (useful when [data-track] is on <span> inside <a>)
+      const linkId =
+        (el.id ? String(el.id) : "") || (a && a.id ? String(a.id) : "") || undefined;
 
       return {
         event_category: "navigation",
@@ -99,6 +107,12 @@
       };
     };
 
+    // Anti double-fire (Enter/Space often triggers a click after)
+    let lastKeyTrack = { t: 0, el: null };
+    const markKey = (el) => (lastKeyTrack = { t: Date.now(), el });
+    const ignoreClickBecauseKey = (el) =>
+      lastKeyTrack.el === el && Date.now() - lastKeyTrack.t < 800;
+
     // Click tracking (delegated)
     document.addEventListener(
       "click",
@@ -108,6 +122,9 @@
 
         // Ignore modified clicks (Ctrl/Cmd/Shift/middle click)
         if (isModifiedClick(e)) return;
+
+        // Ignore click that follows a tracked key activation
+        if (ignoreClickBecauseKey(el)) return;
 
         const params = buildParams(el);
         if (!params) return;
@@ -128,6 +145,15 @@
       const params = buildParams(el);
       if (!params) return;
 
+      // Prevent Space from scrolling when used as activation on button-ish elements
+      if (e.key === " ") {
+        const tag = (el.tagName || "").toLowerCase();
+        const isButtonish =
+          tag === "button" || el.getAttribute("role") === "button";
+        if (isButtonish) e.preventDefault();
+      }
+
+      markKey(el);
       send("cta_click", params);
     });
   }
@@ -335,9 +361,7 @@
       (entries) => {
         const visible = entries
           .filter((x) => x.isIntersecting)
-          .sort(
-            (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0)
-          )[0];
+          .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
 
         if (!visible) return;
 
