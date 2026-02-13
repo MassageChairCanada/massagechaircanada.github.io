@@ -2,18 +2,22 @@
 <html lang="en-CA">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no" />
 
   <!-- SEO (Canada + comparison intent) -->
-  <title>Massage Chair Comparison (Canada, 2026) | 3D vs 4D, Zero Gravity & Heat</title>
+  <title>Massage Chair Comparison Canada (2026): 3D vs 4D, Zero Gravity, Heat</title>
   <meta name="description" content="Massage chair comparison for Canada (2026): compare top 3D/4D zero gravity massage chairs with heat. Quick table + detailed reviews to help you shortlist the best model for home, back relief, and recovery. Check prices on Amazon Canada." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet=-1,max-video-preview=-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#0b0d14" />
-  <meta http-equiv="content-language" content="en-CA" />
 
-  <!-- Canonical (UPDATED) -->
+  <!-- Preconnect (video + thumbnail) -->
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+
+  <!-- Canonical -->
   <link rel="canonical" href="https://massagechaircanada.github.io/massage-chair-comparison-canada/" />
 
   <!-- Favicons / App Icons (repo root) -->
@@ -23,29 +27,41 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Social (UPDATED URL + title/desc) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="MassageChairCanada" />
-  <meta property="og:title" content="Massage Chair Comparison (Canada, 2026) | 3D vs 4D, Zero Gravity & Heat" />
+  <meta property="og:title" content="Massage Chair Comparison Canada (2026): 3D vs 4D, Zero Gravity, Heat" />
   <meta property="og:description" content="Compare the best massage chairs in Canada: 3D/4D rollers, zero gravity recline, heat therapy, fit notes, and honest trade-offs. Quick table + detailed reviews." />
   <meta property="og:url" content="https://massagechaircanada.github.io/massage-chair-comparison-canada/" />
   <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Premium massage chair in a luxury home setting with gold lighting accents" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Massage Chair Comparison (Canada, 2026) | 3D vs 4D, Zero Gravity & Heat" />
+  <meta name="twitter:title" content="Massage Chair Comparison Canada (2026): 3D vs 4D, Zero Gravity, Heat" />
   <meta name="twitter:description" content="Compare top massage chairs in Canada (2026): 3D vs 4D, zero gravity, heat therapy, and full-body fit. Shortlist fast with a clean comparison table." />
   <meta name="twitter:image" content="https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp" />
+  <meta name="twitter:image:alt" content="Premium massage chair in a luxury home setting with gold lighting accents" />
 
-  <!-- Preload (hero + brand) -->
-  <link rel="preload" as="image" href="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp" fetchpriority="high" />
-  <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-icon-1024.png" />
-  <link rel="preload" as="image" href="/assets/images/brand/massagechaircanada-logo.png" />
+  <!-- Preload (hero LCP) -->
+  <link
+    rel="preload"
+    as="image"
+    href="/assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp"
+    imagesrcset="
+      /assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-1600x900.webp 1600w,
+      /assets/images/hero/massagechaircanada-hero-premium-massage-chair-canada-2400x1350.webp 2400w
+    "
+    imagesizes="100vw"
+    fetchpriority="high"
+  />
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css?v=6" />
 
-  <!-- Structured Data (UPDATED to new URL) -->
+  <!-- Structured Data (UPDATED + enriched) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,7 +73,10 @@
         "url": "https://massagechaircanada.github.io/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png"
+          "@id": "https://massagechaircanada.github.io/#logo",
+          "url": "https://massagechaircanada.github.io/assets/images/brand/massagechaircanada-logo.png",
+          "width": 1200,
+          "height": 300
         }
       },
       {
@@ -69,12 +88,47 @@
         "inLanguage": "en-CA"
       },
       {
+        "@type": "BreadcrumbList",
+        "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://massagechaircanada.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Massage Chair Comparison Canada", "item": "https://massagechaircanada.github.io/massage-chair-comparison-canada/" }
+        ]
+      },
+      {
         "@type": "WebPage",
         "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#webpage",
         "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/",
-        "name": "Massage Chair Comparison (Canada, 2026)",
+        "name": "Massage Chair Comparison Canada (2026): 3D vs 4D, Zero Gravity, Heat",
         "isPartOf": { "@id": "https://massagechaircanada.github.io/#website" },
         "about": { "@id": "https://massagechaircanada.github.io/#org" },
+        "breadcrumb": { "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#breadcrumbs" },
+        "inLanguage": "en-CA",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#article",
+        "isPartOf": { "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#webpage" },
+        "mainEntityOfPage": { "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#webpage" },
+        "headline": "Massage Chair Comparison Canada (2026): 3D vs 4D, Zero Gravity, Heat",
+        "description": "Massage chair comparison for Canada (2026): compare top 3D/4D zero gravity massage chairs with heat. Quick table + detailed reviews to help you shortlist the best model for home, back relief, and recovery.",
+        "image": [
+          "https://massagechaircanada.github.io/assets/images/hero/massagechaircanada-og-premium-massage-chair-canada-1200x630.webp"
+        ],
+        "datePublished": "2026-02-13",
+        "dateModified": "2026-02-13",
+        "author": {
+          "@type": "Organization",
+          "name": "MassageChairCanada Editorial Team",
+          "url": "https://massagechaircanada.github.io/"
+        },
+        "publisher": { "@id": "https://massagechaircanada.github.io/#org" },
         "inLanguage": "en-CA"
       },
       {
@@ -83,9 +137,10 @@
         "name": "Massage Chair Buying Guide (Canada): What to Look For",
         "description": "A practical overview of premium massage chair features like 3D vs 4D rollers, zero gravity recline, heat therapy, and fit considerations for home use in Canada.",
         "thumbnailUrl": "https://i.ytimg.com/vi/Hbqja-FWHDg/hqdefault.jpg",
-        "uploadDate": "2020-01-01",
         "contentUrl": "https://www.youtube.com/watch?v=Hbqja-FWHDg",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&iv_load_policy=3"
+        "embedUrl": "https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&iv_load_policy=3",
+        "publisher": { "@id": "https://massagechaircanada.github.io/#org" },
+        "inLanguage": "en-CA"
       },
       {
         "@type": "ItemList",
@@ -94,16 +149,54 @@
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "numberOfItems": 10,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Osaki 4D Manhattan Duo Mech", "url": "https://www.amazon.ca/dp/B0DKH4DMJD/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 2, "name": "Osaki OS-4D Pro Maestro (SL-Track)", "url": "https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 3, "name": "OS-Ai Vivo 4D Intelligent Technology", "url": "https://www.amazon.ca/dp/B0CGRW2QTD/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 4, "name": "Synca Wellness JP1100 (Zen premium design)", "url": "https://www.amazon.ca/dp/B07CWJ5J8H/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 5, "name": "Inada DreamWave (Admiral – high-end classic)", "url": "https://www.amazon.ca/dp/B07S7K19W4/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 6, "name": "Real Relax 2026 – Bluetooth Massage Recliner", "url": "https://www.amazon.ca/dp/B0G2S1F528/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 7, "name": "Breakthrough v2 – Heated & Reclining Massage Chair", "url": "https://www.amazon.ca/dp/B077561ZMM/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 8, "name": "BestMassage Shiatsu – Electric Reclining Massage Chair", "url": "https://www.amazon.ca/dp/B082MBTJ65/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 9, "name": "Nouhaus – Modern Heated Reclining Massage Chair", "url": "https://www.amazon.ca/dp/B0DFWLLG4J/?tag=kitchengearla-20" },
-          { "@type": "ListItem", "position": 10, "name": "MassaMAX 4D Massage Chair (Ultra-Premium Backup)", "url": "https://www.amazon.ca/dp/B0CTTV916F/?tag=kitchengearla-20" }
+          { "@type": "ListItem", "position": 1, "name": "Osaki 4D Manhattan Duo Mech", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-4d-manhattan-duo" },
+          { "@type": "ListItem", "position": 2, "name": "Osaki OS-4D Pro Maestro (SL-Track)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#osaki-pro-maestro" },
+          { "@type": "ListItem", "position": 3, "name": "OS-Ai Vivo 4D Intelligent Technology", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#os-ai-vivo-4d" },
+          { "@type": "ListItem", "position": 4, "name": "Synca Wellness JP1100 (Zen premium design)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#synca-jp1100" },
+          { "@type": "ListItem", "position": 5, "name": "Inada DreamWave (Admiral – high-end classic)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#inada-dreamwave" },
+          { "@type": "ListItem", "position": 6, "name": "Real Relax 2026 – Bluetooth Massage Recliner", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#real-relax-2026" },
+          { "@type": "ListItem", "position": 7, "name": "Breakthrough v2 – Heated & Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#breakthrough-v2" },
+          { "@type": "ListItem", "position": 8, "name": "BestMassage Shiatsu – Electric Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#bestmassage-shiatsu" },
+          { "@type": "ListItem", "position": 9, "name": "Nouhaus – Modern Heated Reclining Massage Chair", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#nouhaus-modern-heated" },
+          { "@type": "ListItem", "position": 10, "name": "MassaMAX 4D Massage Chair (Ultra-Premium Backup)", "url": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#massamax-4d" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://massagechaircanada.github.io/massage-chair-comparison-canada/#faq-schema",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are massage chairs worth $5,000+?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you’ll use it multiple times per week, premium chairs can be worth it for smoother roller control, better body scanning, more comfortable zero gravity recline, and overall long-term durability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What’s the difference between 3D and 4D massage chairs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "3D changes roller depth. 4D adds speed and rhythm variation. A good 4D chair usually feels more natural and better tuned for different body types."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are massage chairs good for back pain?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Many buyers use massage chairs to reduce muscle tension and improve relaxation. For back pain goals, prioritize adjustable intensity, accurate body scanning, and long track coverage for consistent fit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long do high-end massage chairs last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "High-end chairs are long-term home wellness equipment. Lifespan depends on build quality, frequency of use, and basic care. Always check warranty coverage and support availability in Canada."
+            }
+          }
         ]
       }
     ]
@@ -135,7 +228,7 @@
     </div>
   </header>
 
-  <!-- HERO (full-bleed banner + overlay content inside) -->
+  <!-- HERO -->
   <section class="hero hero--banner" aria-label="Introduction">
     <div class="hero-banner full-bleed">
       <img
@@ -151,6 +244,10 @@
       <div class="container hero-overlay">
         <div class="hero-box">
           <span class="kicker">Massage chair Canada • comparison • buyer’s guide • 2026</span>
+
+          <p class="muted" style="margin:8px 0 0;">
+            <strong>Last updated:</strong> Feb 13, 2026
+          </p>
 
           <h1>Massage Chair Comparison (Canada, 2026): 3D vs 4D, Zero Gravity & Heat</h1>
 
@@ -168,6 +265,10 @@
           <p class="muted" style="margin-top:12px;">
             Popular searches covered: <strong>massage chair comparison Canada</strong>, <strong>3D vs 4D massage chair</strong>,
             <strong>zero gravity massage chair</strong>, <strong>massage chair with heat</strong>, and <strong>best massage chair for home</strong>.
+          </p>
+
+          <p class="muted" style="margin-top:10px;">
+            Disclosure: Some links are affiliate links (including Amazon). If you buy through them, we may earn a commission at no extra cost to you.
           </p>
         </div>
 
@@ -202,6 +303,7 @@
 
         <div class="table-wrap" role="region" aria-label="Massage chair comparison table">
           <table>
+            <caption class="sr-only">Comparison of 10 massage chairs for Canadian buyers (2026): 3D/4D, zero gravity, heat, best for, and typical price range.</caption>
             <thead>
               <tr>
                 <th scope="col">Model</th>
@@ -304,11 +406,8 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- VIDEO -->
-  <section class="section" id="video" aria-label="Video: massage chair buying guide">
-    <div class="container">
+    <!-- VIDEO -->
+    <section class="section" id="video" aria-label="Video: massage chair buying guide">
       <div class="card video-heading">
         <h2>Video: Massage Chair Buying Guide (Zero Gravity, 3D vs 4D, Heat)</h2>
         <p class="muted">
@@ -316,31 +415,26 @@
           and when a 4D massage chair is worth the upgrade.
         </p>
       </div>
-    </div>
 
-    <div class="video-band" aria-label="Embedded video">
-      <div class="video-wrap video-wrap--wide">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&playsinline=1"
-          title="Massage chair buying guide video"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
+      <div class="video-band" aria-label="Embedded video">
+        <div class="video-wrap video-wrap--wide">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Hbqja-FWHDg?start=44&rel=0&modestbranding=1&playsinline=1"
+            title="Massage chair buying guide video"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
-    </div>
 
-    <div class="container">
       <div class="card" style="margin-top:14px;">
         <p class="muted">
           Note: product availability and pricing can change. Use the “Check price on Amazon Canada” buttons below for current listings.
         </p>
       </div>
-    </div>
-  </section>
-
-  <main class="container">
+    </section>
 
     <!-- REVIEWS -->
     <section class="section" id="reviews" aria-label="Top 10 massage chair reviews">
@@ -353,7 +447,7 @@
         <!-- 1 -->
         <article class="product" id="osaki-4d-manhattan-duo">
           <div class="product-head">
-            <h2>1) Osaki 4D Manhattan Duo Mech</h2>
+            <h3>1) Osaki 4D Manhattan Duo Mech</h3>
             <div class="badges">
               <span class="pill">4D</span>
               <span class="pill">Zero gravity</span>
@@ -375,7 +469,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a powerful, precise deep-tissue feel with premium control and full-body coverage.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>4D roller system for adjustable depth + rhythm</li>
             <li>Dual mechanism approach for refined control across zones</li>
@@ -402,14 +496,14 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A top-tier <strong>4D massage chair</strong> for Canadians who want results. The tuning makes it easier to get “just right” pressure
             without the chair feeling overly aggressive.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B0DKH4DMJD/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B0DKH4DMJD/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $6,000–$8,000+</span>
           </div>
         </article>
@@ -417,7 +511,7 @@
         <!-- 2 -->
         <article class="product" id="osaki-pro-maestro">
           <div class="product-head">
-            <h2>2) Osaki OS-4D Pro Maestro (SL-Track)</h2>
+            <h3>2) Osaki OS-4D Pro Maestro (SL-Track)</h3>
             <div class="badges">
               <span class="pill">Luxury</span>
               <span class="pill">4D</span>
@@ -439,7 +533,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a <strong>luxury massage chair</strong> that feels refined enough for frequent daily use.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>4D roller control for depth plus pace variation</li>
             <li>SL-track for long coverage through lower back and glutes</li>
@@ -447,7 +541,7 @@
             <li>Heat therapy to support relaxation</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -465,14 +559,14 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A premium choice for a daily home wellness routine. If you’re searching <strong>massage chair Canada</strong> and want a “buy once, use for years” model,
             this is a safe luxury bet.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B08B1RGVW7/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $7,000–$9,000+</span>
           </div>
         </article>
@@ -480,7 +574,7 @@
         <!-- 3 -->
         <article class="product" id="os-ai-vivo-4d">
           <div class="product-head">
-            <h2>3) OS-Ai Vivo 4D Intelligent Technology</h2>
+            <h3>3) OS-Ai Vivo 4D Intelligent Technology</h3>
             <div class="badges">
               <span class="pill">4D</span>
               <span class="pill">Smart tuning</span>
@@ -502,7 +596,7 @@
 
           <p><strong>Who it’s best for:</strong> Households that want personalized programs and a “set it and reset” daily wellness chair.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Intelligent body scanning to improve alignment and comfort</li>
             <li>4D rollers for a more human-like massage cadence</li>
@@ -511,7 +605,7 @@
             <li>Full-body compression support (varies by configuration)</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -529,13 +623,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             If you’re comparing <strong>3D vs 4D massage chair</strong> options, this model shows why 4D can feel more natural: rhythm variation reduces the “robotic” sensation.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B0CGRW2QTD/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B0CGRW2QTD/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $6,000–$8,500</span>
           </div>
         </article>
@@ -543,7 +637,7 @@
         <!-- 4 -->
         <article class="product" id="synca-jp1100">
           <div class="product-head">
-            <h2>4) Synca Wellness JP1100 (Zen premium design)</h2>
+            <h3>4) Synca Wellness JP1100 (Zen premium design)</h3>
             <div class="badges">
               <span class="pill">Design-first</span>
               <span class="pill">Premium</span>
@@ -564,7 +658,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a premium chair that looks like furniture and feels polished, not clinical.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Furniture-grade aesthetic for premium living spaces</li>
             <li>Refined massage profiles built for comfort and consistency</li>
@@ -572,7 +666,7 @@
             <li>Heat therapy for relaxation</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -590,13 +684,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             The best match for “<strong>luxury massage chair</strong>” shoppers who care about room aesthetics as much as massage quality.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B07CWJ5J8H/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B07CWJ5J8H/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $8,000+</span>
           </div>
         </article>
@@ -604,7 +698,7 @@
         <!-- 5 -->
         <article class="product" id="inada-dreamwave">
           <div class="product-head">
-            <h2>5) Inada DreamWave (Admiral – high-end classic)</h2>
+            <h3>5) Inada DreamWave (Admiral – high-end classic)</h3>
             <div class="badges">
               <span class="pill">Therapeutic</span>
               <span class="pill">Back pain</span>
@@ -626,7 +720,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers prioritizing therapeutic relief and a high-end, clinic-like massage approach.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Therapeutic massage system with full-body coverage</li>
             <li>Strong focus on spine, shoulders, and hip alignment</li>
@@ -634,7 +728,7 @@
             <li>Heat therapy for comfort and recovery</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -652,13 +746,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A “results-first” <strong>high-end massage chair</strong> that’s often shortlisted by buyers looking for back pain support and long-term reliability.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B07S7K19W4/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B07S7K19W4/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $8,000+</span>
           </div>
         </article>
@@ -666,7 +760,7 @@
         <!-- 6 -->
         <article class="product" id="real-relax-2026">
           <div class="product-head">
-            <h2>6) Real Relax 2026 – Bluetooth Massage Recliner</h2>
+            <h3>6) Real Relax 2026 – Bluetooth Massage Recliner</h3>
             <div class="badges">
               <span class="pill">Best for home</span>
               <span class="pill">Value</span>
@@ -687,7 +781,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a strong feature set and comfort experience without entering ultra-premium pricing.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Recline with zero-gravity style positioning</li>
             <li>Heat therapy for relaxation and recovery</li>
@@ -695,7 +789,7 @@
             <li>Full body massage chair comfort at a lower price point</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -713,13 +807,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A solid “best massage chair for home” option if you want heat, recline, and reliable comfort without flagship pricing.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B0G2S1F528/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B0G2S1F528/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $2,000–$3,000</span>
           </div>
         </article>
@@ -727,7 +821,7 @@
         <!-- 7 -->
         <article class="product" id="breakthrough-v2">
           <div class="product-head">
-            <h2>7) Breakthrough v2 – Heated & Reclining Massage Chair</h2>
+            <h3>7) Breakthrough v2 – Heated & Reclining Massage Chair</h3>
             <div class="badges">
               <span class="pill">Heat</span>
               <span class="pill">Comfort</span>
@@ -748,14 +842,14 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want heat-forward comfort and a reclining chair that feels easy for daily use.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Reclining design for longer relaxation sessions</li>
             <li>Heat therapy for comfort and recovery</li>
             <li>Balanced massage intensity for broad appeal</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -773,13 +867,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A comfortable step-up choice when you want heat and recline first, and “good enough” massage performance for daily use.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B077561ZMM/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B077561ZMM/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $3,000–$4,000</span>
           </div>
         </article>
@@ -787,7 +881,7 @@
         <!-- 8 -->
         <article class="product" id="bestmassage-shiatsu">
           <div class="product-head">
-            <h2>8) BestMassage Shiatsu – Electric Reclining Massage Chair</h2>
+            <h3>8) BestMassage Shiatsu – Electric Reclining Massage Chair</h3>
             <div class="badges">
               <span class="pill">Shiatsu</span>
               <span class="pill">Value</span>
@@ -808,14 +902,14 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a straightforward shiatsu feel with heat and recline at a more accessible price.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Shiatsu-style massage approach</li>
             <li>Reclining comfort for relaxed sessions</li>
             <li>Heat support for calming use</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -833,13 +927,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A straightforward option for shoppers searching “massage chair reviews Canada” who want the basics done well.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B082MBTJ65/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B082MBTJ65/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $2,000–$3,000</span>
           </div>
         </article>
@@ -847,7 +941,7 @@
         <!-- 9 -->
         <article class="product" id="nouhaus-modern-heated">
           <div class="product-head">
-            <h2>9) Nouhaus – Modern Heated Reclining Massage Chair</h2>
+            <h3>9) Nouhaus – Modern Heated Reclining Massage Chair</h3>
             <div class="badges">
               <span class="pill">Modern</span>
               <span class="pill">Home-friendly</span>
@@ -868,14 +962,14 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want a modern chair with heat and recline that blends into a living space.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>Modern silhouette designed for home aesthetics</li>
             <li>Heat support for comfort</li>
             <li>Reclining posture for relaxed sessions</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -893,13 +987,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A strong pick when you want a chair that fits your room, with heat and reclining comfort as the core benefits.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B0DFWLLG4J/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B0DFWLLG4J/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $2,000–$3,500</span>
           </div>
         </article>
@@ -907,7 +1001,7 @@
         <!-- 10 -->
         <article class="product" id="massamax-4d">
           <div class="product-head">
-            <h2>10) MassaMAX 4D Massage Chair (Ultra-Premium Backup)</h2>
+            <h3>10) MassaMAX 4D Massage Chair (Ultra-Premium Backup)</h3>
             <div class="badges">
               <span class="pill">4D</span>
               <span class="pill">Ultra-premium</span>
@@ -929,7 +1023,7 @@
 
           <p><strong>Who it’s best for:</strong> Buyers who want another high-end 4D option on their shortlist for availability and pricing flexibility.</p>
 
-          <h3>Key features</h3>
+          <h4>Key features</h4>
           <ul>
             <li>4D roller system for depth + rhythm variation</li>
             <li>Zero gravity positioning for decompression-style sessions</li>
@@ -937,7 +1031,7 @@
             <li>Full body massage chair experience with premium positioning</li>
           </ul>
 
-          <div class="proscons">
+          <div class="proscons" aria-label="Pros and cons">
             <div class="pc">
               <strong>Pros</strong>
               <ul>
@@ -955,13 +1049,13 @@
             </div>
           </div>
 
-          <h3>Why it stands out</h3>
+          <h4>Why it stands out</h4>
           <p>
             A smart backup choice for buyers who don’t want stock delays to decide their purchase.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://www.amazon.ca/dp/B0CTTV916F/?tag=kitchengearla-20" rel="nofollow sponsored">Check price on Amazon Canada</a>
+            <a class="btn primary" href="https://www.amazon.ca/dp/B0CTTV916F/?tag=kitchengearla-20" target="_blank" rel="nofollow sponsored noopener noreferrer">Check price on Amazon Canada</a>
             <span class="muted">Typical range: $7,000+</span>
           </div>
         </article>
@@ -1009,6 +1103,7 @@
           </div>
         </div>
 
+        <!-- NOTE: If the pages below aren't live yet, replace these <a> links with plain text to avoid 404s. -->
         <div class="note" style="margin-top:14px;">
           Internal link ideas:
           <a href="/3d-vs-4d-massage-chair/">3D vs 4D Massage Chair</a>,
@@ -1086,6 +1181,7 @@
         document.getElementById("y").textContent = new Date().getFullYear();
       </script>
     </footer>
+
   </main>
 
 </body>
