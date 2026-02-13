@@ -2,7 +2,7 @@
 <html lang="en-CA">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="format-detection" content="telephone=no" />
 
   <!-- Preconnect (tiny perf win for GA4) -->
@@ -395,14 +395,6 @@
 
 <!-- JS (all in site.js) -->
 <script src="/assets/js/site.js?v=1" defer></script>
-
-<!-- Fallback year (only if site.js doesn't set it) -->
-<script>
-  (function () {
-    var y = document.getElementById("y");
-    if (y && !y.textContent) y.textContent = String(new Date().getFullYear());
-  })();
-</script>
 
 </body>
 </html>
