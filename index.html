@@ -47,7 +47,9 @@
   <meta property="og:image" content="https://massagechaircanada.github.io/assets/images/og/massagechaircanada-home-og-1200x630.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Massage chairs in a premium Canadian home" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="MassageChairCanada (2026)" />
   <meta name="twitter:description" content="Massage chair reviews for Canadian buyers. Value-first picks + premium showroom options." />
@@ -168,7 +170,7 @@
     <strong>Quick links</strong>
   </div>
 
-  <!-- Funnel links (tracked via main.js using data-track) -->
+  <!-- Funnel links (tracked via site.js using data-track) -->
   <a href="/best-massage-chair-canada/" data-track="home-quick-best">Best Massage Chair (Canada)</a>
   <a href="/massage-chair-comparison-canada/" data-track="home-quick-compare">Comparison (Canada)</a>
   <a href="/premium-massage-chairs-canada/" data-track="home-quick-premium">Premium showroom</a>
@@ -391,8 +393,16 @@
   </div>
 </footer>
 
-<!-- JS (all in main.js) -->
+<!-- JS (all in site.js) -->
 <script src="/assets/js/site.js?v=1" defer></script>
+
+<!-- Fallback year (only if site.js doesn't set it) -->
+<script>
+  (function () {
+    var y = document.getElementById("y");
+    if (y && !y.textContent) y.textContent = String(new Date().getFullYear());
+  })();
+</script>
 
 </body>
 </html>
